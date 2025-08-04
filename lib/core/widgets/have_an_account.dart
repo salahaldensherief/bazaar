@@ -6,7 +6,6 @@ import 'package:mega_top/features/auth/presentation/views/login_view.dart';
 
 import '../utils/app_colors.dart';
 
-
 // Project imports:
 
 class HaveAnAccountWidget extends StatelessWidget {
@@ -17,21 +16,18 @@ class HaveAnAccountWidget extends StatelessWidget {
     return Text.rich(
       TextSpan(
         children: [
-
           TextSpan(
             text: 'Already Have Account?  ',
-            style: TextStyle(color:Colors.black),
+            style: TextStyle(color: Colors.black),
           ),
 
           TextSpan(
-            recognizer:
-                TapGestureRecognizer()
-                  ..onTap = () {
-                    Navigator.pushNamed(context, LoginView.routeName);
-                  },
+            recognizer: TapGestureRecognizer()
+              ..onTap = () {
+                Navigator.pushNamed(context, LoginView.routeName);
+              },
             text: 'Login',
-            style: TextStyles.medium15
-            ,
+            style: TextStyles.medium15.copyWith(color: AppColors.primaryColor),
           ),
         ],
       ),

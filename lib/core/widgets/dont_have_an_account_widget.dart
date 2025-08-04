@@ -1,6 +1,10 @@
 // Flutter imports:
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:mega_top/core/utils/app_colors.dart';
+import 'package:mega_top/core/utils/text_styles.dart';
+
+import '../../features/auth/presentation/views/signup_view.dart';
 
 // Project imports:
 
@@ -21,9 +25,11 @@ class DontHaveAnAccountWidget extends StatelessWidget {
           ),
           TextSpan(
             recognizer: TapGestureRecognizer()..onTap= (){
-              // Navigator.pushNamed(context, SignUpView.routeName);
+              Navigator.pushNamed(context, SignUpView.routeName);
             },
-            text: 'SignUp',style: TextStyle(color: Color(0xff4991BF)),),
+            text: 'SignUp',style: TextStyles.medium15.copyWith(
+            color: AppColors.primaryColor
+          ),),
         ],
       ),
       textAlign: TextAlign.center,
