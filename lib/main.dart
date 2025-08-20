@@ -5,6 +5,8 @@ import 'package:mega_top/core/utils/app_colors.dart';
 import 'package:mega_top/features/onboarding/presentation/views/onboarding_view.dart';
 import 'package:mega_top/features/splash/presentation/views/splash_view.dart';
 
+import 'features/home/presentation/views/widgets/bottom_nav_bar.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -25,7 +27,7 @@ class MyApp extends StatelessWidget {
           primaryColor: AppColors.primaryColor,
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         ),
-        initialRoute: SplashView.routeName,
+        initialRoute: BottomNavBar.routeName,
         onGenerateRoute: onGenerateRoutes,
       ),
     );

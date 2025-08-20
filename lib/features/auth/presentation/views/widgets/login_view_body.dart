@@ -4,6 +4,7 @@ import 'package:mega_top/core/utils/app_colors.dart';
 import 'package:mega_top/core/utils/assets_images.dart';
 import 'package:mega_top/core/utils/text_styles.dart';
 import 'package:mega_top/features/auth/presentation/views/widgets/passwoed_field.dart';
+import 'package:mega_top/features/home/presentation/views/home_view.dart';
 
 import '../../../../../core/widgets/custom_text_field.dart';
 import '../../../../../core/widgets/dont_have_an_account_widget.dart';
@@ -35,8 +36,8 @@ class LoginViewBody extends StatelessWidget {
                 ),
               ),
               SizedBox(height: size.height * 0.10.h),
-              const CustomTextFormField(
-                prefixIcon: Icon(Icons.email),
+               CustomTextFormField(
+                prefixIcon: Icon(Icons.email, size: 26.sp),
                 hintText: 'Email',
                 textInputType: TextInputType.emailAddress,
               ),
@@ -45,7 +46,9 @@ class LoginViewBody extends StatelessWidget {
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+
+                  },
                   child: Text(
                     'Forget Password',
                     style: TextStyles.medium14.copyWith(
@@ -55,7 +58,14 @@ class LoginViewBody extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 24.h),
-              CustomTextBottom(text: 'Login'),
+              CustomTextBottom(
+                  onPressed: (){
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => const HomeView()),
+                    );
+                  },
+                  text: 'Login'),
               SizedBox(height: 24.h),
               const DontHaveAnAccountWidget(),
               SizedBox(height: 24.h),
