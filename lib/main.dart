@@ -20,12 +20,13 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
+          useMaterial3: false,
           fontFamily: 'Cairo',
           scaffoldBackgroundColor: AppColors.backgraoundColor,
           primaryColor: AppColors.primaryColor,
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         ),
         initialRoute: BottomNavBar.routeName,
         onGenerateRoute: onGenerateRoutes,

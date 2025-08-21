@@ -14,5 +14,13 @@ class AssetsData {
   static const categoriesAc = 'assets/images/categories a.svg';
   static const home = 'assets/images/home.svg';
   static const homeAc = 'assets/images/home a.svg';
+  static const cartIcon = 'assets/images/cartIcon.svg';
+  static const flter = 'assets/images/flter.svg';
+  static const Frame = 'assets/images/Frame 427321751.svg';
+  static const search = 'assets/images/search.svg';
+  static const APC = 'assets/images/APC.png';
+  static const Hikvision = 'assets/images/Hikvision.png';
+  static const Schneider = 'assets/images/Schneider.png';
+  static const WD = 'assets/images/WD.png';
 
 }

@@ -1,0 +1,67 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:mega_top/core/utils/app_colors.dart';
+import 'package:mega_top/core/utils/assets_images.dart';
+import 'package:mega_top/core/utils/text_styles.dart';
+
+class IconAppBar extends StatelessWidget {
+  const IconAppBar({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      minimum: EdgeInsets.only(top: 30.h),
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16.w),
+        child: Row(
+          children: [
+            CircleAvatar(
+              maxRadius: 25.r,
+              child: SvgPicture.asset(AssetsData.Frame, fit: BoxFit.fill),
+            ),
+            SizedBox(width: 8.w),
+            Column(
+              children: [
+                Text('Salah Eldin', style: TextStyles.medium15),
+                Text('Welcome !', style: TextStyles.regular13),
+              ],
+            ),
+            Spacer(),
+            Row(
+              children: [
+                Container(
+                  width: 40.w,
+                  height: 40.h,
+                  decoration: BoxDecoration(
+                    color: AppColors.backIconColor,
+                    borderRadius: BorderRadius.circular(50.r),
+                  ),
+                  child: Icon(
+                    FontAwesomeIcons.solidHeart,
+                    color: AppColors.primaryColor,
+                    size: 20.sp,
+                  ),
+                ),
+                SizedBox(width: 8.w),
+                Container(
+                  width: 40.w,
+                  height: 40.h,
+                  decoration: BoxDecoration(
+                    color: AppColors.backIconColor,
+                    borderRadius: BorderRadius.circular(50.r),
+                  ),
+                  child: Icon(
+                    FontAwesomeIcons.solidBell,
+                    color: AppColors.primaryColor,
+                    size: 20.sp,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

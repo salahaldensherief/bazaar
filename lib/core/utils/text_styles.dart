@@ -54,6 +54,9 @@ abstract class TextStyles {
   static TextStyle medium15 = TextStyle(
     fontWeight: FontWeight.w700,
     fontSize: 14.sp,
+  );static TextStyle medium13 = TextStyle(
+    fontWeight: FontWeight.w700,
+    fontSize: 12.sp,
   );
   static TextStyle medium14 = TextStyle(
     fontWeight: FontWeight.w500,
