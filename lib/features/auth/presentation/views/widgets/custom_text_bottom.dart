@@ -7,7 +7,7 @@ import 'package:mega_top/core/utils/text_styles.dart';
 import '../../../../../core/utils/app_colors.dart';
 
 class CustomTextBottom extends StatelessWidget {
-  CustomTextBottom({ super.key, this.onPressed, required this.text});
+  const CustomTextBottom({ super.key, this.onPressed, required this.text});
   final VoidCallback? onPressed;
   final String text;
 

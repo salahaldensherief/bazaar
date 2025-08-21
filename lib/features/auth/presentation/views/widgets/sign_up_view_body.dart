@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mega_top/core/utils/assets_images.dart';
 import 'package:mega_top/features/auth/presentation/views/widgets/passwoed_field.dart';
 
-import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/widgets/custom_text_field.dart';
 import '../../../../../core/widgets/have_an_account.dart';
 import 'custom_text_bottom.dart';

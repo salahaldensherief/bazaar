@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mega_top/core/hepler/on_generate_routes.dart';
 import 'package:mega_top/core/utils/app_colors.dart';
-import 'package:mega_top/features/onboarding/presentation/views/onboarding_view.dart';
-import 'package:mega_top/features/splash/presentation/views/splash_view.dart';
 
 import 'features/home/presentation/views/widgets/bottom_nav_bar.dart';
 

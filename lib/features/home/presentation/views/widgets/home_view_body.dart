@@ -5,7 +5,6 @@ import 'package:mega_top/features/home/presentation/views/widgets/brands_widget_
 
 import 'Latest_offers_widget.dart';
 import 'best_seller_list_view.dart';
-import 'brands_widget.dart';
 import 'custom_carousel_slider.dart';
 import 'custom_search_bar.dart';
 import 'icons_app_bar.dart';

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomTextFormField extends StatelessWidget {
-  const CustomTextFormField({
+  const CustomTextFormField({super.key, 
     required this.hintText,
     this.prefixIcon,
     this.suffixIcon,
