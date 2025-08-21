@@ -7,6 +7,7 @@ import '../../../../../core/utils/text_styles.dart';
 
 class SectionWidget extends StatelessWidget {
   const SectionWidget({super.key, required this.title});
+
 final String title;
   @override
   Widget build(BuildContext context) {

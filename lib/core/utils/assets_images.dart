@@ -22,5 +22,7 @@ class AssetsData {
   static const Hikvision = 'assets/images/Hikvision.png';
   static const Schneider = 'assets/images/Schneider.png';
   static const WD = 'assets/images/WD.png';
+  static const offer = 'assets/images/offer.png';
+  static const hard = 'assets/images/image 8.png';
 
 }

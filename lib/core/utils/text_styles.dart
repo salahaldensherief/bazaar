@@ -35,6 +35,10 @@ abstract class TextStyles {
     fontWeight: FontWeight.w600,
     fontSize: 16.sp,
   );
+  static TextStyle semiBold14 = TextStyle(
+    fontWeight: FontWeight.w700,
+    fontSize: 12.sp,
+  );
 
   static TextStyle bold28 = TextStyle(
     fontWeight: FontWeight.bold,
@@ -50,11 +54,20 @@ abstract class TextStyles {
     fontWeight: FontWeight.w600,
     fontSize: 11.sp,
   );
+  static TextStyle semiBold10 = TextStyle(
+    fontWeight: FontWeight.w700,
+    fontSize: 10.sp,
+  );
+  static TextStyle semiBold8 = TextStyle(
+    fontWeight: FontWeight.w700,
+    fontSize: 8.sp,
+  );
 
   static TextStyle medium15 = TextStyle(
     fontWeight: FontWeight.w700,
     fontSize: 14.sp,
-  );static TextStyle medium13 = TextStyle(
+  );
+  static TextStyle medium13 = TextStyle(
     fontWeight: FontWeight.w700,
     fontSize: 12.sp,
   );
@@ -76,5 +89,9 @@ abstract class TextStyles {
   static TextStyle regular11 = TextStyle(
     fontWeight: FontWeight.normal,
     fontSize: 11.sp,
+  );
+  static TextStyle regular12 = TextStyle(
+    fontWeight: FontWeight.w500,
+    fontSize: 12.sp,
   );
 }

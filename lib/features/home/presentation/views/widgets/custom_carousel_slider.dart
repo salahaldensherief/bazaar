@@ -39,7 +39,7 @@ class _CustomCarouselSliderState extends State<CustomCarouselSlider> {
                       borderRadius: BorderRadius.circular(4.0.r),
                       image: DecorationImage(
                         image: AssetImage(item),
-                        fit: BoxFit.cover,
+                        fit: BoxFit.fill,
                       ),
                     ),
                   ),
