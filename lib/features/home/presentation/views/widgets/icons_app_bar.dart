@@ -44,17 +44,19 @@ class IconAppBar extends StatelessWidget {
                   ),
                 ),
                 SizedBox(width: 8.w),
-                Container(
-                  width: 40.w,
-                  height: 40.h,
-                  decoration: BoxDecoration(
-                    color: AppColors.backIconColor,
-                    borderRadius: BorderRadius.circular(50.r),
-                  ),
-                  child: Icon(
-                    FontAwesomeIcons.solidBell,
-                    color: AppColors.primaryColor,
-                    size: 20.sp,
+                Visibility(
+                  child: Container(
+                    width: 40.w,
+                    height: 40.h,
+                    decoration: BoxDecoration(
+                      color: AppColors.backIconColor,
+                      borderRadius: BorderRadius.circular(50.r),
+                    ),
+                    child: Icon(
+                      FontAwesomeIcons.solidBell,
+                      color: AppColors.primaryColor,
+                      size: 20.sp,
+                    ),
                   ),
                 ),
               ],

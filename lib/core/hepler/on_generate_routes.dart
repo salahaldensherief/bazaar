@@ -10,6 +10,7 @@ import '../../features/categories/presentation/views/categories_view.dart';
 import '../../features/home/presentation/views/home_view.dart';
 import '../../features/home/presentation/views/widgets/bottom_nav_bar.dart';
 import '../../features/onboarding/presentation/views/onboarding_view.dart';
+import '../../features/search/presentation/views/search_page_view.dart';
 import '../../features/splash/presentation/views/splash_view.dart';
 
 Route<dynamic> onGenerateRoutes(RouteSettings settings) {
@@ -35,6 +36,8 @@ Route<dynamic> onGenerateRoutes(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => CategoriesView());
       case BrandsView.routeName:
       return MaterialPageRoute(builder: (context) => BrandsView());
+      case SearchPageView.routeName:
+      return MaterialPageRoute(builder: (context) => SearchPageView());
     default:
       return MaterialPageRoute(builder: (context) => Scaffold());
   }

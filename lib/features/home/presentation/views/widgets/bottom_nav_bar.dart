@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mega_top/core/utils/assets_images.dart';
 import 'package:mega_top/features/brands/presentation/views/brands_view.dart';
@@ -74,7 +75,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
         alignment: Alignment.bottomCenter,
         children: [
           Container(
-            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 6),
+            padding:  EdgeInsets.symmetric(vertical: 8.h, horizontal: 3.w),
             decoration: const BoxDecoration(
               color: Colors.white,
               boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 8)],
@@ -124,7 +125,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
               child: Container(
                 width: tabWidth,
-                height: 2.2,
+                height: 2.2.h,
                 decoration: BoxDecoration(color: AppColors.primaryColor),
               ),
             ),

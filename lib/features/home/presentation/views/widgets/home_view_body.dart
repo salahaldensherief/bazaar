@@ -21,7 +21,9 @@ class HomeViewBody extends StatelessWidget {
 
         slivers: [
           SliverToBoxAdapter(child: IconAppBar()),
-          SliverToBoxAdapter(child: SearchBarWidget()),
+          SliverToBoxAdapter(child: SearchBarWidget(
+            isEnabled: false,
+          )),
           SliverToBoxAdapter(child: SizedBox(height: 20.h)),
           SliverToBoxAdapter(
             child: SizedBox(height: 220.h, child: CustomCarouselSlider()),

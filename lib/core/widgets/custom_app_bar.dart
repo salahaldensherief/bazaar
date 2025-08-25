@@ -1,61 +1,126 @@
-// import 'package:flutter/material.dart';
-// import 'package:mega_top/core/utils/assets_images.dart';
-//
-// class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-//   final String title;
-//   final bool showBack;
-//   final VoidCallback? onBack;
-//  final bool centerTitle;
-//
-//   const CustomAppBar({
-//     super.key,
-//     required this.title,
-//     this.showBack = false,
-//     this.onBack, this.centerTitle= true,
-//   });
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Column(
-//       mainAxisSize: MainAxisSize.min,
-//       children: [
-//         AppBar(
-//           backgroundColor: Colors.white,
-//           elevation: 0,
-//           leading: showBack
-//               ? IconButton(
-//             icon: Image.asset(AssetsData.backIcon),
-//             onPressed: onBack ?? () => Navigator.of(context).pop(),
-//           )
-//               : null,
-//           centerTitle: centerTitle,
-//           title: Text(
-//             title,
-//             style: const TextStyle(
-//               color: Colors.black,
-//               fontWeight: FontWeight.w500,
-//             ),
-//           ),
-//         ),
-//         Container(
-//           height: 1,
-//            decoration: BoxDecoration(
-//              boxShadow: [
-//                 BoxShadow(
-//                    color: Colors.black.withOpacity(.3),
-//                   spreadRadius: .01,
-//                   offset: Offset(0, 2),
-//                   blurRadius: 2,
-//                   blurStyle: BlurStyle.normal
-//
-//                 )
-//              ]
-//            ),
-//         ),
-//       ],
-//     );
-//   }
-//
-//   @override
-//   Size get preferredSize => const Size.fromHeight(kToolbarHeight + 1);
-// }
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:mega_top/core/utils/assets_images.dart';
+
+import '../utils/app_colors.dart';
+import '../utils/text_styles.dart';
+
+class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
+  final String title;
+  final bool showBack;
+  final VoidCallback? onBack;
+  final bool centerTitle;
+  final bool showCart;
+
+  const CustomAppBar({
+    super.key,
+    required this.title,
+    this.showBack = false,
+    this.onBack,
+    this.centerTitle = true,
+    this.showCart = false,
+  });
+
+  @override
+  State<CustomAppBar> createState() => _CustomAppBarState();
+
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight + 1);
+}
+
+class _CustomAppBarState extends State<CustomAppBar> {
+  bool _isPressed = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
+          leading: widget.showBack
+              ? GestureDetector(
+                  onTapDown: (_) {
+                    setState(() => _isPressed = true);
+                  },
+                  onTapUp: (_) {
+                    setState(() => _isPressed = false);
+                    (widget.onBack ?? () => Navigator.of(context).pop())();
+                  },
+                  onTapCancel: () {
+                    setState(() => _isPressed = false);
+                  },
+                  child: AnimatedContainer(
+                    margin: EdgeInsets.symmetric(
+                      horizontal: 8.w,
+                      vertical: 8.h,
+                    ),
+                    duration: const Duration(milliseconds: 20),
+                    decoration: BoxDecoration(
+                      color: _isPressed
+                          ? AppColors.primaryColor
+                          : Colors.transparent,
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    padding: EdgeInsets.symmetric(horizontal: 8.w),
+                    child: SvgPicture.asset(
+                      _isPressed
+                          ? AssetsData.BackArrowWhite
+                          : AssetsData.Backarrow,
+                      width: 20.w,
+                      height: 20.h,
+                    ),
+                  ),
+                )
+              : null,
+          centerTitle: widget.centerTitle,
+          title: Text(
+            widget.title,
+            style: TextStyles.bold22.copyWith(color: Colors.black),
+          ),
+          actions: [
+            Visibility(
+              visible: widget.showCart,
+
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
+                child: Container(
+                  width: 40.w,
+                  height: 40.h,
+                  decoration: BoxDecoration(
+                    color: AppColors.backIconColor,
+                    borderRadius: BorderRadius.circular(50.r),
+                  ),
+                  child: Icon(
+                    FontAwesomeIcons.solidHeart,
+                    color: AppColors.primaryColor,
+                    size: 18.sp,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+        Container(
+          height: 1,
+          decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+
+                color: Colors.black26.withOpacity(.2),
+                spreadRadius: .1,
+                offset: const Offset(0, 9),
+
+                blurRadius: 2,
+                blurStyle: BlurStyle.normal,
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}

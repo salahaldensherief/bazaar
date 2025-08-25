@@ -24,5 +24,8 @@ class AssetsData {
   static const WD = 'assets/images/WD.png';
   static const offer = 'assets/images/offer.png';
   static const hard = 'assets/images/image 8.png';
+  static const Backarrow = 'assets/images/back-arrow.svg';
+  static const BackArrowWhite = 'assets/images/back-arrow-white.svg';
+  static const emptySearch = 'assets/images/empty-search.png';
 
 }
