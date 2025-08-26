@@ -27,5 +27,10 @@ class AssetsData {
   static const Backarrow = 'assets/images/back-arrow.svg';
   static const BackArrowWhite = 'assets/images/back-arrow-white.svg';
   static const emptySearch = 'assets/images/empty-search.png';
+  static const fav = 'assets/images/favour-outlined.svg';
+  static const favAc = 'assets/images/Property 1=Variant2.svg';
+  static const sort = 'assets/images/sort2.svg';
+  static const flterblack = 'assets/images/flterblack.svg';
+  static const ups = 'assets/images/ups-1.png';
 
 }

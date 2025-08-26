@@ -94,14 +94,19 @@ class _CustomAppBarState extends State<CustomAppBar> {
                     color: AppColors.backIconColor,
                     borderRadius: BorderRadius.circular(50.r),
                   ),
-                  child: Icon(
-                    FontAwesomeIcons.solidHeart,
-                    color: AppColors.primaryColor,
-                    size: 18.sp,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SvgPicture.asset(
+                      width: 15.w,
+                      height: 20.h,
+                         AssetsData.favAc,
+                      fit: BoxFit.scaleDown,
+                                          ),
                   ),
+                    ),
                 ),
               ),
-            ),
+
           ],
         ),
         Container(
@@ -112,7 +117,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
 
                 color: Colors.black26.withOpacity(.2),
                 spreadRadius: .1,
-                offset: const Offset(0, 9),
+                offset: const Offset(0, 1),
 
                 blurRadius: 2,
                 blurStyle: BlurStyle.normal,

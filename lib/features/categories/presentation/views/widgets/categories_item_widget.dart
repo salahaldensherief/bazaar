@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mega_top/core/utils/app_colors.dart';
+import 'package:mega_top/features/categories/presentation/views/widgets/product_view.dart';
 
 import '../../../../../core/utils/assets_images.dart';
 import '../../../../../core/utils/text_styles.dart';
@@ -11,7 +12,12 @@ class CategoriesItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  InkWell(
-      onTap: (){},
+      onTap: (){
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return ProductsView();
+        },));
+
+      },
       child: Container(
         decoration: BoxDecoration(
           color:AppColors.backIconColor ,
