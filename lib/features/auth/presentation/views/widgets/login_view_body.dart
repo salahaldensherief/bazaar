@@ -5,6 +5,7 @@ import 'package:mega_top/core/utils/assets_images.dart';
 import 'package:mega_top/core/utils/text_styles.dart';
 import 'package:mega_top/features/auth/presentation/views/widgets/passwoed_field.dart';
 import 'package:mega_top/features/home/presentation/views/home_view.dart';
+import 'package:mega_top/features/home/presentation/views/widgets/bottom_nav_bar.dart';
 
 import '../../../../../core/widgets/custom_text_field.dart';
 import '../../../../../core/widgets/dont_have_an_account_widget.dart';
@@ -60,10 +61,7 @@ class LoginViewBody extends StatelessWidget {
               SizedBox(height: 24.h),
               CustomTextBottom(
                   onPressed: (){
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (context) => const HomeView()),
-                    );
+                   Navigator.of(context).pushReplacementNamed(BottomNavBar.routeName);
                   },
                   text: 'Login'),
               SizedBox(height: 24.h),

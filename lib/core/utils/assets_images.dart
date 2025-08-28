@@ -32,5 +32,6 @@ class AssetsData {
   static const sort = 'assets/images/sort2.svg';
   static const flterblack = 'assets/images/flterblack.svg';
   static const ups = 'assets/images/ups-1.png';
+  static const exit = 'assets/images/Vector.svg';
 
 }

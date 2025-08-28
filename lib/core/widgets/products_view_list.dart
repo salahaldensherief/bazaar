@@ -48,9 +48,7 @@ class _ProductViewListState extends State<ProductViewList> {
                 height: 106.h,
                 width: 120.w,
                 margin: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
-                decoration: const BoxDecoration(
-                  color: Color(0xffF7F7FB),
-                ),
+                decoration: const BoxDecoration(color: Color(0xffF7F7FB)),
                 child: Column(
                   children: [
                     Padding(
@@ -91,7 +89,6 @@ class _ProductViewListState extends State<ProductViewList> {
                 ),
               ),
 
-
               Expanded(
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
@@ -112,7 +109,7 @@ class _ProductViewListState extends State<ProductViewList> {
                             ),
                           ),
                           Padding(
-                            padding:  EdgeInsets.only(right: 8.w),
+                            padding: EdgeInsets.only(right: 8.w),
                             child: InkWell(
                               onTap: () {
                                 setState(() {
@@ -148,8 +145,7 @@ class _ProductViewListState extends State<ProductViewList> {
                               borderRadius: BorderRadius.circular(2.r),
                             ),
                             child: Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceEvenly,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Icon(
                                   Icons.check,
@@ -167,7 +163,7 @@ class _ProductViewListState extends State<ProductViewList> {
                           ),
                           Spacer(),
                           Padding(
-                            padding:  EdgeInsets.only(right: 8.w),
+                            padding: EdgeInsets.only(right: 8.w),
                             child: Text(
                               '1200 L.E',
                               style: TextStyles.semiBold14.copyWith(

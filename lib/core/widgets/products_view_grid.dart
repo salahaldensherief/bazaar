@@ -52,7 +52,7 @@ class _ProductViewGridState extends State<ProductViewGrid> {
               children: [
                 Expanded(
                   child: Container(
-                    height: 198.h,
+                    height: 129.h,
                     margin: EdgeInsets.symmetric(
                       horizontal: 8.w,
                       vertical: 8.h,
@@ -61,10 +61,7 @@ class _ProductViewGridState extends State<ProductViewGrid> {
                     child: Column(
                       children: [
                         Padding(
-                          padding: EdgeInsets.symmetric(
-                            vertical: 8.h,
-                            horizontal: 8.w,
-                          ),
+                          padding: const EdgeInsets.only(right: 4,left: 4),
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,

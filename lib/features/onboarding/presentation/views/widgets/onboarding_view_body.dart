@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mega_top/core/widgets/have_an_account.dart';
 import 'package:mega_top/features/home/presentation/views/home_view.dart';
+import 'package:mega_top/features/home/presentation/views/widgets/bottom_nav_bar.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../../../core/utils/app_colors.dart';
@@ -55,13 +56,13 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
               effect: CustomizableEffect(
                 activeDotDecoration: DotDecoration(
                   width: 40.w,
-                  height: 8,
+                  height: 8.h,
                   color: AppColors.primaryColor,
                   borderRadius: BorderRadius.circular(24),
                 ),
                 dotDecoration: DotDecoration(
-                  width: 8,
-                  height: 8,
+                  width: 8.w,
+                  height: 8.h,
                   color: AppColors.primaryColor.withOpacity(0.3),
                   borderRadius: BorderRadius.circular(8),
                 ),
@@ -79,7 +80,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
                     curve: Curves.easeInOut,
                   );
                 } else {
-                 Navigator.pushNamed(context, HomeView.routeName);
+                 Navigator.pushNamed(context, BottomNavBar.routeName);
                 }
               },
               text: currentPage < 2 ? 'Next' : 'Get started',

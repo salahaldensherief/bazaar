@@ -14,6 +14,8 @@ class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   final bool centerTitle;
   final bool showCart;
 
+
+
   const CustomAppBar({
     super.key,
     required this.title,
@@ -39,6 +41,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
       mainAxisSize: MainAxisSize.min,
       children: [
         AppBar(
+          automaticallyImplyLeading: false,
           backgroundColor: Colors.white,
           elevation: 0,
           leading: widget.showBack
@@ -95,7 +98,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                     borderRadius: BorderRadius.circular(50.r),
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding:  EdgeInsets.all(8.0.sp),
                     child: SvgPicture.asset(
                       width: 15.w,
                       height: 20.h,

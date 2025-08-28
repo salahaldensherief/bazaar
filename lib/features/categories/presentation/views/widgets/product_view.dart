@@ -4,12 +4,15 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mega_top/core/utils/assets_images.dart';
 import 'package:mega_top/features/categories/presentation/views/widgets/product_sliver_list.dart';
 import 'package:mega_top/features/categories/presentation/views/widgets/products_sliver_grid.dart';
+import 'package:mega_top/features/categories/presentation/views/widgets/sort_bottom_sheet.dart';
+import 'package:mega_top/features/home/presentation/views/widgets/icons_app_bar.dart';
 
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/text_styles.dart';
 import '../../../../../core/widgets/custom_app_bar.dart';
 import '../../../../../core/widgets/products_view_grid.dart';
 import '../../../../../core/widgets/products_view_list.dart';
+import 'filter_bottom_sheet.dart';
 
 class ProductsView extends StatefulWidget {
   const ProductsView({super.key});
@@ -72,29 +75,105 @@ class _ProductsViewState extends State<ProductsView> {
                     ),
                   ),
                   const Spacer(),
-                  Container(
-                    width: 52.w,
-                    height: 40.h,
-                    decoration: BoxDecoration(
-                      color: AppColors.black5,
-                      borderRadius: BorderRadius.circular(8.r),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: SvgPicture.asset(AssetsData.sort),
+                  GestureDetector(
+                    onTap: () {
+                      showModalBottomSheet(
+                        isScrollControlled: true,
+                        context: context,
+                        builder: (context) {
+                          return Container(
+                            height: MediaQuery.of(context).size.height * 0.35,
+                            child: Column(
+                              children: [
+                                CustomAppBar(
+                                  showBack: false,
+                                  centerTitle: false,
+                                  title: 'Sort by :',
+                                ),
+                                const SortBottomSheet(),
+                              ],
+                            ),
+                          );
+                        },
+                      );
+                    },
+                    child: Container(
+                      width: 52.w,
+                      height: 40.h,
+                      decoration: BoxDecoration(
+                        color: AppColors.black5,
+                        borderRadius: BorderRadius.circular(8.r),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: SvgPicture.asset(AssetsData.sort),
+                      ),
                     ),
                   ),
-                  const SizedBox(width: 8),
-                  Container(
-                    width: 52.w,
-                    height: 40.h,
-                    decoration: BoxDecoration(
-                      color: AppColors.black5,
-                      borderRadius: BorderRadius.circular(8.r),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: SvgPicture.asset(AssetsData.flterblack),
+                  SizedBox(width: 8.w),
+                  GestureDetector(
+                    onTap: () {
+                      showModalBottomSheet(
+                        context: context,
+                        isScrollControlled: true,
+                        builder: (context) {
+                          return SafeArea(
+                            top: true,
+                            minimum: EdgeInsets.only(top: 15.h),
+                            child: Scaffold(
+                              appBar: AppBar(
+                                automaticallyImplyLeading: false,
+                                elevation: 3,
+                                backgroundColor: AppColors.whiteColor,
+                                title: Text(
+                                  'Filter by',
+                                  style: TextStyles.bold22.copyWith(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                actions: [
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(
+                                      vertical: 10.h,
+                                      horizontal: 10.w,
+                                    ),
+                                    child: GestureDetector(
+                                      onTap: () => Navigator.pop(context),
+                                      child: Container(
+                                        width: 30.w,
+                                        height: 30.h,
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: AppColors.backIconColor,
+                                        ),
+                                        child: SvgPicture.asset(
+                                          AssetsData.exit,
+                                          width: 15.w,
+                                          height: 20.h,
+                                          fit: BoxFit.scaleDown,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              body: const FilterBottomSheet(),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                    child: Container(
+                      width: 52.w,
+                      height: 40.h,
+                      decoration: BoxDecoration(
+                        color: AppColors.black5,
+                        borderRadius: BorderRadius.circular(8.r),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: SvgPicture.asset(AssetsData.flterblack),
+                      ),
                     ),
                   ),
                 ],

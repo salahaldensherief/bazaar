@@ -11,7 +11,9 @@ class CategoriesViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(showCart: true, title: 'Categories'),
+      appBar: CustomAppBar(
+
+          showCart: true, title: 'Categories'),
       body: CategoriesGridView(),
     );
   }

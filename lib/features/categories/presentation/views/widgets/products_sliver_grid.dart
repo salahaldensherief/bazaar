@@ -9,24 +9,21 @@ class ProductsSliverGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverGrid(
-      delegate: SliverChildBuilderDelegate(
-            (context, index) {
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ProductViewGrid(
-              imageHeight: 80.h,
-              width: MediaQuery.of(context).size.width*.45.w,
-            height: 250,
-            ),
-          );
-        },
-        childCount: 20,
-      ),
+      delegate: SliverChildBuilderDelegate((context, index) {
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 8.0),
+          child: ProductViewGrid(
+            imageHeight: 64.h,
+            width: MediaQuery.of(context).size.width * .42.w,
+            height: 228,
+          ),
+        );
+      }, childCount: 20),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        crossAxisSpacing: 2,
+        crossAxisSpacing: .1,
         mainAxisSpacing: 2,
-        childAspectRatio: 3 / 4,
+        childAspectRatio: 3 / 3.5,
       ),
     );
   }
