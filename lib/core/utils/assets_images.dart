@@ -33,5 +33,12 @@ class AssetsData {
   static const flterblack = 'assets/images/flterblack.svg';
   static const ups = 'assets/images/ups-1.png';
   static const exit = 'assets/images/Vector.svg';
+  static const compare = 'assets/images/compare.svg';
+  static const cartPlus = 'assets/images/cart-plus.svg';
+  static const cartEmpty = 'assets/images/cartEmptyPng.png';
+  static const map = 'assets/images/map.svg';
+  static const plus = 'assets/images/plus.svg';
+  static const remove = 'assets/images/remove.svg';
+  static const minus = 'assets/images/minus.svg';
 
 }

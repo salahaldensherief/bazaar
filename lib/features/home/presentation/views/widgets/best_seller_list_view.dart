@@ -9,8 +9,10 @@ class BestSellerListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
+      width: 253.w,
       height: 330.h,
       child: ListView.builder(
+
         scrollDirection: Axis.horizontal,
         itemCount: 2,
 

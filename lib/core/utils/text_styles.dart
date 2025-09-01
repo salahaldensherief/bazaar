@@ -14,10 +14,14 @@ abstract class TextStyles {
     fontWeight: FontWeight.w700,
     fontSize: 16.sp,
   );
+ static TextStyle bold21 = TextStyle(
+    fontWeight: FontWeight.w600,
+    fontSize: 18.sp,
+  );
 
   static TextStyle semiBold13 = TextStyle(
     fontWeight: FontWeight.w600,
-    fontSize: 13.sp,
+    fontSize: 14.sp,
   );
 
   static TextStyle regular13 = TextStyle(

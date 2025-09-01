@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mega_top/core/utils/assets_images.dart';
-import 'package:mega_top/features/brands/presentation/views/brands_view.dart';
-
+import 'package:mega_top/core/widgets/product_Details_view.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../account/presentation/views/account_view.dart';
 import '../../../../cart/presentation/views/cart_view.dart';
 import '../../../../categories/presentation/views/categories_view.dart';
+import '../../../../offers/presentation/views/offers_view.dart';
 import '../home_view.dart';
 
 class BottomNavBar extends StatefulWidget {
@@ -23,7 +23,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   final List<Widget> _screens = [
     HomeView(),
     CategoriesView(),
-    BrandsView(),
+    OffersView(),
     CartView(),
     AccountView(),
   ];
@@ -99,7 +99,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
                   index: 2,
                   activeIconPath: AssetsData.brandsAc,
                   inactiveIconPath: AssetsData.brands,
-                  label: 'Brands',
+                  label: 'Offers',
                 ),
                 _buildNavItem(
                   index: 3,

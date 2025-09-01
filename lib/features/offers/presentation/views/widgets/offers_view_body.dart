@@ -1,28 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mega_top/core/utils/assets_images.dart';
-import 'package:mega_top/core/widgets/add_to_cart_container.dart';
-import 'package:mega_top/features/categories/presentation/views/widgets/product_sliver_list.dart';
-import 'package:mega_top/features/categories/presentation/views/widgets/products_sliver_grid.dart';
-import 'package:mega_top/features/categories/presentation/views/widgets/sort_bottom_sheet.dart';
-import 'package:mega_top/features/home/presentation/views/widgets/icons_app_bar.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../../../../core/utils/app_colors.dart';
+import '../../../../../core/utils/assets_images.dart';
 import '../../../../../core/utils/text_styles.dart';
 import '../../../../../core/widgets/custom_app_bar.dart';
-import '../../../../../core/widgets/products_view_grid.dart';
-import '../../../../../core/widgets/products_view_list.dart';
-import 'filter_bottom_sheet.dart';
+import '../../../../categories/presentation/views/widgets/filter_bottom_sheet.dart';
+import '../../../../categories/presentation/views/widgets/product_sliver_list.dart';
+import '../../../../categories/presentation/views/widgets/products_sliver_grid.dart';
+import '../../../../categories/presentation/views/widgets/sort_bottom_sheet.dart';
 
-class ProductsView extends StatefulWidget {
-  const ProductsView({super.key});
+class OffersViewBody extends StatefulWidget {
+  const OffersViewBody({super.key});
 
   @override
-  State<ProductsView> createState() => _ProductsViewState();
+  State<OffersViewBody> createState() => _OffersViewBodyState();
 }
 
-class _ProductsViewState extends State<ProductsView> {
+class _OffersViewBodyState extends State<OffersViewBody> {
   bool isGrid = false;
 
   @override
@@ -34,7 +30,6 @@ class _ProductsViewState extends State<ProductsView> {
         showBack: true,
         title: 'Product name',
       ),
-
       body: CustomScrollView(
         physics: BouncingScrollPhysics(),
         slivers: [
@@ -190,7 +185,6 @@ class _ProductsViewState extends State<ProductsView> {
             const ProductsSliverList(),
         ],
       ),
-
     );
   }
 }

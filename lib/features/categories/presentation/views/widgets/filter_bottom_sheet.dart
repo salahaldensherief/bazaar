@@ -12,7 +12,7 @@ class FilterBottomSheet extends StatefulWidget {
 }
 
 class _FilterBottomSheetState extends State<FilterBottomSheet> {
-  // selected brands
+  // selected offers
   Map<String, bool> brands = {"Dell": false, "Acer": false, "Toshiba": false};
 
   // price range
@@ -95,7 +95,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                 ),
                 onPressed: () {
                   Navigator.pop(context, {
-                    "brands": brands,
+                    "offers": brands,
                     "from": fromController.text,
                     "to": toController.text,
                   });

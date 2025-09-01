@@ -17,6 +17,7 @@ class HomeViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(
+        physics: BouncingScrollPhysics(),
         shrinkWrap: true,
 
         slivers: [

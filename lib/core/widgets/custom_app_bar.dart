@@ -13,6 +13,8 @@ class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   final VoidCallback? onBack;
   final bool centerTitle;
   final bool showCart;
+  final bool showElevation;
+  final Color? BackgroundColor;
 
 
 
@@ -22,7 +24,7 @@ class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
     this.showBack = false,
     this.onBack,
     this.centerTitle = true,
-    this.showCart = false,
+    this.showCart = false,  this.showElevation = true, this.BackgroundColor,
   });
 
   @override
@@ -42,7 +44,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
       children: [
         AppBar(
           automaticallyImplyLeading: false,
-          backgroundColor: Colors.white,
+          backgroundColor: widget.BackgroundColor,
           elevation: 0,
           leading: widget.showBack
               ? GestureDetector(
@@ -68,7 +70,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                           : Colors.transparent,
                       borderRadius: BorderRadius.circular(4),
                     ),
-                    padding: EdgeInsets.symmetric(horizontal: 8.w),
+                    padding: EdgeInsets.symmetric(horizontal: 8.w,),
                     child: SvgPicture.asset(
                       _isPressed
                           ? AssetsData.BackArrowWhite
@@ -112,22 +114,22 @@ class _CustomAppBarState extends State<CustomAppBar> {
 
           ],
         ),
-        Container(
+        widget.showElevation
+            ? Container(
           height: 1,
           decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(
-
                 color: Colors.black26.withOpacity(.2),
                 spreadRadius: .1,
                 offset: const Offset(0, 1),
-
                 blurRadius: 2,
                 blurStyle: BlurStyle.normal,
               ),
             ],
           ),
-        ),
+        )
+            : const SizedBox.shrink(),
       ],
     );
   }

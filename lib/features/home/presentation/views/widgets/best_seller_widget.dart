@@ -12,7 +12,7 @@ class BestSellerWidget extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
     return ProductViewGrid(
       imageHeight: 120.h,
-      width: screenWidth*.65.w,
+      width: screenWidth*.60.w,
       height: 312.h,
     );
   }

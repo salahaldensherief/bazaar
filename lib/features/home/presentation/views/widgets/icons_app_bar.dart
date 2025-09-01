@@ -11,7 +11,7 @@ class IconAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      minimum: EdgeInsets.only(top: 30.h),
+      minimum: EdgeInsets.only(top: 40.h),
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.w),
         child: Row(

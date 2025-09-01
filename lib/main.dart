@@ -19,9 +19,13 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       child: MaterialApp(
+
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
+          appBarTheme: AppBarTheme(
+            backgroundColor: AppColors.whiteColor,
+          ),
           useMaterial3: false,
           fontFamily: 'Cairo',
           scaffoldBackgroundColor: AppColors.backgraoundColor,
