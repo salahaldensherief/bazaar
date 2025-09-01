@@ -21,7 +21,12 @@ class HomeViewBody extends StatelessWidget {
         shrinkWrap: true,
 
         slivers: [
-          SliverToBoxAdapter(child: IconAppBar()),
+          SliverToBoxAdapter(child: IconAppBar(
+            subTitle: 'Welcome !',
+            showHeart: true,
+            solidBell: true,
+            radius: 25.r,
+          )),
           SliverToBoxAdapter(child: SearchBarWidget(
             isEnabled: false,
           )),

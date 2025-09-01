@@ -40,5 +40,15 @@ class AssetsData {
   static const plus = 'assets/images/plus.svg';
   static const remove = 'assets/images/remove.svg';
   static const minus = 'assets/images/minus.svg';
+  static const contact = 'assets/images/contact.svg';
+  static const exclamation = 'assets/images/exclamation.svg';
+  static const favourFilled = 'assets/images/favour-filled.svg';
+  static const language = 'assets/images/language.svg';
+  static const mapAcc = 'assets/images/map-acc.svg';
+  static const notification = 'assets/images/notification.svg';
+  static const ordersFill = 'assets/images/orders-fill.svg';
+  static const profileAcc = 'assets/images/profile.svg';
+  static const signOut = 'assets/images/sign out.svg';
+  static const arrowNav = 'assets/images/path9429.svg';
 
 }

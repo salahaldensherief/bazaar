@@ -7,7 +7,10 @@ import 'package:mega_top/core/utils/assets_images.dart';
 import 'package:mega_top/core/utils/text_styles.dart';
 
 class IconAppBar extends StatelessWidget {
-  const IconAppBar({super.key});
+  final String subTitle;
+  final double radius;
+  final bool showHeart , solidBell;
+  const IconAppBar({super.key, required this.showHeart, required this.solidBell, required this.subTitle, required this.radius});
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -15,36 +18,45 @@ class IconAppBar extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.w),
         child: Row(
+
           children: [
             CircleAvatar(
-              maxRadius: 25.r,
-              child: SvgPicture.asset(AssetsData.Frame, fit: BoxFit.fill),
+              maxRadius: radius,
+              child: SvgPicture.asset(AssetsData.Frame, fit: BoxFit.contain,width: 64.w,height: 64.h,),
             ),
             SizedBox(width: 8.w),
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+
               children: [
+
                 Text('Salah Eldin', style: TextStyles.medium15),
-                Text('Welcome !', style: TextStyles.regular13),
+                Text(subTitle, style: TextStyles.regular13),
               ],
             ),
             Spacer(),
             Row(
               children: [
-                Container(
-                  width: 40.w,
-                  height: 40.h,
-                  decoration: BoxDecoration(
-                    color: AppColors.backIconColor,
-                    borderRadius: BorderRadius.circular(50.r),
-                  ),
-                  child: Icon(
-                    FontAwesomeIcons.solidHeart,
-                    color: AppColors.primaryColor,
-                    size: 20.sp,
+                Visibility(
+                  visible: showHeart,
+                  child: Container(
+                    width: 40.w,
+                    height: 40.h,
+                    decoration: BoxDecoration(
+                      color: AppColors.backIconColor,
+                      borderRadius: BorderRadius.circular(50.r),
+                    ),
+                    child: Icon(
+                      FontAwesomeIcons.solidHeart,
+                      color: AppColors.primaryColor,
+                      size: 20.sp,
+                    ),
                   ),
                 ),
                 SizedBox(width: 8.w),
                 Visibility(
+                   visible: solidBell,
                   child: Container(
                     width: 40.w,
                     height: 40.h,
