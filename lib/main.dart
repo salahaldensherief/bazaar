@@ -4,9 +4,13 @@ import 'package:mega_top/core/hepler/on_generate_routes.dart';
 import 'package:mega_top/core/utils/app_colors.dart';
 import 'package:mega_top/features/splash/presentation/views/splash_view.dart';
 
+import 'core/services/shared_preferences_singleton.dart';
 import 'features/home/presentation/views/widgets/bottom_nav_bar.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Prefs.init();
+
   runApp(const MyApp());
 }
 
@@ -19,13 +23,10 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       child: MaterialApp(
-
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
-          appBarTheme: AppBarTheme(
-            backgroundColor: AppColors.whiteColor,
-          ),
+          appBarTheme: AppBarTheme(backgroundColor: AppColors.whiteColor),
           useMaterial3: false,
           fontFamily: 'Cairo',
           scaffoldBackgroundColor: AppColors.backgraoundColor,

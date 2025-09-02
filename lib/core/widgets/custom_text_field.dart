@@ -29,6 +29,7 @@ class CustomTextFormField extends StatelessWidget {
       children: [
         TextFormField(
 
+
           controller: controller,
           obscureText: obscureText,
           keyboardType: textInputType,
@@ -42,6 +43,7 @@ class CustomTextFormField extends StatelessWidget {
                 return null;
               },
           decoration: InputDecoration(
+            isDense: true,
             filled: true,
             fillColor: Colors.white,
             hintText: hintText,
@@ -55,7 +57,7 @@ class CustomTextFormField extends StatelessWidget {
             focusedBorder: InputBorder.none,
           ),
         ),
-         SizedBox(height: 2.h),
+         SizedBox(height: 1.h),
         Container(
           height: 2.h,
           width: double.infinity,

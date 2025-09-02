@@ -5,6 +5,8 @@ import 'package:mega_top/features/home/presentation/views/home_view.dart';
 import 'package:mega_top/features/home/presentation/views/widgets/bottom_nav_bar.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../../../../../constants.dart';
+import '../../../../../core/services/shared_preferences_singleton.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/widgets/custom_button.dart';
 import 'onboarding_page_view.dart';
@@ -70,10 +72,12 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
             ),
              SizedBox(height: 20.h),
             CustomButton(
+
               fontColor: Colors.white,
               colorSide: AppColors.primaryColor,
               color: AppColors.primaryColor,
               onPressed: () {
+                Prefs.setBool(kIsOnBoardingViewSeen, true);
                 if (currentPage < 2) {
                   pageController.nextPage(
                     duration: const Duration(milliseconds: 300),

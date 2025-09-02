@@ -1,5 +1,10 @@
-
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mega_top/core/services/api/api_consumer.dart';
+import 'package:mega_top/core/services/api/dio_consumer.dart';
+import 'package:mega_top/features/auth/presentation/cubits/signin/sign_in_cubit.dart';
+import 'package:mega_top/features/auth/presentation/cubits/signup/sign_up_cubit.dart';
 
 import '../../features/account/presentation/views/account_view.dart';
 import '../../features/auth/presentation/views/login_view.dart';
@@ -15,28 +20,35 @@ import '../../features/splash/presentation/views/splash_view.dart';
 
 Route<dynamic> onGenerateRoutes(RouteSettings settings) {
   switch (settings.name) {
-
     case SplashView.routeName:
       return MaterialPageRoute(builder: (context) => SplashView());
-      case BottomNavBar.routeName:
+    case BottomNavBar.routeName:
       return MaterialPageRoute(builder: (context) => BottomNavBar());
     case OnboardingView.routeName:
       return MaterialPageRoute(builder: (context) => OnboardingView());
-      case HomeView.routeName:
+    case HomeView.routeName:
       return MaterialPageRoute(builder: (context) => HomeView());
-      case LoginView.routeName:
-      return MaterialPageRoute(builder: (context) => LoginView());
-      case SignUpView.routeName:
-      return MaterialPageRoute(builder: (context) => SignUpView());
-      case CartView.routeName:
+    case LoginView.routeName:
+      return MaterialPageRoute(builder: (context) =>
+          BlocProvider(
+            create: (context) => SignInCubit(DioConsumer(dio: Dio())),
+            child: LoginView(),
+          ));
+    case SignUpView.routeName:
+      return MaterialPageRoute(builder: (context) =>
+          BlocProvider(
+            create: (context) => SignUpCubit(DioConsumer(dio: Dio())),
+            child: SignUpView(),
+          ));
+    case CartView.routeName:
       return MaterialPageRoute(builder: (context) => CartView());
-      case AccountView.routeName:
+    case AccountView.routeName:
       return MaterialPageRoute(builder: (context) => AccountView());
-      case CategoriesView.routeName:
+    case CategoriesView.routeName:
       return MaterialPageRoute(builder: (context) => CategoriesView());
-      case OffersView.routeName:
+    case OffersView.routeName:
       return MaterialPageRoute(builder: (context) => OffersView());
-      case SearchPageView.routeName:
+    case SearchPageView.routeName:
       return MaterialPageRoute(builder: (context) => SearchPageView());
     default:
       return MaterialPageRoute(builder: (context) => Scaffold());
