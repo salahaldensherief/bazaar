@@ -26,6 +26,7 @@ class SignInCubit extends Cubit<SignInState> {
       );
 user = SignInModel.fromJson(response);
       emit(SignInSuccess());
+      saveToken(user!.token!);
     } on ServerException catch (e) {
       emit(SignInFailure(errMassege: e.errorModel.message));
     }

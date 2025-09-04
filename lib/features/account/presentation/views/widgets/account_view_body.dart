@@ -1,11 +1,16 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mega_top/core/services/api/dio_consumer.dart';
 import 'package:mega_top/core/utils/assets_images.dart';
-import 'package:mega_top/core/widgets/settings_tile.dart';
+import 'package:mega_top/features/account/presentation/views/widgets/settings_tile.dart';
 import 'package:mega_top/features/account/presentation/views/widgets/category_name.dart';
+import 'package:mega_top/features/account/presentation/views/widgets/sign_out_widget.dart';
 import 'package:mega_top/features/home/presentation/views/widgets/icons_app_bar.dart';
 
 import '../../../../../core/widgets/custom_app_bar.dart';
+import '../cubits/signout/sign_out_cubit.dart';
 
 class AccountViewBody extends StatelessWidget {
   const AccountViewBody({super.key});
@@ -93,10 +98,12 @@ class AccountViewBody extends StatelessWidget {
                     title: 'Privacy Policy',
                   ),
                   SizedBox(height: 45.h),
-                  SettingsTile(
-                    iconImage: AssetsData.signOut,
-                    title: 'Sign out',
+                  BlocProvider(
+                    create: (context) => SignOutCubit(DioConsumer(dio: Dio())),
+                    child: SignOutWidget(),
                   ),
+                  SizedBox(height: 45.h),
+
                 ],
               ),
             ),

@@ -5,12 +5,19 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mega_top/core/utils/app_colors.dart';
 import 'package:mega_top/core/utils/assets_images.dart';
 import 'package:mega_top/core/utils/text_styles.dart';
+import 'package:mega_top/features/home/presentation/views/widgets/wishlist_view.dart';
 
 class IconAppBar extends StatelessWidget {
   final String subTitle;
   final double radius;
-  final bool showHeart , solidBell;
-  const IconAppBar({super.key, required this.showHeart, required this.solidBell, required this.subTitle, required this.radius});
+  final bool showHeart, solidBell;
+  const IconAppBar({
+    super.key,
+    required this.showHeart,
+    required this.solidBell,
+    required this.subTitle,
+    required this.radius,
+  });
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -18,11 +25,15 @@ class IconAppBar extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.w),
         child: Row(
-
           children: [
             CircleAvatar(
               maxRadius: radius,
-              child: SvgPicture.asset(AssetsData.Frame, fit: BoxFit.contain,width: 64.w,height: 64.h,),
+              child: SvgPicture.asset(
+                AssetsData.Frame,
+                fit: BoxFit.contain,
+                width: 64.w,
+                height: 64.h,
+              ),
             ),
             SizedBox(width: 8.w),
             Column(
@@ -30,7 +41,6 @@ class IconAppBar extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
 
               children: [
-
                 Text('Salah Eldin', style: TextStyles.medium15),
                 Text(subTitle, style: TextStyles.regular13),
               ],
@@ -47,16 +57,26 @@ class IconAppBar extends StatelessWidget {
                       color: AppColors.backIconColor,
                       borderRadius: BorderRadius.circular(50.r),
                     ),
-                    child: Icon(
-                      FontAwesomeIcons.solidHeart,
-                      color: AppColors.primaryColor,
-                      size: 20.sp,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const WishlistView(),
+                          ),
+                        );
+                      },
+                      child: Icon(
+                        FontAwesomeIcons.solidHeart,
+                        color: AppColors.primaryColor,
+                        size: 20.sp,
+                      ),
                     ),
                   ),
                 ),
                 SizedBox(width: 8.w),
                 Visibility(
-                   visible: solidBell,
+                  visible: solidBell,
                   child: Container(
                     width: 40.w,
                     height: 40.h,

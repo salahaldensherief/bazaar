@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../features/home/data/model/products_model.dart';
 import '../utils/app_colors.dart';
 import '../utils/text_styles.dart';
 
 class SellWidget extends StatelessWidget {
-  const SellWidget({
-    super.key,
-  });
+  const SellWidget({super.key, required this.product});
+  final ProductsModel product;
 
   @override
   Widget build(BuildContext context) {
+    final discountPercentage = product?.discountPercentage ?? 0;
+
+    if (discountPercentage == 0) {
+      return const SizedBox(); // لو مفيش خصم متعرضش حاجة
+    }
+
     return Container(
       height: 24.h,
       width: 42.w,
@@ -20,11 +26,8 @@ class SellWidget extends StatelessWidget {
       ),
       child: Center(
         child: Text(
-          textAlign: TextAlign.center,
-          '-12%',
-          style: TextStyles.semiBold14.copyWith(
-            color: AppColors.whiteColor,
-          ),
+          "-$discountPercentage%",
+          style: TextStyles.semiBold14.copyWith(color: AppColors.whiteColor),
         ),
       ),
     );

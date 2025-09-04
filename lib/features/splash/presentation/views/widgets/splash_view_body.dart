@@ -6,6 +6,7 @@ import 'package:mega_top/features/onboarding/presentation/views/onboarding_view.
 
 import '../../../../../constants.dart';
 import '../../../../../core/services/shared_preferences_singleton.dart';
+import '../../../../auth/presentation/views/login_view.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -17,33 +18,32 @@ class SplashViewBody extends StatefulWidget {
 class _SplashViewBodyState extends State<SplashViewBody> {
   @override
   void initState() {
-    excuteNaviagtion();
+    excuteNavigation();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Center(
-            child: Image.asset(AssetsData.logo, width: 150.w,),),
-        ],
+        children: [Center(child: Image.asset(AssetsData.logo, width: 150.w))],
       ),
     );
   }
 
-    void excuteNaviagtion() {
-      bool isOnBoardingViewSeen = Prefs.getBool(kIsOnBoardingViewSeen);
+  void excuteNavigation() async {
+    bool isOnBoardingViewSeen = Prefs.getBool(kIsOnBoardingViewSeen);
+    String? token = Prefs.getString('auth_token');
 
-      Future.delayed(Duration(
-        seconds: 3,), (){
-        if(isOnBoardingViewSeen){
-          Navigator.pushNamed(context, BottomNavBar.routeName);
-        }else{
-          Navigator.pushNamed(context, OnboardingView.routeName);
-        }
+    Future.delayed(const Duration(seconds: 3), () {
+      if (!isOnBoardingViewSeen) {
+        Navigator.pushReplacementNamed(context, OnboardingView.routeName);
+      } else if (token != null && token.isNotEmpty) {
+        Navigator.pushReplacementNamed(context, BottomNavBar.routeName);
+      } else {
+        Navigator.pushReplacementNamed(context, LoginView.routeName);
       }
-      );
+    });
   }
 }

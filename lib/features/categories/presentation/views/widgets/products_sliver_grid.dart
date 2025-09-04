@@ -17,11 +17,12 @@ class ProductsSliverGrid extends StatelessWidget {
             onTap: (){
               Navigator.of(context).push(MaterialPageRoute(builder: (context) =>  ProductDetailsView(),));
             },
-            child: ProductViewGrid(
-              imageHeight: 64.h,
-              width: MediaQuery.of(context).size.width * .42.w,
-              height: 228,
-            ),
+            // child: ProductViewGrid(
+            //   product: products[index],
+            //   imageHeight: 64.h,
+            //   width: MediaQuery.of(context).size.width * .42.w,
+            //   height: 228,
+            // ),
           ),
         );
       }, childCount: 20),

@@ -1,8 +1,12 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mega_top/core/services/api/dio_consumer.dart';
 import 'package:mega_top/features/home/presentation/views/widgets/best_seller_section.dart';
 import 'package:mega_top/features/home/presentation/views/widgets/brands_widget_list_view.dart';
 
+import '../../manger/products/products_cubit.dart';
 import 'Latest_offers_widget.dart';
 import 'best_seller_list_view.dart';
 import 'custom_carousel_slider.dart';
@@ -21,15 +25,15 @@ class HomeViewBody extends StatelessWidget {
         shrinkWrap: true,
 
         slivers: [
-          SliverToBoxAdapter(child: IconAppBar(
-            subTitle: 'Welcome !',
-            showHeart: true,
-            solidBell: true,
-            radius: 25.r,
-          )),
-          SliverToBoxAdapter(child: SearchBarWidget(
-            isEnabled: false,
-          )),
+          SliverToBoxAdapter(
+            child: IconAppBar(
+              subTitle: 'Welcome !',
+              showHeart: true,
+              solidBell: true,
+              radius: 25.r,
+            ),
+          ),
+          SliverToBoxAdapter(child: SearchBarWidget(isEnabled: false)),
           SliverToBoxAdapter(child: SizedBox(height: 20.h)),
           SliverToBoxAdapter(
             child: SizedBox(height: 220.h, child: CustomCarouselSlider()),
@@ -45,8 +49,6 @@ class HomeViewBody extends StatelessWidget {
           SliverToBoxAdapter(child: LatestOffersWidget()),
           SliverToBoxAdapter(child: SectionWidget(title: 'Latest products')),
           SliverToBoxAdapter(child: BestSellerListView()),
-
-
         ],
       ),
     );

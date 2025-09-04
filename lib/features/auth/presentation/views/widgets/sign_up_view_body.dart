@@ -86,18 +86,20 @@ class SignUpViewBody extends StatelessWidget {
                 ),
 
                 SizedBox(height: 40.h),
-               state is SignUpLoading ? const CircularProgressIndicator() : CustomTextBottom(
-                  onPressed: () {
-                    if (context
-                        .read<SignUpCubit>()
-                        .signUpFormKey
-                        .currentState!
-                        .validate()) {
-                      context.read<SignUpCubit>().SignUp();
-                    }
-                  },
-                  text: 'Sign up',
-                ),
+                state is SignUpLoading
+                    ? const CircularProgressIndicator()
+                    : CustomTextBottom(
+                        onPressed: () {
+                          if (context
+                              .read<SignUpCubit>()
+                              .signUpFormKey
+                              .currentState!
+                              .validate()) {
+                            context.read<SignUpCubit>().SignUp();
+                          }
+                        },
+                        text: 'Sign up',
+                      ),
                 SizedBox(height: 24.h),
                 const HaveAnAccountWidget(),
               ],

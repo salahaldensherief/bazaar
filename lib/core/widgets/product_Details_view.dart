@@ -152,7 +152,9 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                             children: [
                               const AvailableWidget(),
                               SizedBox(width: 8.w),
-                              const SellWidget(),
+                              // const SellWidget(
+                              //
+                              // ),
                             ],
                           ),
                         ],

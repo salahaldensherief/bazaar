@@ -6,5 +6,7 @@ class ApiEndPoint {
   static const String email = 'email';
   static const String password = 'password';
   static const String username = 'username';
+  static const String signOut = 'auth/logout';
+  static const String getAllProducts = 'product/get-all-products';
 
 }
