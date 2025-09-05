@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mega_top/core/services/api/dio_consumer.dart';
+import 'package:mega_top/features/home/presentation/manger/wishList/wish_list_cubit.dart';
 import 'package:mega_top/features/home/presentation/views/widgets/best_seller_section.dart';
 import 'package:mega_top/features/home/presentation/views/widgets/brands_widget_list_view.dart';
 
+import '../../../data/repos/home_repo_impl.dart';
 import '../../manger/products/products_cubit.dart';
 import 'Latest_offers_widget.dart';
 import 'best_seller_list_view.dart';
@@ -43,12 +45,18 @@ class HomeViewBody extends StatelessWidget {
           SliverToBoxAdapter(child: BrandsWidgetListView()),
           SliverToBoxAdapter(child: SectionWidget(title: 'Our products')),
           SliverToBoxAdapter(child: OurProductsListView()),
-          SliverToBoxAdapter(child: SectionWidget(title: 'Best Seller')),
-          SliverToBoxAdapter(child: BestSellerListView()),
+          SliverToBoxAdapter(child: SectionWidget(title: 'Mobiles')),
+          SliverToBoxAdapter(child: BestSellerListView(category: 'mobiles')),
           SliverToBoxAdapter(child: SectionWidget(title: 'Latest offers')),
           SliverToBoxAdapter(child: LatestOffersWidget()),
-          SliverToBoxAdapter(child: SectionWidget(title: 'Latest products')),
-          SliverToBoxAdapter(child: BestSellerListView()),
+          SliverToBoxAdapter(child: SectionWidget(title: 'Cameras :')),
+          SliverToBoxAdapter(child: BestSellerListView(category: 'camera')),
+          SliverToBoxAdapter(child: SectionWidget(title: 'Earphones :')),
+          SliverToBoxAdapter(child: BestSellerListView(category: 'earphones')),
+          SliverToBoxAdapter(child: SectionWidget(title: 'Mouses :')),
+          SliverToBoxAdapter(child: BestSellerListView(category: 'mouse')),
+          SliverToBoxAdapter(child: SectionWidget(title: 'Airpods :')),
+          SliverToBoxAdapter(child: BestSellerListView(category: 'airpods')),
         ],
       ),
     );

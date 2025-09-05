@@ -17,12 +17,12 @@ class PageViewItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double screenHeight = MediaQuery.of(context).size.height;
-    return Column(
-      children: [
-        Stack(
-          children: [
-            Positioned(
-              child: Container(
+    return Expanded(
+      child: Column(
+        children: [
+          Stack(
+            children: [
+              Container(
                 width: double.infinity,
                 height: 400.h,
                 decoration: BoxDecoration(
@@ -34,28 +34,28 @@ class PageViewItem extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
 
-            Positioned(
-              left: 0,
-              right: 0,
-              bottom: 50,
-              child: Image.asset(image, width: 180.w, height: 180.h),
-            ),
-          ],
-        ),
-        SizedBox(height: screenHeight * .050),
-        Text(textAlign: TextAlign.center, title, style: TextStyles.bold23),
-        SizedBox(height: screenHeight * .02),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Text(
-            subtitle,
-            textAlign: TextAlign.center,
-            style: TextStyles.medium14.copyWith(color: Color(0xff808080)),
+              Positioned(
+                left: 0,
+                right: 0,
+                bottom: 50,
+                child: Image.asset(image, width: 180.w, height: 180.h),
+              ),
+            ],
           ),
-        ),
-      ],
+          SizedBox(height: screenHeight * .050),
+          Expanded(child: Text(textAlign: TextAlign.center, title, style: TextStyles.bold23)),
+          SizedBox(height: screenHeight * .01),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Text(
+              subtitle,
+              textAlign: TextAlign.center,
+              style: TextStyles.medium14.copyWith(color: Color(0xff808080)),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

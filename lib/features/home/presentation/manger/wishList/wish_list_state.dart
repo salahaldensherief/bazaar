@@ -1,17 +1,21 @@
-import 'package:equatable/equatable.dart';
-import 'package:mega_top/features/home/data/model/products_model.dart';
+import 'package:meta/meta.dart';
+import '../../../data/model/wishlist_response.dart';
 
-class WishlistState extends Equatable {
-  final List<ProductsModel> wishlist;
+@immutable
+abstract class WishlistState {}
 
-  const WishlistState({this.wishlist = const []});
+class WishlistInitial extends WishlistState {}
 
-  WishlistState copyWith({List<ProductsModel>? wishlist}) {
-    return WishlistState(
-      wishlist: wishlist ?? this.wishlist,
-    );
-  }
+class WishlistLoading extends WishlistState {}
 
-  @override
-  List<Object?> get props => [wishlist];
+class WishlistLoaded extends WishlistState {
+  final WishlistResponse wishlist;
+
+  WishlistLoaded(this.wishlist);
+}
+
+class WishlistError extends WishlistState {
+  final String message;
+
+  WishlistError(this.message);
 }

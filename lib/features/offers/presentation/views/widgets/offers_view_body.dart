@@ -180,9 +180,9 @@ class _OffersViewBodyState extends State<OffersViewBody> {
           ),
 
           if (isGrid)
-            const ProductsSliverGrid()
+             ProductsSliverGrid()
           else
-            const ProductsSliverList(),
+             ProductsSliverList(),
         ],
       ),
     );

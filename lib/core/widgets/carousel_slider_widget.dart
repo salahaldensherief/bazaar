@@ -6,8 +6,9 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../../../core/utils/app_colors.dart';
 
 class CarouselSliderWidget extends StatefulWidget {
-  const CarouselSliderWidget({super.key, required this.height});
+  const CarouselSliderWidget({super.key, required this.height, required this.images});
   final double height;
+  final List<String> images;
 
   @override
   State<CarouselSliderWidget> createState() => _CarouselSliderWidgetState();
@@ -18,20 +19,23 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
       slider.CarouselSliderController();
   int _current = 0;
 
-  final List<String> imgList = [AssetsData.ups, AssetsData.ups, AssetsData.ups];
+
+  _CarouselSliderWidgetState();
 
   @override
   Widget build(BuildContext context) {
+    final images = widget.images;
+
     return Column(
       children: [
         slider.CarouselSlider(
-          items: imgList
+          items: images
               .map(
                 (item) => Container(
                   height: 120.h,
                   width: 141.94285583496094.w,
                   decoration: BoxDecoration(
-                    image: DecorationImage(image: AssetImage(item)),
+                    image: DecorationImage(image: NetworkImage(item)),
                   ),
                 ),
               )
@@ -53,7 +57,7 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
         ),
         AnimatedSmoothIndicator(
           activeIndex: _current,
-          count: imgList.length,
+          count: images.length,
           effect: CustomizableEffect(
             activeDotDecoration: DotDecoration(
               width: 40.w,

@@ -15,4 +15,6 @@ final class ProductsFailure extends ProductsState {
   final String errorMessage;
 
   ProductsFailure({required this.errorMessage});
+
+
 }

@@ -42,61 +42,62 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
   @override
   Widget build(BuildContext context) {
     final double screenHeight = MediaQuery.of(context).size.height;
-
     return Column(
-
       children: [
         Expanded(
           flex: 3,
           child: OnBoardingPageView(pageController: pageController),
         ),
-        Column(
-          children: [
-            SmoothPageIndicator(
-              controller: pageController,
-              count: 3,
-              effect: CustomizableEffect(
-                activeDotDecoration: DotDecoration(
-                  width: 40.w,
-                  height: 8.h,
-                  color: AppColors.primaryColor,
-                  borderRadius: BorderRadius.circular(24),
-                ),
-                dotDecoration: DotDecoration(
-                  width: 8.w,
-                  height: 8.h,
-                  color: AppColors.primaryColor.withOpacity(0.3),
-                  borderRadius: BorderRadius.circular(8),
+        Expanded(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SmoothPageIndicator(
+                controller: pageController,
+                count: 3,
+                effect: CustomizableEffect(
+                  activeDotDecoration: DotDecoration(
+                    width: 40.w,
+                    height: 8.h,
+                    color: AppColors.primaryColor,
+                    borderRadius: BorderRadius.circular(24),
+                  ),
+                  dotDecoration: DotDecoration(
+                    width: 8.w,
+                    height: 8.h,
+                    color: AppColors.primaryColor.withOpacity(0.3),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
                 ),
               ),
-            ),
-             SizedBox(height: 20.h),
-            CustomButton(
+              SizedBox(height: 20.h),
+              CustomButton(
+                fontColor: Colors.white,
+                colorSide: AppColors.primaryColor,
+                color: AppColors.primaryColor,
+                onPressed: () {
+                  Prefs.setBool(kIsOnBoardingViewSeen, true);
+                  if (currentPage < 2) {
+                    pageController.nextPage(
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeInOut,
+                    );
+                  } else {
+                    Navigator.pushNamed(context, BottomNavBar.routeName);
+                  }
+                },
+                text: currentPage < 2 ? 'Next' : 'Get started',
+              ),
+              SizedBox(height: 10.h),
 
-              fontColor: Colors.white,
-              colorSide: AppColors.primaryColor,
-              color: AppColors.primaryColor,
-              onPressed: () {
-                Prefs.setBool(kIsOnBoardingViewSeen, true);
-                if (currentPage < 2) {
-                  pageController.nextPage(
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.easeInOut,
-                  );
-                } else {
-                 Navigator.pushNamed(context, BottomNavBar.routeName);
-                }
-              },
-              text: currentPage < 2 ? 'Next' : 'Get started',
-            ),
-            SizedBox(height: 10.h,),
-
-            Visibility(
+              Visibility(
                 visible: currentPage == 2,
 
-                child: HaveAnAccountWidget()),
-            SizedBox(height: 70.h,)
-          ],
+                child: HaveAnAccountWidget(),
+              ),
+              SizedBox(height: 10.h),
+            ],
+          ),
         ),
       ],
     );

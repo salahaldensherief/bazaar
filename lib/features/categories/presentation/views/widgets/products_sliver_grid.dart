@@ -3,10 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/widgets/product_Details_view.dart';
 import '../../../../../core/widgets/products_view_grid.dart';
+import '../../../../home/data/model/products_model.dart';
 
 class ProductsSliverGrid extends StatelessWidget {
-  const ProductsSliverGrid({super.key});
-
+   ProductsSliverGrid({super.key});
+late ProductsModel productsModel;
   @override
   Widget build(BuildContext context) {
     return SliverGrid(
@@ -15,7 +16,7 @@ class ProductsSliverGrid extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: 8.0),
           child: GestureDetector(
             onTap: (){
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) =>  ProductDetailsView(),));
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) =>  ProductDetailsView(product:productsModel ,),));
             },
             // child: ProductViewGrid(
             //   product: products[index],

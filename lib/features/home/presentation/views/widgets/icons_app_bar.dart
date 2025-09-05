@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -6,6 +7,9 @@ import 'package:mega_top/core/utils/app_colors.dart';
 import 'package:mega_top/core/utils/assets_images.dart';
 import 'package:mega_top/core/utils/text_styles.dart';
 import 'package:mega_top/features/home/presentation/views/widgets/wishlist_view.dart';
+
+import '../../../../../core/services/api/dio_consumer.dart';
+import '../../../data/repos/home_repo_impl.dart';
 
 class IconAppBar extends StatelessWidget {
   final String subTitle;
@@ -59,12 +63,8 @@ class IconAppBar extends StatelessWidget {
                     ),
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const WishlistView(),
-                          ),
-                        );
+
+
                       },
                       child: Icon(
                         FontAwesomeIcons.solidHeart,

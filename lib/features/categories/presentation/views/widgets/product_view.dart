@@ -185,9 +185,9 @@ class _ProductsViewState extends State<ProductsView> {
           ),
 
           if (isGrid)
-            const ProductsSliverGrid()
+             ProductsSliverGrid()
           else
-            const ProductsSliverList(),
+             ProductsSliverList(),
         ],
       ),
 
