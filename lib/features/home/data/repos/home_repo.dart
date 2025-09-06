@@ -6,13 +6,5 @@ import 'package:dartz/dartz.dart';
 
 abstract class HomeRepo {
   Future<Either<ServerException, List<ProductsModel>>> fetchProducts({String? category});
-}  // Future<Either<ServerException, WishlistResponse>> fetchWishList();
-
-  // Future<Either<ServerException, WishlistResponse>> addProductToWishList(
-  //   String productId,
-  // );
-  //
-  // Future<Either<ServerException, WishlistResponse>> removeProductFromWishList(
-  //   String productId,
-  // );
-
+  Future<Either<ServerException, List<ProductsModel>>> searchProducts({String? query});
+}

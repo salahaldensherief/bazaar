@@ -15,7 +15,9 @@ class HomeRepoImpl implements HomeRepo {
   HomeRepoImpl({required this.api});
 
   @override
-  Future<Either<ServerException, List<ProductsModel>>> fetchProducts({String? category}) async {
+  Future<Either<ServerException, List<ProductsModel>>> fetchProducts({
+    String? category,
+  }) async {
     try {
       final endpoint = category != null
           ? '${ApiEndPoint.getAllProducts}?category=$category'
@@ -34,62 +36,27 @@ class HomeRepoImpl implements HomeRepo {
       );
     }
   }
+
+  @override
+  Future<Either<ServerException, List<ProductsModel>>> searchProducts({
+    String? query,
+  }) async {
+    try {
+      final endpoint = "${ApiEndPoint.searchProducts}?query=$query";
+
+      final response = await api.get(endpoint);
+
+      final productsResponse = ProductsResponse.fromJson(response);
+
+      final products = productsResponse.data ?? [];
+
+      return Right(products);
+    } on ServerException catch (e) {
+      return Left(e);
+    } catch (e) {
+      return Left(
+        ServerException(errorModel: ErrorModel(message: e.toString())),
+      );
+    }
+  }
 }
-
-  // @override
-  // Future<Either<ServerException, WishlistResponse>> fetchWishList() async {
-  //   try {
-  //     final response = await api.get(ApiEndPoint.getWishList);
-  //
-  //     final wishlistResponse = WishlistResponse.fromJson(response);
-  //     return Right(wishlistResponse);
-  //   } on ServerException catch (e) {
-  //     return Left(e);
-  //   } catch (e) {
-  //     return Left(
-  //       ServerException(errorModel: ErrorModel(message: e.toString())),
-  //     );
-  //   }
-  // }
-  //
-  // @override
-  // Future<Either<ServerException, WishlistResponse>> addProductToWishList(
-  //     String productId
-  // ) async {
-  //   try {
-  //     final response = await api.post(
-  //       ApiEndPoint.addToWishList,
-  //       data: {"_id": productId},
-  //     );
-  //
-  //     final wishlistResponse = WishlistResponse.fromJson(response);
-  //     return Right(wishlistResponse);
-  //   } on ServerException catch (e) {
-  //     return Left(e);
-  //   } catch (e) {
-  //     return Left(
-  //       ServerException(errorModel: ErrorModel(message: e.toString())),
-  //     );
-  //   }
-  // }
-  //
-  // @override
-  // Future<Either<ServerException, WishlistResponse>> removeProductFromWishList(
-  //   String productId,
-  // ) async {
-  //   try {
-  //     final response = await api.delete(
-  //       "${ApiEndPoint.deleteFromWishList}/$productId",
-  //     );
-  //
-  //     final wishlistResponse = WishlistResponse.fromJson(response);
-  //     return Right(wishlistResponse);
-  //   } on ServerException catch (e) {
-  //     return Left(e);
-  //   } catch (e) {
-  //     return Left(
-  //       ServerException(errorModel: ErrorModel(message: e.toString())),
-  //     );
-  //   }
-  // }
-

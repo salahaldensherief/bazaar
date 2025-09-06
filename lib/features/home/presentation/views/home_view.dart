@@ -9,13 +9,13 @@ import '../manger/products/products_cubit.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
-static const routeName = 'homeview';
+  static const routeName = 'homeview';
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ProductsCubit(
-        HomeRepoImpl(api: DioConsumer(dio: Dio())),
-      )..getProducts(),
+      create: (context) =>
+          ProductsCubit(HomeRepoImpl(api: DioConsumer(dio: Dio())))
+            ..getProducts(),
       child: const HomeViewBody(),
     );
   }

@@ -27,15 +27,12 @@ class BestSellerListView extends StatelessWidget {
         } else if (state is ProductsSuccess) {
           final products = state.products;
           final filtered = products
-              .where((p) =>
-          p.category?.toLowerCase() == category.toLowerCase())
+              .where((p) => p.category?.toLowerCase() == category.toLowerCase())
               .toList();
           final limitedProducts = filtered.take(itemCount).toList();
 
           if (limitedProducts.isEmpty) {
-            return Center(
-              child: Text(" No products found for $category"),
-            );
+            return Center(child: Text(" No products found for $category"));
           }
 
           return SizedBox(
@@ -51,8 +48,16 @@ class BestSellerListView extends StatelessWidget {
                     vertical: 8.h,
                   ),
                   child: GestureDetector(
-                    onTap: (){
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProductDetailsView(product: limitedProducts[index],),));
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+
+                          builder: (context) => ProductDetailsView(
+
+                            product: limitedProducts[index],
+                          ),
+                        ),
+                      );
                     },
                     child: BestSellerGridWidget(
                       product: limitedProducts[index],

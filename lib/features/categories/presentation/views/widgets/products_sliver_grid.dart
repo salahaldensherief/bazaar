@@ -6,8 +6,8 @@ import '../../../../../core/widgets/products_view_grid.dart';
 import '../../../../home/data/model/products_model.dart';
 
 class ProductsSliverGrid extends StatelessWidget {
-   ProductsSliverGrid({super.key});
-late ProductsModel productsModel;
+  ProductsSliverGrid({super.key,  });
+  late ProductsModel productsModel;
   @override
   Widget build(BuildContext context) {
     return SliverGrid(
@@ -15,18 +15,23 @@ late ProductsModel productsModel;
         return Padding(
           padding: const EdgeInsets.only(bottom: 8.0),
           child: GestureDetector(
-            onTap: (){
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) =>  ProductDetailsView(product:productsModel ,),));
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) =>
+                      ProductDetailsView(product: productsModel),
+                ),
+              );
             },
             // child: ProductViewGrid(
-            //   product: products[index],
+            //   product: index,
             //   imageHeight: 64.h,
             //   width: MediaQuery.of(context).size.width * .42.w,
             //   height: 228,
             // ),
           ),
         );
-      }, childCount: 20),
+      }, childCount:3 ),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         crossAxisSpacing: .1,

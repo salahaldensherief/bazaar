@@ -1,4 +1,3 @@
-// brands_widget.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mega_top/core/utils/app_colors.dart';

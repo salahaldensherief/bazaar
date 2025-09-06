@@ -1,81 +1,80 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mega_top/core/utils/assets_images.dart';
-
+import 'package:mega_top/features/home/data/repos/home_repo_impl.dart';
+import 'package:mega_top/features/search/presentation/views/widgets/search_page_view_body.dart';
+import '../../../../../core/services/api/dio_consumer.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/text_styles.dart';
-import '../../../../search/presentation/views/search_page_view.dart';
+import '../../../../search/presentation/cubit/search_cubit.dart';
 
-class SearchBarWidget extends StatelessWidget {
-  final TextEditingController? searchController;
-  final bool isEnabled;
-  const SearchBarWidget({super.key, this.searchController, required this.isEnabled});
+class SearchBarContainerWidget extends StatelessWidget {
+  const SearchBarContainerWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
     final isRTL = Directionality.of(context) == TextDirection.rtl;
 
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          PageRouteBuilder(
-            pageBuilder: (context, animation, secondaryAnimation) =>
-                SearchPageView(),
-            transitionsBuilder:
-                (context, animation, secondaryAnimation, child) {
-                  const begin = Offset(0.0, 1.0);
-                  const end = Offset.zero;
-                  const curve = Curves.ease;
-
-                  var tween = Tween(
-                    begin: begin,
-                    end: end,
-                  ).chain(CurveTween(curve: curve));
-
-                  return SlideTransition(
-                    position: animation.drive(tween),
-                    child: child,
-                  );
-                },
-          ),
-        );
-      },
-      child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 16.w),
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 16.w),
+      child: GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            PageRouteBuilder(
+              pageBuilder: (context, animation, secondaryAnimation) =>
+                  BlocProvider(
+                    create: (context) => SearchCubit(homeRepo: HomeRepoImpl(api: DioConsumer(dio: Dio()))),
+                    child: SearchViewBody(),
+                  ),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                const begin = Offset(0.0, 1.0);
+                const end = Offset.zero;
+                const curve = Curves.ease;
+                var tween = Tween(
+                  begin: begin,
+                  end: end,
+                ).chain(CurveTween(curve: curve));
+                return SlideTransition(
+                  position: animation.drive(tween),
+                  child: child,
+                );
+              },
+            ),
+          );
+        },
         child: Container(
           height: 55.h,
-
           width: double.infinity,
           decoration: BoxDecoration(
-            color: Color(0xffF2F2F2),
+            color: const Color(0xffF2F2F2),
             borderRadius: BorderRadius.circular(4.r),
           ),
           child: Row(
             children: [
+              SizedBox(width: 8.w),
               Expanded(
-                child: TextField(
-                  enabled: isEnabled,
-                  controller: searchController,
-                  textDirection: isRTL ? TextDirection.rtl : TextDirection.ltr,
-                  decoration: InputDecoration(
-                    hintText: 'Search Here ...',
-                    hintStyle: TextStyles.medium14.copyWith(
-                      color: AppColors.black40,
-                      fontSize: 14.sp,
+                child: Row(
+                  children: [
+                    SvgPicture.asset(
+                      AssetsData.search,
+                      width: 22.w,
+                      height: 22.h,
+                      fit: BoxFit.fitWidth,
                     ),
-                    prefixIcon: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 8.w),
-                      child: SvgPicture.asset(
-                        AssetsData.search,
-                        width: 22.w,
-                        height: 22.h,
-                        fit: BoxFit.fitWidth,
+                    SizedBox(width: 8.w),
+                    Text(
+                      'Search here ...',
+                      style: TextStyles.medium14.copyWith(
+                        color: AppColors.black40,
+                        fontSize: 14.sp,
                       ),
                     ),
-                    prefixIconConstraints: BoxConstraints(minHeight: 32.h),
-                    border: InputBorder.none,
-                  ),
+                  ],
                 ),
               ),
               Container(
@@ -85,19 +84,19 @@ class SearchBarWidget extends StatelessWidget {
                   color: AppColors.primaryColor,
                   borderRadius: isRTL
                       ? BorderRadius.only(
-                          topLeft: Radius.circular(4.r),
-                          bottomLeft: Radius.circular(4.r),
-                        )
+                    topLeft: Radius.circular(4.r),
+                    bottomLeft: Radius.circular(4.r),
+                  )
                       : BorderRadius.only(
-                          topRight: Radius.circular(4.r),
-                          bottomRight: Radius.circular(4.r),
-                        ),
+                    topRight: Radius.circular(4.r),
+                    bottomRight: Radius.circular(4.r),
+                  ),
                 ),
                 child: SvgPicture.asset(
+                  AssetsData.flter,
                   fit: BoxFit.scaleDown,
                   width: 30.w,
                   height: 30.h,
-                  AssetsData.flter,
                 ),
               ),
             ],

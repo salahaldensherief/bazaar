@@ -12,10 +12,10 @@ class CategoriesViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-
-          showCart: true, title: 'Categories'),
+        showCart: true,
+        title: 'Categories',
+      ),
       body: CategoriesGridView(),
     );
   }
 }
-

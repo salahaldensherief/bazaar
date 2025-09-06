@@ -24,12 +24,7 @@ class _OffersViewBodyState extends State<OffersViewBody> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(
-        showCart: true,
-        centerTitle: false,
-        showBack: true,
-        title: 'Product name',
-      ),
+      appBar: CustomAppBar(showCart: true, centerTitle: true, title: 'Offers'),
       body: CustomScrollView(
         physics: BouncingScrollPhysics(),
         slivers: [
@@ -179,10 +174,7 @@ class _OffersViewBodyState extends State<OffersViewBody> {
             ),
           ),
 
-          if (isGrid)
-             ProductsSliverGrid()
-          else
-             ProductsSliverList(),
+          if (isGrid) ProductsSliverGrid() else ProductsSliverList(),
         ],
       ),
     );

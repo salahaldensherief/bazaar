@@ -11,4 +11,5 @@ class ApiEndPoint {
   static const String addToWishList = 'add-to-wishlist';
   static const String deleteFromWishList = 'delete-wishlist';
   static const String getWishList = 'wishlist-data';
+  static const String searchProducts= 'product/search-products';
 }

@@ -7,6 +7,7 @@ import 'package:mega_top/features/home/presentation/manger/wishList/wish_list_cu
 import 'package:mega_top/features/home/presentation/views/widgets/best_seller_section.dart';
 import 'package:mega_top/features/home/presentation/views/widgets/brands_widget_list_view.dart';
 
+import '../../../../search/presentation/views/search_view.dart';
 import '../../../data/repos/home_repo_impl.dart';
 import '../../manger/products/products_cubit.dart';
 import 'Latest_offers_widget.dart';
@@ -35,12 +36,11 @@ class HomeViewBody extends StatelessWidget {
               radius: 25.r,
             ),
           ),
-          SliverToBoxAdapter(child: SearchBarWidget(isEnabled: false)),
+          SliverToBoxAdapter(child: SearchBarContainerWidget()),
           SliverToBoxAdapter(child: SizedBox(height: 20.h)),
           SliverToBoxAdapter(
             child: SizedBox(height: 220.h, child: CustomCarouselSlider()),
           ),
-
           SliverToBoxAdapter(child: SectionWidget(title: 'Brands')),
           SliverToBoxAdapter(child: BrandsWidgetListView()),
           SliverToBoxAdapter(child: SectionWidget(title: 'Our products')),

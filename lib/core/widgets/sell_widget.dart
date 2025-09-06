@@ -11,10 +11,10 @@ class SellWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final discountPercentage = product?.discountPercentage ?? 0;
+    final discountPercentage = product.discountPercentage ?? 0;
 
     if (discountPercentage == 0) {
-      return const SizedBox(); // لو مفيش خصم متعرضش حاجة
+      return const SizedBox();
     }
 
     return Container(
@@ -26,7 +26,7 @@ class SellWidget extends StatelessWidget {
       ),
       child: Center(
         child: Text(
-          "-$discountPercentage%",
+          "$discountPercentage%",
           style: TextStyles.semiBold14.copyWith(color: AppColors.whiteColor),
         ),
       ),

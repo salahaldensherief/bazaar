@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mega_top/core/utils/app_colors.dart';
@@ -7,9 +8,11 @@ import 'package:mega_top/core/utils/text_styles.dart';
 import 'package:mega_top/core/widgets/custom_app_bar.dart';
 import 'package:mega_top/core/widgets/sell_widget.dart';
 import 'package:mega_top/features/categories/presentation/views/widgets/products_sliver_grid.dart';
+import 'package:mega_top/features/home/presentation/manger/products/products_cubit.dart';
 import 'package:mega_top/features/home/presentation/views/widgets/best_seller_list_view.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../../features/categories/presentation/views/widgets/product_sliver_list.dart';
 import '../../features/home/data/model/products_model.dart';
 import '../../features/home/presentation/views/widgets/custom_carousel_slider.dart';
 import 'add_to_cart_container.dart';
@@ -17,12 +20,9 @@ import 'available_widget.dart';
 import 'carousel_slider_widget.dart';
 
 class ProductDetailsView extends StatefulWidget {
-  final ProductsModel product; // ✅
+  final ProductsModel product;
 
-  const ProductDetailsView({
-    super.key,
-    required this.product,
-  });
+  const ProductDetailsView({super.key, required this.product});
 
   @override
   State<ProductDetailsView> createState() => _ProductDetailsViewState();
@@ -31,9 +31,9 @@ class ProductDetailsView extends StatefulWidget {
 class _ProductDetailsViewState extends State<ProductDetailsView> {
   @override
   Widget build(BuildContext context) {
-    final prod = widget.product; // ✅ نستخدمه
+    final prod = widget.product;
 
-    final screenheight = MediaQuery.of(context).size.height;
+    final screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       extendBody: true,
@@ -42,7 +42,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
         showElevation: false,
         showBack: true,
         centerTitle: false,
-        title: prod.name ?? "Product", // ✅ بدل الـ ثابت
+        title: prod.name ?? "Product",
       ),
       body: CustomScrollView(
         slivers: [
@@ -54,14 +54,13 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                   children: [
                     Container(
                       width: double.infinity,
-                      height: screenheight / 3.30,
+                      height: screenHeight / 3.30,
                       decoration: const BoxDecoration(
                         color: AppColors.LigthGray,
                       ),
                     ),
-                    // ✅ نعرض صورة المنتج
                     CarouselSliderWidget(
-                      height: screenheight / 4,
+                      height: screenHeight / 4,
                       images: prod.productImage ?? [],
                     ),
                   ],
@@ -121,22 +120,14 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                         ),
                       ),
                       SizedBox(height: 20.h),
-                      Text(
-                        'You may also like',
-                        style: TextStyles.bold23.copyWith(
-                          color: AppColors.black,
-                        ),
-                      ),
+
                     ],
                   ),
                 ),
               ],
             ),
           ),
-          SliverToBoxAdapter(
-            child: BestSellerListView(category: 'camera'),
-          ),
-          SliverToBoxAdapter(child: SizedBox(height: 90.h)),
+          SliverToBoxAdapter(child: SizedBox(height: 80.h,),)
         ],
       ),
       bottomNavigationBar: BottomAppBar(
