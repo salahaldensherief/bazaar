@@ -20,7 +20,7 @@ late ProductsModel productsModel;
                 MaterialPageRoute(builder: (context) => ProductDetailsView(product:productsModel ,)),
               );
             },
-            child: ProductViewList(),
+            // child: ProductViewList( productPrice: ,),
           ),
         );
       }, childCount: 30),

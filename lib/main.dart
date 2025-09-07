@@ -4,13 +4,14 @@ import 'package:mega_top/core/hepler/on_generate_routes.dart';
 import 'package:mega_top/core/utils/app_colors.dart';
 import 'package:mega_top/features/splash/presentation/views/splash_view.dart';
 
+import 'core/services/getit/service_locator.dart';
 import 'core/services/shared_preferences_singleton.dart';
 import 'features/home/presentation/views/widgets/bottom_nav_bar.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Prefs.init();
-
+  await init();
   runApp(const MyApp());
 }
 

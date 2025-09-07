@@ -71,7 +71,7 @@ class LoginViewBody extends StatelessWidget {
                         : CustomTextBottom(
                       onPressed: () {
                         if (context.read<SignInCubit>().signInFormKey.currentState!.validate()) {
-                          context.read<SignInCubit>().LogIn();
+                          context.read<SignInCubit>().logIn();
                         }
                       },
                       text: 'Login',

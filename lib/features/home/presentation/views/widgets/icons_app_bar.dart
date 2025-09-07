@@ -63,8 +63,16 @@ class IconAppBar extends StatelessWidget {
                     ),
                     child: GestureDetector(
                       onTap: () {
-
-
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => WishlistView(
+                              homeRepo: HomeRepoImpl(
+                                api: DioConsumer(dio: Dio()),
+                              ),
+                            ),
+                          ),
+                        );
                       },
                       child: Icon(
                         FontAwesomeIcons.solidHeart,

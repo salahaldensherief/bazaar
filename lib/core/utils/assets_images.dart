@@ -50,5 +50,6 @@ class AssetsData {
   static const profileAcc = 'assets/images/profile.svg';
   static const signOut = 'assets/images/sign out.svg';
   static const arrowNav = 'assets/images/path9429.svg';
+  static const fover = 'assets/images/fover.png';
 
 }

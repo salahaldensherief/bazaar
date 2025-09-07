@@ -1,27 +1,29 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:mega_top/features/home/presentation/manger/products/products_cubit.dart';
 
 import '../utils/app_colors.dart';
 import '../utils/assets_images.dart';
 import '../utils/text_styles.dart';
 
-class ProductViewList extends StatefulWidget {
-  const ProductViewList({super.key, this.isFav = false});
+class ProductViewList extends StatelessWidget {
+  const ProductViewList({
+    super.key,
+    this.isFav = false,
+    required this.image,
+    required this.productName,
+    required this.productCategory,
+    required this.productPrice,
+  });
+
   final bool isFav;
-
-  @override
-  State<ProductViewList> createState() => _ProductViewListState();
-}
-
-class _ProductViewListState extends State<ProductViewList> {
-  late bool _isFav;
-
-  @override
-  void initState() {
-    super.initState();
-    _isFav = widget.isFav;
-  }
+  final String image;
+  final String productName;
+  final String productCategory;
+  final double productPrice;
 
   @override
   Widget build(BuildContext context) {
@@ -56,31 +58,11 @@ class _ProductViewListState extends State<ProductViewList> {
                         vertical: 8.h,
                         horizontal: 8.w,
                       ),
-                      child: Row(
-                        children: [
-                          Container(
-                            height: 20.h,
-                            width: 35.w,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(2.r),
-                              color: AppColors.red,
-                            ),
-                            child: Center(
-                              child: Text(
-                                '-12%',
-                                textAlign: TextAlign.center,
-                                style: TextStyles.semiBold14.copyWith(
-                                  color: AppColors.whiteColor,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                      child: Row(children: []),
                     ),
                     Center(
-                      child: Image.asset(
-                        AssetsData.ups,
+                      child: Image.network(
+                        image,
                         height: 60.h,
                         fit: BoxFit.contain,
                       ),
@@ -99,36 +81,34 @@ class _ProductViewListState extends State<ProductViewList> {
                         children: [
                           Expanded(
                             child: Text(
-                              'Product Name',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                fontSize: 14.sp,
+                              productName ?? '',
+                              style: TextStyles.medium15.copyWith(
+                                overflow: TextOverflow.ellipsis,
+                                wordSpacing: 1,
                               ),
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
                             ),
                           ),
-                          Padding(
-                            padding: EdgeInsets.only(right: 8.w),
-                            child: InkWell(
-                              onTap: () {
-                                setState(() {
-                                  _isFav = !_isFav;
-                                });
-                              },
-                              child: SvgPicture.asset(
-                                _isFav ? AssetsData.favAc : AssetsData.fav,
-                                width: 20.w,
-                                height: 20.h,
-                                fit: BoxFit.scaleDown,
-                              ),
-                            ),
+
+
+                               Padding(
+                                padding: EdgeInsets.only(right: 8.w),
+                                child: InkWell(
+                                  onTap: () {
+
+                                  },
+                                  child: SvgPicture.asset(
+                                    AssetsData.favAc,
+                                    width: 20.w,
+                                    height: 20.h,
+                                    fit: BoxFit.scaleDown,
+                                  ),
+                                ),
                           ),
                         ],
                       ),
                       SizedBox(height: 8.h),
                       Text(
-                        'Category',
+                        productCategory ?? '',
                         style: TextStyle(color: Colors.grey, fontSize: 12.sp),
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -165,7 +145,7 @@ class _ProductViewListState extends State<ProductViewList> {
                           Padding(
                             padding: EdgeInsets.only(right: 8.w),
                             child: Text(
-                              '1200 L.E',
+                              '${productPrice} L.E',
                               style: TextStyles.semiBold14.copyWith(
                                 color: AppColors.primaryColor,
                               ),

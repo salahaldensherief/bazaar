@@ -1,15 +1,15 @@
 import 'package:mega_top/features/home/data/model/products_model.dart';
 
 class WishlistItem {
-  final String? id;
+  final String? sId;
   final ProductsModel? product;
   final int? quantity;
 
-  WishlistItem({this.id, this.product, this.quantity});
+  WishlistItem({this.sId, this.product, this.quantity});
 
   factory WishlistItem.fromJson(Map<String, dynamic> json) {
     return WishlistItem(
-      id: json['_id'],
+      sId: json['_id'],
       product: json['product'] != null
           ? ProductsModel.fromJson(json['product'])
           : null,

@@ -19,19 +19,14 @@ import 'add_to_cart_container.dart';
 import 'available_widget.dart';
 import 'carousel_slider_widget.dart';
 
-class ProductDetailsView extends StatefulWidget {
+class ProductDetailsView extends StatelessWidget {
   final ProductsModel product;
 
   const ProductDetailsView({super.key, required this.product});
 
   @override
-  State<ProductDetailsView> createState() => _ProductDetailsViewState();
-}
-
-class _ProductDetailsViewState extends State<ProductDetailsView> {
-  @override
   Widget build(BuildContext context) {
-    final prod = widget.product;
+    final prod = product;
 
     final screenHeight = MediaQuery.of(context).size.height;
 

@@ -7,4 +7,6 @@ import 'package:dartz/dartz.dart';
 abstract class HomeRepo {
   Future<Either<ServerException, List<ProductsModel>>> fetchProducts({String? category});
   Future<Either<ServerException, List<ProductsModel>>> searchProducts({String? query});
+  Future<Either<ServerException, List<ProductsModel>>> addProductToWishlist({  String? id,});
+  Future<Either<ServerException, List<ProductsModel>>> getWishlist();
 }

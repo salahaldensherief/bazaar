@@ -6,7 +6,11 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../../../core/utils/app_colors.dart';
 
 class CarouselSliderWidget extends StatefulWidget {
-  const CarouselSliderWidget({super.key, required this.height, required this.images});
+  const CarouselSliderWidget({
+    super.key,
+    required this.height,
+    required this.images,
+  });
   final double height;
   final List<String> images;
 
@@ -18,7 +22,6 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
   final slider.CarouselSliderController _carouselController =
       slider.CarouselSliderController();
   int _current = 0;
-
 
   _CarouselSliderWidgetState();
 

@@ -48,7 +48,7 @@ class HomeRepoImpl implements HomeRepo {
 
       final productsResponse = ProductsResponse.fromJson(response);
 
-      final products = productsResponse.data ?? [];
+      final products = productsResponse.data;
 
       return Right(products);
     } on ServerException catch (e) {
@@ -59,4 +59,40 @@ class HomeRepoImpl implements HomeRepo {
       );
     }
   }
-}
+
+  @override
+  Future<Either<ServerException, List<ProductsModel>>> addProductToWishlist(
+      {String? id}) async {
+    try {
+      final response = await api.post(
+          ApiEndPoint.addToWishList, data: {"productId": id});
+      final wishlistResponse = WishlistResponse.fromJson(response);
+      final products = wishlistResponse.items
+          .map((item) => item.product)
+          .whereType<ProductsModel>()
+          .toList();
+      return Right(products);
+    } catch (e) {
+      return Left(
+          ServerException(errorModel: ErrorModel(message: e.toString())));
+    }
+  }
+
+  @override
+  Future<Either<ServerException, List<ProductsModel>>> getWishlist() async {
+    try {
+      final response = await api.get(ApiEndPoint.getWishList);
+      final wishlistResponse = WishlistResponse.fromJson(response);
+
+      final products = wishlistResponse.items
+          .map((item) => item.product)
+          .whereType<ProductsModel>()
+          .toList();
+
+      return Right(products);
+    } on ServerException catch (e) {
+      return Left(e);
+    } catch (e) {
+      return Left(ServerException(errorModel: ErrorModel(message: e.toString())));
+    }
+  }}

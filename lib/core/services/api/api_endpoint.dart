@@ -8,8 +8,8 @@ class ApiEndPoint {
   static const String username = 'username';
   static const String signOut = 'auth/logout';
   static const String getAllProducts = 'product/get-all-products';
-  static const String addToWishList = 'add-to-wishlist';
+  static const String addToWishList = 'user/add-to-wishlist';
   static const String deleteFromWishList = 'delete-wishlist';
-  static const String getWishList = 'wishlist-data';
+  static const String getWishList = 'user/wishlist-data';
   static const String searchProducts= 'product/search-products';
 }

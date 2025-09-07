@@ -22,8 +22,11 @@ class ProductViewGrid extends StatelessWidget {
     super.key,
     required this.width,
     required this.height,
-    required this.imageHeight, required this.image, required this.productName, required this.productCategory, required this.productPrice,
-
+    required this.imageHeight,
+    required this.image,
+    required this.productName,
+    required this.productCategory,
+    required this.productPrice,
   });
 
   @override
@@ -111,7 +114,7 @@ class ProductViewGrid extends StatelessWidget {
                     children: [
                       AvailableWidget(),
                       Text(
-                         '${productPrice } L.E', //discountedPrice ?? product.price} L.E',
+                        '${productPrice} L.E', //discountedPrice ?? product.price} L.E',
                         style: TextStyles.bold16.copyWith(
                           color: AppColors.primaryColor,
                         ),

@@ -7,6 +7,7 @@ import 'package:mega_top/core/utils/assets_images.dart';
 import 'package:mega_top/features/home/data/repos/home_repo_impl.dart';
 import 'package:mega_top/features/search/presentation/views/widgets/search_page_view_body.dart';
 import '../../../../../core/services/api/dio_consumer.dart';
+import '../../../../../core/services/getit/service_locator.dart' as di;
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/text_styles.dart';
 import '../../../../search/presentation/cubit/search_cubit.dart';
@@ -27,7 +28,7 @@ class SearchBarContainerWidget extends StatelessWidget {
             PageRouteBuilder(
               pageBuilder: (context, animation, secondaryAnimation) =>
                   BlocProvider(
-                    create: (context) => SearchCubit(homeRepo: HomeRepoImpl(api: DioConsumer(dio: Dio()))),
+                    create: (context) => di.sl<SearchCubit>(),
                     child: SearchViewBody(),
                   ),
               transitionsBuilder:

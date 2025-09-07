@@ -30,6 +30,8 @@ class ProductsCubit extends Cubit<ProductsState> {
         emit(ProductsSuccess(products: filteredProducts));
       },
     );
+
   }
+
 }
 

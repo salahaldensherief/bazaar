@@ -1,4 +1,6 @@
+import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
+import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:mega_top/core/services/api/api_interceptors.dart';
 
 import '../errors/error_model.dart';
@@ -8,9 +10,12 @@ import 'api_endpoint.dart';
 
 class DioConsumer extends ApiConsumer {
   final Dio dio;
+  final CookieJar cookieJar;
 
-  DioConsumer({required this.dio}) {
+  DioConsumer({required this.dio, CookieJar? sharedCookieJar})
+      : cookieJar = sharedCookieJar ?? CookieJar() {
     dio.options.baseUrl = ApiEndPoint.baseUrl;
+    dio.interceptors.add(CookieManager(cookieJar));
     dio.interceptors.add(ApiInterceptors());
     dio.interceptors.add(
       LogInterceptor(
@@ -22,6 +27,7 @@ class DioConsumer extends ApiConsumer {
         responseHeader: true,
       ),
     );
+
   }
   @override
   Future delete(

@@ -1,40 +1,66 @@
 import 'package:bloc/bloc.dart';
+import 'package:cookie_jar/cookie_jar.dart';
 import 'package:flutter/material.dart';
-import 'package:mega_top/core/services/api/api_consumer.dart';
-import 'package:meta/meta.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../../../../core/services/api/api_endpoint.dart';
+import '../../../../../core/services/api/dio_consumer.dart';
 import '../../../../../core/services/errors/exceptions.dart';
+import '../../../../../core/services/shared_preferences_singleton.dart';
 import '../../../data/models/sign_in_model.dart';
 
 part 'sign_in_state.dart';
 
 class SignInCubit extends Cubit<SignInState> {
- final ApiConsumer api;
+  final DioConsumer api;
   SignInCubit(this.api) : super(SignInInitial());
+
   GlobalKey<FormState> signInFormKey = GlobalKey();
   TextEditingController signInEmail = TextEditingController();
   TextEditingController signInPassword = TextEditingController();
   SignInModel? user;
-  LogIn() async {
+
+  Future<void> logIn() async {
     try {
       emit(SignInLoading());
-      final response = await api.post(
+      final response = await api.dio.post(
         ApiEndPoint.login,
-        data: {ApiEndPoint.email: signInEmail.text, ApiEndPoint.password: signInPassword.text},
+        data: {
+          ApiEndPoint.email: signInEmail.text,
+          ApiEndPoint.password: signInPassword.text,
+        },
       );
-user = SignInModel.fromJson(response);
+
+      user = SignInModel.fromJson(response.data);
+
+      if (user?.token != null) {
+        await Prefs.setString('auth_token', user!.token!);
+      }
+
+      final setCookie = response.headers['set-cookie'];
+      if (setCookie != null) {
+        for (var cookieStr in setCookie) {
+          if (cookieStr.contains('connect.sid')) {
+            final cookieParts = cookieStr.split(';')[0].split('=');
+            final connectSid = cookieParts.length > 1 ? cookieParts[1] : '';
+            final uri = Uri.parse(ApiEndPoint.baseUrl);
+            final cookie = Cookie('connect.sid', connectSid)
+              ..httpOnly = true
+              ..secure = false
+              ..path = '/';
+            await api.cookieJar.saveFromResponse(uri, [cookie]);
+            break;
+          }
+        }
+      }
+
       emit(SignInSuccess());
-      saveToken(user!.token!);
     } on ServerException catch (e) {
       emit(SignInFailure(errMassege: e.errorModel.message));
     }
   }
 
-  Future<void> saveToken(String token) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('auth_token', token);
+  Future<void> logOut() async {
+    await Prefs.remove('auth_token');
+    user = null;
+    emit(SignInInitial());
   }
 }
-

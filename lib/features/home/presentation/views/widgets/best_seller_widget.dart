@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,6 +10,7 @@ import '../../../../../core/widgets/products_view_grid.dart';
 import '../../../../../core/widgets/sell_widget.dart';
 import '../../../data/model/products_model.dart';
 import '../../manger/wishList/wish_list_cubit.dart';
+import '../../manger/wishList/wish_list_state.dart';
 
 class BestSellerGridWidget extends StatelessWidget {
   final ProductsModel product;
@@ -36,7 +38,7 @@ class BestSellerGridWidget extends StatelessWidget {
         children: [
           Expanded(
             child: Container(
-              height: 129.h,
+              height: 120.h,
               margin: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
               decoration: BoxDecoration(color: const Color(0xffF7F7FB)),
               child: Column(
@@ -47,20 +49,33 @@ class BestSellerGridWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         SellWidget(product: product),
-                        IconButton(
-                          splashColor: AppColors.transparent,
-                          onPressed: () {
-                            // if (isFav) {
-                            //   context.read<WishlistCubit>().removeFromWishlist(product.sId!);
-                            // } else {
-                            //   context.read<WishlistCubit>().addToWishlist(product.sId!);
-                            // }
+                        BlocBuilder<WishlistCubit, WishlistState>(
+                          builder: (context, state) {
+                            final isFav = context
+                                .read<WishlistCubit>()
+                                .isFavorite(product.sId ?? '');
+
+                            return IconButton(
+                              splashColor: AppColors.transparent,
+                              onPressed: () {
+                                if (product.sId != null) {
+                                  context.read<WishlistCubit>().toggleFavorite(
+                                    product.sId!,
+                                  );
+                                  context.read<WishlistCubit>().addToWishlist(
+                                    product.sId!,
+                                  );
+                                }
+                              },
+                              icon: Icon(
+                                isFav ? Icons.favorite : Icons.favorite_border,
+                                color: isFav
+                                    ? AppColors.primaryColor
+                                    : AppColors.primaryColor,
+                                size: 24.w,
+                              ),
+                            );
                           },
-                          icon: Icon(
-                            Icons.favorite_border,
-                            color: AppColors.primaryColor,
-                            size: 24.w,
-                          ),
                         ),
                       ],
                     ),
