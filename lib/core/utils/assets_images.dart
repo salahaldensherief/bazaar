@@ -1,5 +1,6 @@
 class AssetsData {
   static const logo = 'assets/images/logo.png';
+  static const logo2 = 'assets/images/logo2.svg';
   static const Group = 'assets/images/Group 31.png';
   static const box = 'assets/images/box.png';
   static const magnifer = 'assets/images/magnifer.png';

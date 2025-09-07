@@ -12,11 +12,11 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Prefs.init();
   await init();
-  runApp(const MyApp());
+  runApp(const BazaarApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class BazaarApp extends StatelessWidget {
+  const BazaarApp({super.key});
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(

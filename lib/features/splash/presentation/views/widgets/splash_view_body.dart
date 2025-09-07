@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mega_top/core/utils/assets_images.dart';
 import 'package:mega_top/features/home/presentation/views/widgets/bottom_nav_bar.dart';
 import 'package:mega_top/features/onboarding/presentation/views/onboarding_view.dart';
@@ -27,7 +28,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [Center(child: Image.asset(AssetsData.logo, width: 150.w))],
+        children: [Center(child: SvgPicture.asset(AssetsData.logo2, width: 150.w,))],
       ),
     );
   }
