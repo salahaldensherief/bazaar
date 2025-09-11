@@ -6,6 +6,7 @@ import 'package:mega_top/features/home/data/model/products_response.dart';
 import '../../../../core/services/api/api_endpoint.dart';
 import '../../../../core/services/api/dio_consumer.dart';
 import '../../../../core/services/errors/error_model.dart';
+import '../../../categories/presentation/data/category_response.dart';
 import '../model/wishlist_response.dart';
 import 'home_repo.dart';
 
@@ -61,11 +62,14 @@ class HomeRepoImpl implements HomeRepo {
   }
 
   @override
-  Future<Either<ServerException, List<ProductsModel>>> addProductToWishlist(
-      {String? id}) async {
+  Future<Either<ServerException, List<ProductsModel>>> addProductToWishlist({
+    String? id,
+  }) async {
     try {
       final response = await api.post(
-          ApiEndPoint.addToWishList, data: {"productId": id});
+        ApiEndPoint.addToWishList,
+        data: {"productId": id},
+      );
       final wishlistResponse = WishlistResponse.fromJson(response);
       final products = wishlistResponse.items
           .map((item) => item.product)
@@ -74,14 +78,16 @@ class HomeRepoImpl implements HomeRepo {
       return Right(products);
     } catch (e) {
       return Left(
-          ServerException(errorModel: ErrorModel(message: e.toString())));
+        ServerException(errorModel: ErrorModel(message: e.toString())),
+      );
     }
   }
 
   @override
-  Future<Either<ServerException, List<ProductsModel>>> getWishlist() async {
+  Future<Either<ServerException, List<ProductsModel>>> fetchWishlist() async {
     try {
       final response = await api.get(ApiEndPoint.getWishList);
+
       final wishlistResponse = WishlistResponse.fromJson(response);
 
       final products = wishlistResponse.items
@@ -93,6 +99,38 @@ class HomeRepoImpl implements HomeRepo {
     } on ServerException catch (e) {
       return Left(e);
     } catch (e) {
+      return Left(
+        ServerException(errorModel: ErrorModel(message: e.toString())),
+      );
+    }
+  }
+
+  @override
+  Future<Either<ServerException, List<ProductsModel>>> fetchCategories() async {
+    try {
+      final response = await api.get(ApiEndPoint.fetchCategories);
+      final productsResponse = ProductsResponse.fromJson(response);
+      return Right(productsResponse.data);
+    } catch (e) {
+      return Left(
+        ServerException(errorModel: ErrorModel(message: e.toString())),
+      );
+    }
+  }
+
+  @override
+  Future<Either<ServerException, List<ProductsModel>>> fetchProductsByCategory({
+    required String category,
+  }) async {
+    try {
+      final response = await api.post(
+        ApiEndPoint.fetchProductsByCategory,
+        data: {'category': category},
+      );
+      final categoryResponse = CategoryResponse.fromJson(response);
+      return Right(categoryResponse.products);
+    } catch (e) {
       return Left(ServerException(errorModel: ErrorModel(message: e.toString())));
     }
-  }}
+  }
+}

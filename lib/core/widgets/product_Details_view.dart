@@ -102,7 +102,7 @@ class ProductDetailsView extends StatelessWidget {
                       ),
                       SizedBox(height: 12.h),
                       Text(
-                        'About the product',
+                        'Abouِt the product',
                         style: TextStyles.bold23.copyWith(
                           color: AppColors.black,
                         ),

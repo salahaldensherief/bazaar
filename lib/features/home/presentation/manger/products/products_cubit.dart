@@ -26,7 +26,6 @@ class ProductsCubit extends Cubit<ProductsState> {
           filteredProducts =
               products.where((p) => p.category == category).toList();
         }
-
         emit(ProductsSuccess(products: filteredProducts));
       },
     );

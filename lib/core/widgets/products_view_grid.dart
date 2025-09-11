@@ -17,6 +17,8 @@ class ProductViewGrid extends StatelessWidget {
   final String productName;
   final String productCategory;
   final double productPrice;
+  final bool isFav;
+  final VoidCallback? onFavToggle;
 
   const ProductViewGrid({
     super.key,
@@ -26,7 +28,7 @@ class ProductViewGrid extends StatelessWidget {
     required this.image,
     required this.productName,
     required this.productCategory,
-    required this.productPrice,
+    required this.productPrice, this.isFav = false, this.onFavToggle,
   });
 
   @override
@@ -62,13 +64,8 @@ class ProductViewGrid extends StatelessWidget {
                         // SellWidget(product: product),
                         IconButton(
                           splashColor: AppColors.transparent,
-                          onPressed: () {
-                            // if (isFav) {
-                            //   context.read<WishlistCubit>().removeFromWishlist(product.sId!);
-                            // } else {
-                            //   context.read<WishlistCubit>().addToWishlist(product.sId!);
-                            // }
-                          },
+                          onPressed: onFavToggle,
+
                           icon: Icon(
                             Icons.favorite_border,
                             color: AppColors.primaryColor,
@@ -81,9 +78,10 @@ class ProductViewGrid extends StatelessWidget {
                   Expanded(
                     child: Center(
                       child: Image.network(
+
                         image,
                         height: imageHeight,
-                        fit: BoxFit.fitHeight,
+                        fit: BoxFit.fill,
                       ),
                     ),
                   ),
@@ -114,9 +112,11 @@ class ProductViewGrid extends StatelessWidget {
                     children: [
                       AvailableWidget(),
                       Text(
-                        '${productPrice} L.E', //discountedPrice ?? product.price} L.E',
+                        '${productPrice} L.E',
+                        //discountedPrice ?? product.price} L.E',
                         style: TextStyles.bold16.copyWith(
                           color: AppColors.primaryColor,
+
                         ),
                       ),
                     ],

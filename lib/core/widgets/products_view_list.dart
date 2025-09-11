@@ -58,12 +58,12 @@ class ProductViewList extends StatelessWidget {
                         vertical: 8.h,
                         horizontal: 8.w,
                       ),
-                      child: Row(children: []),
                     ),
                     Center(
                       child: Image.network(
                         image,
                         height: 60.h,
+                        width: 61.164756774902344,
                         fit: BoxFit.contain,
                       ),
                     ),

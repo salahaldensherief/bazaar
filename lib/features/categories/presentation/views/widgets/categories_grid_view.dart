@@ -1,33 +1,56 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:mega_top/features/categories/presentation/cubits/category/categories_cubit.dart';
 import 'categories_item_widget.dart';
 
 class CategoriesGridView extends StatelessWidget {
-  const CategoriesGridView({
-    super.key,
-  });
+  const CategoriesGridView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      padding:  EdgeInsets.symmetric(vertical: 24.h,horizontal: 16.w),
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: 7,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        mainAxisExtent: 90,
-        crossAxisCount: 3,
-        crossAxisSpacing: 30,
-        mainAxisSpacing: 20,
-        childAspectRatio: .8,
-      ),
-      itemBuilder: (context, index) {
-        return SizedBox(
-          height: 104.h,
-          width: 104,
-          child: CategoriesItemWidget(),
-        );
+    return BlocBuilder<CategoriesCubit, CategoriesState>(
+      builder: (context, state) {
+        if (state is CategoriesLoading) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (state is CategoriesSuccess) {
+          return Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+            child: GridView.builder(
+              itemCount: state.categories.length,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+                mainAxisExtent: 100,
+              ),
+              itemBuilder: (context, index) {
+                final categoryItem = state.categories[index];
+                return CategoriesItemWidget(
+                  title: categoryItem.category.toString() ?? '',
+                  image: categoryItem.productImage ?? [],
+                );
+              },
+            ),
+          );
+        } else if (state is CategoriesFailure) {
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.error_outline, size: 64.w, color: Colors.red),
+                SizedBox(height: 16.h),
+                Text(
+                  state.errMessage,
+                  style: TextStyle(fontSize: 16.sp),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 16.h),
+              ],
+            ),
+          );
+        }
+        return const SizedBox.shrink();
       },
     );
   }

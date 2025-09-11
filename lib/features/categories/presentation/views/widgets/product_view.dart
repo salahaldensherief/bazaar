@@ -1,196 +1,116 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mega_top/core/utils/assets_images.dart';
-import 'package:mega_top/core/widgets/add_to_cart_container.dart';
+import 'package:mega_top/core/widgets/custom_app_bar.dart';
+import 'package:mega_top/core/widgets/list_or_grid_widget.dart';
+import 'package:mega_top/features/categories/presentation/cubits/productsCategory/products_category_cubit.dart';
 import 'package:mega_top/features/categories/presentation/views/widgets/product_sliver_list.dart';
 import 'package:mega_top/features/categories/presentation/views/widgets/products_sliver_grid.dart';
-import 'package:mega_top/features/categories/presentation/views/widgets/sort_bottom_sheet.dart';
-import 'package:mega_top/features/home/presentation/views/widgets/icons_app_bar.dart';
-
-import '../../../../../core/utils/app_colors.dart';
-import '../../../../../core/utils/text_styles.dart';
-import '../../../../../core/widgets/custom_app_bar.dart';
-import '../../../../../core/widgets/products_view_grid.dart';
-import '../../../../../core/widgets/products_view_list.dart';
-import 'filter_bottom_sheet.dart';
+import '../../../../../core/services/getit/service_locator.dart';
+import '../../../../home/data/repos/home_repo.dart';
 
 class ProductsView extends StatefulWidget {
-  const ProductsView({super.key});
+  final String category;
+
+  const ProductsView({super.key, required this.category});
 
   @override
   State<ProductsView> createState() => _ProductsViewState();
 }
 
 class _ProductsViewState extends State<ProductsView> {
-  bool isGrid = false;
+  bool isGrid = true;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBar(
-        showCart: true,
-        centerTitle: false,
-        showBack: true,
-        title: 'Product name',
-      ),
+    return BlocProvider(
+      create: (context) => ProductsCategoryCubit(sl<HomeRepo>())
+        ..fetchProductsByCategory(widget.category),
+      child: Scaffold(
+        appBar: CustomAppBar(
+          showCart: true,
+          centerTitle: false,
+          showBack: true,
+          title: widget.category,
+        ),
+        body: BlocBuilder<ProductsCategoryCubit, ProductsCategoryState>(
+          builder: (context, state) {
+            if (state is ProductsCategoryLoading) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (state is ProductsCategorySuccess) {
 
-      body: CustomScrollView(
-        physics: BouncingScrollPhysics(),
-        slivers: [
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 16.w),
-              child: Row(
-                children: [
-                  ElevatedButton(
-                    style: ButtonStyle(
-                      elevation: MaterialStateProperty.all(0),
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                        AppColors.black5,
+              final products = state.products;
+              debugPrint(products.toString());
+
+              if (products.isEmpty) {
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.inventory_2_outlined,
+                        size: 64.w,
+                        color: Colors.grey,
                       ),
-                      shape: MaterialStateProperty.all(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.r),
-                        ),
+                      SizedBox(height: 16.h),
+                      Text(
+                        ' ',
+                        style: TextStyle(fontSize: 16.sp, color: Colors.grey),
                       ),
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        isGrid = !isGrid;
-                      });
-                    },
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(
-                          isGrid ? Icons.list : Icons.grid_view,
-                          color: AppColors.black,
-                        ),
-                        SizedBox(width: 8.w),
-                        Text(
-                          isGrid ? 'List' : 'Grid',
-                          style: TextStyles.medium15.copyWith(
-                            color: AppColors.black,
-                          ),
-                        ),
-                      ],
-                    ),
+                    ],
                   ),
-                  const Spacer(),
-                  GestureDetector(
-                    onTap: () {
-                      showModalBottomSheet(
-                        isScrollControlled: true,
-                        context: context,
-                        builder: (context) {
-                          return Container(
-                            height: MediaQuery.of(context).size.height * 0.35,
-                            child: Column(
-                              children: [
-                                CustomAppBar(
-                                  showBack: false,
-                                  centerTitle: false,
-                                  title: 'Sort by :',
-                                ),
-                                const SortBottomSheet(),
-                              ],
-                            ),
-                          );
+                );
+              }
+
+              return CustomScrollView(
+                physics: const BouncingScrollPhysics(),
+                slivers: [
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                          vertical: 16.h, horizontal: 16.w),
+                      child: ListOrGridWidget(
+                        isGrid: isGrid,
+                        onToggle: () {
+                          setState(() {
+                            isGrid = !isGrid;
+                          });
                         },
-                      );
-                    },
-                    child: Container(
-                      width: 52.w,
-                      height: 40.h,
-                      decoration: BoxDecoration(
-                        color: AppColors.black5,
-                        borderRadius: BorderRadius.circular(8.r),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: SvgPicture.asset(AssetsData.sort),
                       ),
                     ),
                   ),
-                  SizedBox(width: 8.w),
-                  GestureDetector(
-                    onTap: () {
-                      showModalBottomSheet(
-                        context: context,
-                        isScrollControlled: true,
-                        builder: (context) {
-                          return SafeArea(
-                            top: true,
-                            minimum: EdgeInsets.only(top: 15.h),
-                            child: Scaffold(
-                              appBar: AppBar(
-                                automaticallyImplyLeading: false,
-                                elevation: 3,
-                                backgroundColor: AppColors.whiteColor,
-                                title: Text(
-                                  'Filter by',
-                                  style: TextStyles.bold22.copyWith(
-                                    color: Colors.black,
-                                  ),
-                                ),
-                                actions: [
-                                  Padding(
-                                    padding: EdgeInsets.symmetric(
-                                      vertical: 10.h,
-                                      horizontal: 10.w,
-                                    ),
-                                    child: GestureDetector(
-                                      onTap: () => Navigator.pop(context),
-                                      child: Container(
-                                        width: 30.w,
-                                        height: 30.h,
-                                        decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: AppColors.backIconColor,
-                                        ),
-                                        child: SvgPicture.asset(
-                                          AssetsData.exit,
-                                          width: 15.w,
-                                          height: 20.h,
-                                          fit: BoxFit.scaleDown,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              body: const FilterBottomSheet(),
-                            ),
-                          );
-                        },
-                      );
-                    },
-                    child: Container(
-                      width: 52.w,
-                      height: 40.h,
-                      decoration: BoxDecoration(
-                        color: AppColors.black5,
-                        borderRadius: BorderRadius.circular(8.r),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: SvgPicture.asset(AssetsData.flterblack),
-                      ),
-                    ),
-                  ),
+                  if (isGrid)
+                    ProductsSliverGrid(products: products)
+                  else
+                    ProductsSliverList(products: products),
                 ],
-              ),
-            ),
-          ),
+              );
+            } else if (state is ProductsCategoryFailure) {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.error_outline,
+                      size: 64.w,
+                      color: Colors.red,
+                    ),
+                    SizedBox(height: 16.h),
+                    Text(
+                      state.errMessage,
+                      style: TextStyle(fontSize: 16.sp),
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: 16.h),
 
-          if (isGrid)
-             ProductsSliverGrid()
-          else
-             ProductsSliverList(),
-        ],
+                  ],
+                ),
+              );
+            }
+            return const SizedBox.shrink();
+          },
+        ),
       ),
-
     );
   }
 }

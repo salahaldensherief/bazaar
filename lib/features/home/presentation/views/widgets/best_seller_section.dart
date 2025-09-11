@@ -6,8 +6,8 @@ import '../../../../../core/utils/text_styles.dart';
 
 
 class SectionWidget extends StatelessWidget {
-  const SectionWidget({super.key, required this.title});
-
+  const SectionWidget({super.key, required this.title, required this.viewAll});
+final bool viewAll;
 final String title;
   @override
   Widget build(BuildContext context) {
@@ -20,21 +20,24 @@ final String title;
           Text(
             title,
             style: TextStyles.bold23.copyWith(fontWeight: FontWeight.w700)),
-          Row(
-            children: [
-              Text(
-              'View all',
-                style:TextStyles.medium15.copyWith(
-                    color: AppColors.primaryColor,
-                    fontWeight: FontWeight.w700)
-              ),
-              SizedBox(width: 4.w,),
-              Icon(
-                Icons.arrow_forward_ios,
-                size: 10.w,
-                color: AppColors.primaryColor,
-              ),
-            ],
+          Visibility(
+            visible: viewAll,
+            child: Row(
+              children: [
+                Text(
+                'View all',
+                  style:TextStyles.medium15.copyWith(
+                      color: AppColors.primaryColor,
+                      fontWeight: FontWeight.w700)
+                ),
+                SizedBox(width: 4.w,),
+                Icon(
+                  Icons.arrow_forward_ios,
+                  size: 10.w,
+                  color: AppColors.primaryColor,
+                ),
+              ],
+            ),
           ),
         ],
       ),

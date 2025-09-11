@@ -10,17 +10,14 @@ class WishlistCubit extends Cubit<WishlistState> {
 
   Future<void> fetchWishlist() async {
     emit(WishlistLoading());
-    final result = await homeRepo.getWishlist();
-    result.fold(
-          (error) =>  emit(WishlistEmpty()),
-          (products) {
-        if (products.isEmpty) {
-
-        } else {
-          emit(WishlistSuccess(products));
-        }
-      },
-    );
+    final result = await homeRepo.fetchWishlist();
+    result.fold((error) => emit(WishlistEmpty()), (products) {
+      if (products.isEmpty) {
+        emit(WishlistEmpty());
+      } else {
+        emit(WishlistSuccess(products));
+      }
+    });
   }
 
   Future<void> addToWishlist(String productId) async {
@@ -36,6 +33,7 @@ class WishlistCubit extends Cubit<WishlistState> {
   Future<void> toggleFavorite(String productId) async {
     if (_favoriteIds.contains(productId)) {
       _favoriteIds.remove(productId);
+      // لو حابب، ممكن تضيف call لإزالة من السيرفر
     } else {
       _favoriteIds.add(productId);
       await homeRepo.addProductToWishlist(id: productId);

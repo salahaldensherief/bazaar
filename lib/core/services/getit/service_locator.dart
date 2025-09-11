@@ -6,6 +6,7 @@ import 'package:mega_top/core/services/api/dio_consumer.dart';
 
 import '../../../features/auth/presentation/cubits/signin/sign_in_cubit.dart';
 import '../../../features/auth/presentation/cubits/signup/sign_up_cubit.dart';
+import '../../../features/categories/presentation/cubits/category/categories_cubit.dart';
 import '../../../features/home/data/repos/home_repo.dart';
 import '../../../features/home/data/repos/home_repo_impl.dart';
 import '../../../features/home/presentation/manger/products/products_cubit.dart';
@@ -30,5 +31,6 @@ Future<void> init() async {
   sl.registerFactory(() => ProductsCubit(sl()));
   sl.registerFactory(() => SearchCubit(homeRepo: sl<HomeRepo>()));
   sl.registerFactory(() => WishlistCubit(homeRepo: sl<HomeRepo>()));
+  sl.registerFactory(() => CategoriesCubit(homeRepo: sl<HomeRepo>()));
 
 }

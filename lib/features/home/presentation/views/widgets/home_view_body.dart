@@ -40,21 +40,37 @@ class HomeViewBody extends StatelessWidget {
           SliverToBoxAdapter(
             child: SizedBox(height: 220.h, child: CustomCarouselSlider()),
           ),
-          SliverToBoxAdapter(child: SectionWidget(title: 'Brands :')),
+          SliverToBoxAdapter(
+            child: SectionWidget(viewAll: false, title: 'Brands :'),
+          ),
           SliverToBoxAdapter(child: BrandsWidgetListView()),
-          SliverToBoxAdapter(child: SectionWidget(title: 'Our products :')),
+          SliverToBoxAdapter(
+            child: SectionWidget(viewAll: false, title: 'Our products :'),
+          ),
           SliverToBoxAdapter(child: OurProductsListView()),
-          SliverToBoxAdapter(child: SectionWidget(title: 'Mobiles :')),
+          SliverToBoxAdapter(
+            child: SectionWidget(viewAll: true, title: 'Mobiles :'),
+          ),
           SliverToBoxAdapter(child: BestSellerListView(category: 'mobiles')),
-          SliverToBoxAdapter(child: SectionWidget(title: 'Latest offers')),
+          SliverToBoxAdapter(
+            child: SectionWidget(viewAll: true, title: 'Latest offers'),
+          ),
           SliverToBoxAdapter(child: LatestOffersWidget()),
-          SliverToBoxAdapter(child: SectionWidget(title: 'Cameras :')),
+          SliverToBoxAdapter(
+            child: SectionWidget(viewAll: true, title: 'Cameras :'),
+          ),
           SliverToBoxAdapter(child: BestSellerListView(category: 'camera')),
-          SliverToBoxAdapter(child: SectionWidget(title: 'Earphones :')),
+          SliverToBoxAdapter(
+            child: SectionWidget(viewAll: true, title: 'Earphones :'),
+          ),
           SliverToBoxAdapter(child: BestSellerListView(category: 'earphones')),
-          SliverToBoxAdapter(child: SectionWidget(title: 'Mouses :')),
+          SliverToBoxAdapter(
+            child: SectionWidget(viewAll: true, title: 'Mouses :'),
+          ),
           SliverToBoxAdapter(child: BestSellerListView(category: 'mouse')),
-          SliverToBoxAdapter(child: SectionWidget(title: 'Airpods :')),
+          SliverToBoxAdapter(
+            child: SectionWidget(viewAll: true, title: 'Airpods :'),
+          ),
           SliverToBoxAdapter(child: BestSellerListView(category: 'airpods')),
         ],
       ),

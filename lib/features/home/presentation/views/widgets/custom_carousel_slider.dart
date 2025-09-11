@@ -48,12 +48,11 @@ class _CustomCarouselSliderState extends State<CustomCarouselSlider> {
             carouselController: _carouselController,
             options: slider.CarouselOptions(
               height: 173.h,
-              enlargeCenterPage: false,
               viewportFraction: 0.89,
               padEnds: false,
+              enableInfiniteScroll: false,
               autoPlay: true,
               autoPlayCurve: Curves.fastOutSlowIn,
-              enableInfiniteScroll: true,
               autoPlayAnimationDuration: const Duration(milliseconds: 800),
               onPageChanged: (index, reason) {
                 setState(() {

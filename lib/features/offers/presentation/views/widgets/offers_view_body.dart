@@ -174,7 +174,7 @@ class _OffersViewBodyState extends State<OffersViewBody> {
             ),
           ),
 
-          if (isGrid) ProductsSliverGrid() else ProductsSliverList(),
+          // if (isGrid) ProductsSliverGrid() else ProductsSliverList(),
         ],
       ),
     );

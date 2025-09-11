@@ -28,6 +28,7 @@ class ProductsModel {
   });
 
   ProductsModel.fromJson(Map<String, dynamic> json) {
+    final productJson = json['product'] ?? json;
     sId = json['_id'];
     name = json['name'];
     brand = json['brand'];
@@ -35,8 +36,10 @@ class ProductsModel {
     discount = json['discount'];
     quantity = json['quantity'];
     description = json['description'];
-    category = json['category'];
-    productImage = json['product_image'].cast<String>();
+    category = productJson['category']?.toString() ?? '';
+    productImage = (productJson['product_image'] as List<dynamic>?)
+        ?.map((e) => e.toString())
+        .toList() ?? [];
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
     iV = json['__v'];

@@ -1,12 +1,22 @@
 import 'package:dartz/dartz.dart';
-  import 'package:mega_top/core/services/errors/exceptions.dart';
-  import 'package:mega_top/features/home/data/model/products_model.dart';
+import 'package:mega_top/core/services/errors/exceptions.dart';
+import 'package:mega_top/features/home/data/model/products_model.dart';
 
-  import '../model/wishlist_response.dart';
+import '../model/wishlist_response.dart';
 
 abstract class HomeRepo {
-  Future<Either<ServerException, List<ProductsModel>>> fetchProducts({String? category});
-  Future<Either<ServerException, List<ProductsModel>>> searchProducts({String? query});
-  Future<Either<ServerException, List<ProductsModel>>> addProductToWishlist({  String? id,});
-  Future<Either<ServerException, List<ProductsModel>>> getWishlist();
+  Future<Either<ServerException, List<ProductsModel>>> fetchProducts({
+    String? category,
+  });
+  Future<Either<ServerException, List<ProductsModel>>> searchProducts({
+    String? query,
+  });
+  Future<Either<ServerException, List<ProductsModel>>> addProductToWishlist({
+    String? id,
+  });
+  Future<Either<ServerException, List<ProductsModel>>> fetchWishlist();
+  Future<Either<ServerException, List<ProductsModel>>> fetchCategories();
+  Future<Either<ServerException, List<ProductsModel>>> fetchProductsByCategory({
+  required  String category,
+  });
 }

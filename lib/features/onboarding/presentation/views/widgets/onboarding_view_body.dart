@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mega_top/core/widgets/dont_have_an_account_widget.dart';
 import 'package:mega_top/core/widgets/have_an_account.dart';
 import 'package:mega_top/features/home/presentation/views/home_view.dart';
 import 'package:mega_top/features/home/presentation/views/widgets/bottom_nav_bar.dart';
@@ -9,6 +10,7 @@ import '../../../../../constants.dart';
 import '../../../../../core/services/shared_preferences_singleton.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/widgets/custom_button.dart';
+import '../../../../auth/presentation/views/login_view.dart';
 import 'onboarding_page_view.dart';
 
 class OnBoardingViewBody extends StatefulWidget {
@@ -49,6 +51,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
           child: OnBoardingPageView(pageController: pageController),
         ),
         Expanded(
+          flex: 1,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -83,17 +86,17 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
                       curve: Curves.easeInOut,
                     );
                   } else {
-                    Navigator.pushNamed(context, BottomNavBar.routeName);
+                    Navigator.pushNamed(context, LoginView.routeName);
                   }
                 },
-                text: currentPage < 2 ? 'Next' : 'Get started',
+                text: currentPage < 2 ? 'Next' : 'Let’s Login',
               ),
               SizedBox(height: 10.h),
 
               Visibility(
                 visible: currentPage == 2,
 
-                child: HaveAnAccountWidget(),
+                child: DontHaveAnAccountWidget(),
               ),
               SizedBox(height: 10.h),
             ],
