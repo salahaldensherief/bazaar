@@ -1,10 +1,9 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mega_top/core/utils/text_styles.dart';
 
 
 import '../../../../../core/utils/app_colors.dart';
+import '../../../../../core/utils/text_styles.dart';
 
 class CustomTextBottom extends StatelessWidget {
   const CustomTextBottom({ super.key, this.onPressed, required this.text});

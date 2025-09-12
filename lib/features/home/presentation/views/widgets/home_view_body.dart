@@ -2,15 +2,14 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mega_top/core/services/api/dio_consumer.dart';
-import 'package:mega_top/features/home/presentation/manger/wishList/wish_list_cubit.dart';
-import 'package:mega_top/features/home/presentation/views/widgets/best_seller_section.dart';
-import 'package:mega_top/features/home/presentation/views/widgets/brands_widget_list_view.dart';
 
+import '../../../../../core/services/getit/service_locator.dart' as di;
 import '../../../data/repos/home_repo_impl.dart';
 import '../../manger/products/products_cubit.dart';
 import 'Latest_offers_widget.dart';
 import 'best_seller_list_view.dart';
+import 'best_seller_section.dart';
+import 'brands_widget_list_view.dart';
 import 'custom_carousel_slider.dart';
 import 'custom_search_bar.dart';
 import 'icons_app_bar.dart';
@@ -63,7 +62,8 @@ class HomeViewBody extends StatelessWidget {
           SliverToBoxAdapter(
             child: SectionWidget(viewAll: true, title: 'Earphones :'),
           ),
-          SliverToBoxAdapter(child: BestSellerListView(category: 'earphones')),
+          SliverToBoxAdapter(
+              child: BestSellerListView(category: 'earphones')),
           SliverToBoxAdapter(
             child: SectionWidget(viewAll: true, title: 'Mouses :'),
           ),

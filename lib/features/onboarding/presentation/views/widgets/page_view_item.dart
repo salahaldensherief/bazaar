@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mega_top/core/utils/text_styles.dart';
+
+import '../../../../../core/utils/text_styles.dart';
 
 class PageViewItem extends StatelessWidget {
   const PageViewItem({

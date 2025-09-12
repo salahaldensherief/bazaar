@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mega_top/core/utils/assets_images.dart';
-import 'package:mega_top/features/home/presentation/views/widgets/bottom_nav_bar.dart';
-import 'package:mega_top/features/onboarding/presentation/views/onboarding_view.dart';
 
 import '../../../../../constants.dart';
 import '../../../../../core/services/shared_preferences_singleton.dart';
+import '../../../../../core/utils/assets_images.dart';
 import '../../../../auth/presentation/views/login_view.dart';
+import '../../../../home/presentation/views/widgets/bottom_nav_bar.dart';
+import '../../../../onboarding/presentation/views/onboarding_view.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});

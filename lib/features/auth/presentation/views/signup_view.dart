@@ -1,9 +1,8 @@
+import 'package:Bazaar/features/auth/presentation/views/widgets/sign_up_view_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mega_top/features/auth/presentation/cubits/signin/sign_in_cubit.dart';
-import 'package:mega_top/features/auth/presentation/cubits/signup/sign_up_cubit.dart';
-import 'package:mega_top/features/auth/presentation/views/widgets/sign_up_view_body.dart';
 
+import '../cubits/signup/sign_up_cubit.dart';
 import 'login_view.dart';
 
 class SignUpView extends StatelessWidget {

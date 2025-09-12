@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mega_top/core/utils/assets_images.dart';
-import 'package:mega_top/core/widgets/custom_app_bar.dart';
-import 'package:mega_top/core/widgets/products_view_grid.dart';
 
 import '../../../../../core/utils/app_colors.dart';
+import '../../../../../core/utils/assets_images.dart';
 import '../../../../../core/utils/text_styles.dart';
+import '../../../../../core/widgets/custom_app_bar.dart';
+import '../../../../../core/widgets/products_view_grid.dart';
 import '../../cubit/search_cubit.dart';
 
 class SearchViewBody extends StatelessWidget {

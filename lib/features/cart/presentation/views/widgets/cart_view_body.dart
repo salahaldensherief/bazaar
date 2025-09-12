@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:mega_top/core/utils/app_colors.dart';
-import 'package:mega_top/core/utils/assets_images.dart';
-import 'package:mega_top/core/widgets/custom_app_bar.dart';
-import 'package:mega_top/core/widgets/custom_button.dart';
-import 'package:mega_top/features/cart/presentation/views/widgets/cart_view_items.dart';
 
+import '../../../../../core/utils/assets_images.dart';
 import '../../../../../core/utils/text_styles.dart';
+import '../../../../../core/widgets/custom_app_bar.dart';
+import 'cart_view_items.dart';
 
 class CartViewBody extends StatelessWidget {
   CartViewBody({super.key});

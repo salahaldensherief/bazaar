@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mega_top/core/utils/app_colors.dart';
-import 'package:mega_top/core/utils/assets_images.dart';
-import 'package:mega_top/core/utils/text_styles.dart';
+
+import '../../../../../core/utils/app_colors.dart';
+import '../../../../../core/utils/assets_images.dart';
+import '../../../../../core/utils/text_styles.dart';
 
 class LatestOffersWidget extends StatelessWidget {
   const LatestOffersWidget({super.key});

@@ -1,5 +1,5 @@
+import 'package:Bazaar/features/home/presentation/manger/wishList/wish_list_state.dart';
 import 'package:bloc/bloc.dart';
-import 'package:mega_top/features/home/presentation/manger/wishList/wish_list_state.dart';
 import '../../../data/repos/home_repo.dart';
 
 class WishlistCubit extends Cubit<WishlistState> {
@@ -33,7 +33,6 @@ class WishlistCubit extends Cubit<WishlistState> {
   Future<void> toggleFavorite(String productId) async {
     if (_favoriteIds.contains(productId)) {
       _favoriteIds.remove(productId);
-      // لو حابب، ممكن تضيف call لإزالة من السيرفر
     } else {
       _favoriteIds.add(productId);
       await homeRepo.addProductToWishlist(id: productId);

@@ -1,7 +1,8 @@
 // brands_widget_listview.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mega_top/features/home/presentation/views/widgets/our_products_widget.dart';
+
+import 'our_products_widget.dart';
 
 class OurProductsListView extends StatelessWidget {
   const OurProductsListView({super.key});

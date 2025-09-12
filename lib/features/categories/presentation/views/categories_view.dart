@@ -1,6 +1,6 @@
+import 'package:Bazaar/features/categories/presentation/views/widgets/categories_view_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mega_top/features/categories/presentation/views/widgets/categories_view_body.dart';
 
 import '../../../../core/services/getit/service_locator.dart';
 import '../../../home/data/repos/home_repo.dart';

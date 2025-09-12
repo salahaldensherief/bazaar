@@ -1,13 +1,13 @@
+import 'package:Bazaar/features/categories/presentation/views/widgets/product_sliver_list.dart';
+import 'package:Bazaar/features/categories/presentation/views/widgets/products_sliver_grid.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mega_top/core/widgets/custom_app_bar.dart';
-import 'package:mega_top/core/widgets/list_or_grid_widget.dart';
-import 'package:mega_top/features/categories/presentation/cubits/productsCategory/products_category_cubit.dart';
-import 'package:mega_top/features/categories/presentation/views/widgets/product_sliver_list.dart';
-import 'package:mega_top/features/categories/presentation/views/widgets/products_sliver_grid.dart';
 import '../../../../../core/services/getit/service_locator.dart';
+import '../../../../../core/widgets/custom_app_bar.dart';
+import '../../../../../core/widgets/list_or_grid_widget.dart';
 import '../../../../home/data/repos/home_repo.dart';
+import '../../cubits/productsCategory/products_category_cubit.dart';
 
 class ProductsView extends StatefulWidget {
   final String category;

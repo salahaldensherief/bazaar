@@ -1,5 +1,5 @@
+import 'package:Bazaar/features/cart/presentation/views/widgets/cart_view_body.dart';
 import 'package:flutter/material.dart';
-import 'package:mega_top/features/cart/presentation/views/widgets/cart_view_body.dart';
 
 class CartView extends StatelessWidget {
   const CartView({super.key});

@@ -1,7 +1,7 @@
+import 'package:Bazaar/features/home/presentation/views/widgets/home_view_body.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mega_top/features/home/presentation/views/widgets/home_view_body.dart';
 
 import '../../../../core/services/api/dio_consumer.dart';
 import '../../../../core/services/getit/service_locator.dart' as di;

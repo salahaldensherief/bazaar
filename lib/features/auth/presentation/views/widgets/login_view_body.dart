@@ -1,16 +1,15 @@
+import 'package:Bazaar/features/auth/presentation/views/widgets/passwoed_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mega_top/core/utils/app_colors.dart';
-import 'package:mega_top/core/utils/assets_images.dart';
-import 'package:mega_top/core/utils/text_styles.dart';
-import 'package:mega_top/features/auth/presentation/cubits/signin/sign_in_cubit.dart';
-import 'package:mega_top/features/auth/presentation/views/widgets/passwoed_field.dart';
-import 'package:mega_top/features/home/presentation/views/home_view.dart';
-import 'package:mega_top/features/home/presentation/views/widgets/bottom_nav_bar.dart';
 
+
+import '../../../../../core/utils/app_colors.dart';
+import '../../../../../core/utils/assets_images.dart';
+import '../../../../../core/utils/text_styles.dart';
 import '../../../../../core/widgets/custom_text_field.dart';
 import '../../../../../core/widgets/dont_have_an_account_widget.dart';
+import '../../cubits/signin/sign_in_cubit.dart';
 import 'custom_text_bottom.dart';
 
 class LoginViewBody extends StatelessWidget {

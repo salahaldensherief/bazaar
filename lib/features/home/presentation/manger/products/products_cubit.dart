@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
-import 'package:mega_top/features/home/data/model/products_model.dart';
+import 'package:flutter/material.dart';
 
+import '../../../data/model/products_model.dart';
 import '../../../data/model/wishlist_response.dart';
 import '../../../data/repos/home_repo.dart';
 import '../wishList/wish_list_state.dart';

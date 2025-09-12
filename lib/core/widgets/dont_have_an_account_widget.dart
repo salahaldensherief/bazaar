@@ -1,10 +1,10 @@
 // Flutter imports:
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:mega_top/core/utils/app_colors.dart';
-import 'package:mega_top/core/utils/text_styles.dart';
 
 import '../../features/auth/presentation/views/signup_view.dart';
+import '../utils/app_colors.dart';
+import '../utils/text_styles.dart';
 
 // Project imports:
 

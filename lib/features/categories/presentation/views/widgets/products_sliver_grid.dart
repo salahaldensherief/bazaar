@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mega_top/core/widgets/products_view_grid.dart';
 import '../../../../../core/widgets/product_details_view.dart';
+import '../../../../../core/widgets/products_view_grid.dart';
 import '../../../../home/data/model/products_model.dart';
+import '../../../../home/data/repos/home_repo.dart';
 import '../../../../home/presentation/manger/wishList/wish_list_cubit.dart';
+import '../../../../home/presentation/manger/wishList/wish_list_state.dart';
 
 class ProductsSliverGrid extends StatelessWidget {
   final List<ProductsModel> products;
-
   const ProductsSliverGrid({super.key, required this.products});
 
   String _getImageUrl(List<String>? images) {
@@ -32,7 +33,6 @@ class ProductsSliverGrid extends StatelessWidget {
                 ),
               );
             },
-
             child: ProductViewGrid(
               width: 163.w,
               height: 220.h,

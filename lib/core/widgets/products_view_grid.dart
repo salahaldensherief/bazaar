@@ -28,7 +28,9 @@ class ProductViewGrid extends StatelessWidget {
     required this.image,
     required this.productName,
     required this.productCategory,
-    required this.productPrice, this.isFav = false, this.onFavToggle,
+    required this.productPrice,
+    this.isFav = false,
+    this.onFavToggle,
   });
 
   @override
@@ -78,7 +80,6 @@ class ProductViewGrid extends StatelessWidget {
                   Expanded(
                     child: Center(
                       child: Image.network(
-
                         image,
                         height: imageHeight,
                         fit: BoxFit.fill,
@@ -116,7 +117,6 @@ class ProductViewGrid extends StatelessWidget {
                         //discountedPrice ?? product.price} L.E',
                         style: TextStyles.bold16.copyWith(
                           color: AppColors.primaryColor,
-
                         ),
                       ),
                     ],

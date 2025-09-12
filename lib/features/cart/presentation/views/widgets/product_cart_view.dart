@@ -14,6 +14,8 @@ class ProductCartView extends StatefulWidget {
 }
 
 class _ProductCartViewState extends State<ProductCartView> {
+  int quantity = 0;
+
   @override
   void initState() {
     super.initState();
@@ -22,7 +24,7 @@ class _ProductCartViewState extends State<ProductCartView> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:  EdgeInsets.only(bottom: 16.h),
+      padding: EdgeInsets.only(bottom: 16.h),
       child: Column(
         children: [
           Container(
@@ -45,7 +47,7 @@ class _ProductCartViewState extends State<ProductCartView> {
                 Container(
                   height: 106.h,
                   width: 120.w,
-                  margin: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
+                  margin: EdgeInsets.symmetric(horizontal: 8.w, vertical: 6.h),
                   decoration: const BoxDecoration(color: Color(0xffF7F7FB)),
                   child: Column(
                     children: [
@@ -89,7 +91,10 @@ class _ProductCartViewState extends State<ProductCartView> {
 
                 Expanded(
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 8.w,
+                      vertical: 8.h,
+                    ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -117,46 +122,74 @@ class _ProductCartViewState extends State<ProductCartView> {
 
                         SizedBox(height: 8.h),
 
-                        Row(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(right: 8.w),
-                              child: Text(
-                                '1200 L.E',
+                        Expanded(
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(right: 8.w),
+                                child: Text(
+                                  '1200 L.E',
+                                  style: TextStyles.medium15.copyWith(
+                                    color: AppColors.primaryColor,
+                                  ),
+                                ),
+                              ),
+                              Spacer(),
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    quantity++;
+                                  });
+                                },
+                                child: Container(
+                                  padding: EdgeInsets.all(8),
+                                  width: 32.w,
+                                  height: 32.h,
+                                  decoration: BoxDecoration(
+                                    color: AppColors.backIconColor,
+                                    borderRadius: BorderRadius.circular(100.r),
+                                  ),
+                                  child: SvgPicture.asset(
+                                    AssetsData.plus,
+                                    width: 12.w,
+                                    height: 12.h,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(width: 16.w),
+                              Text(
+                                quantity.toString(),
                                 style: TextStyles.medium15.copyWith(
                                   color: AppColors.primaryColor,
                                 ),
                               ),
-                            ),
-                            Spacer(),
-                            Container(
-                               padding: EdgeInsets.all(8) ,
-                              width: 32.w,
-                              height: 32.h,
-                              decoration: BoxDecoration(
+                              SizedBox(width: 16.w),
 
-                                color: AppColors.backIconColor,
-                                borderRadius: BorderRadius.circular(100.r),
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    if (quantity > 0) quantity--;
+                                  });
+                                },
+                                child: Container(
+                                  padding: EdgeInsets.all(5),
+
+                                  width: 32.w,
+                                  height: 32.h,
+                                  decoration: BoxDecoration(
+                                    color: AppColors.backIconColor,
+                                    borderRadius: BorderRadius.circular(100.r),
+                                  ),
+
+                                  child: SvgPicture.asset(
+                                    AssetsData.remove,
+                                    width: 20.w,
+                                    height: 20.h,
+                                  ),
+                                ),
                               ),
-                              child: SvgPicture.asset(AssetsData.plus,width: 12.w,height: 12.h,),
-                            ),
-                            SizedBox(width: 16.w),
-                            Text('1',style: TextStyles.medium15.copyWith(color: AppColors.primaryColor),),
-                            SizedBox(width: 16.w),
-
-                            Container(
-                              padding: EdgeInsets.all(5) ,
-
-                              width: 32.w,
-                              height: 32.h,
-                              decoration: BoxDecoration(
-                                color: AppColors.backIconColor,
-                                borderRadius: BorderRadius.circular(100.r),
-                              ),
-
-                              child: SvgPicture.asset(AssetsData.remove,width: 20.w,height: 20.h,),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ],
                     ),

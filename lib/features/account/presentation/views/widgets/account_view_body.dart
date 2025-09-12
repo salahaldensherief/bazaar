@@ -1,17 +1,16 @@
+import 'package:Bazaar/features/account/presentation/views/widgets/settings_tile.dart';
+import 'package:Bazaar/features/account/presentation/views/widgets/sign_out_widget.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mega_top/core/services/api/api_consumer.dart';
-import 'package:mega_top/core/services/api/dio_consumer.dart';
-import 'package:mega_top/core/utils/assets_images.dart';
-import 'package:mega_top/features/account/presentation/views/widgets/settings_tile.dart';
-import 'package:mega_top/features/account/presentation/views/widgets/category_name.dart';
-import 'package:mega_top/features/account/presentation/views/widgets/sign_out_widget.dart';
-import 'package:mega_top/features/home/presentation/views/widgets/icons_app_bar.dart';
 
+import '../../../../../core/services/api/dio_consumer.dart';
+import '../../../../../core/utils/assets_images.dart';
 import '../../../../../core/widgets/custom_app_bar.dart';
+import '../../../../home/presentation/views/widgets/icons_app_bar.dart';
 import '../cubits/signout/sign_out_cubit.dart';
+import 'category_name.dart';
 
 class AccountViewBody extends StatelessWidget {
   const AccountViewBody({super.key});

@@ -2,22 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:mega_top/core/utils/app_colors.dart';
-import 'package:mega_top/core/utils/assets_images.dart';
-import 'package:mega_top/core/utils/text_styles.dart';
-import 'package:mega_top/core/widgets/custom_app_bar.dart';
-import 'package:mega_top/core/widgets/sell_widget.dart';
-import 'package:mega_top/features/categories/presentation/views/widgets/products_sliver_grid.dart';
-import 'package:mega_top/features/home/presentation/manger/products/products_cubit.dart';
-import 'package:mega_top/features/home/presentation/views/widgets/best_seller_list_view.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../features/categories/presentation/views/widgets/product_sliver_list.dart';
 import '../../features/home/data/model/products_model.dart';
 import '../../features/home/presentation/views/widgets/custom_carousel_slider.dart';
+import '../utils/app_colors.dart';
+import '../utils/text_styles.dart';
 import 'add_to_cart_container.dart';
 import 'available_widget.dart';
 import 'carousel_slider_widget.dart';
+import 'custom_app_bar.dart';
 
 class ProductDetailsView extends StatelessWidget {
   final ProductsModel product;

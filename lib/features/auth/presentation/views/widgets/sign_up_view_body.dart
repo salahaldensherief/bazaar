@@ -1,13 +1,13 @@
+import 'package:Bazaar/features/auth/presentation/views/widgets/passwoed_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mega_top/core/utils/assets_images.dart';
-import 'package:mega_top/features/auth/presentation/cubits/signup/sign_up_cubit.dart';
-import 'package:mega_top/features/auth/presentation/views/widgets/passwoed_field.dart';
 
+import '../../../../../core/utils/assets_images.dart';
 import '../../../../../core/widgets/custom_text_field.dart';
 import '../../../../../core/widgets/have_an_account.dart';
 import '../../cubits/signin/sign_in_cubit.dart';
+import '../../cubits/signup/sign_up_cubit.dart';
 import 'custom_text_bottom.dart';
 
 class SignUpViewBody extends StatelessWidget {

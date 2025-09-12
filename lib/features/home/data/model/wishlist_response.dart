@@ -1,4 +1,4 @@
-import 'package:mega_top/features/home/data/model/wishlist_item.dart';
+import 'package:Bazaar/features/home/data/model/wishlist_item.dart';
 
 class WishlistResponse {
   final String? sId;

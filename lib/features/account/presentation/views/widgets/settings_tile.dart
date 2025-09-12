@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mega_top/core/utils/app_colors.dart';
-import 'package:mega_top/core/utils/assets_images.dart';
-import 'package:mega_top/core/utils/text_styles.dart';
+import '../../../../../core/utils/app_colors.dart';
+import '../../../../../core/utils/assets_images.dart';
+import '../../../../../core/utils/text_styles.dart';
 
 class SettingsTile extends StatelessWidget {
   const SettingsTile({
@@ -47,7 +47,7 @@ class SettingsTile extends StatelessWidget {
               ),
             ),
 
-            SvgPicture.asset(AssetsData.arrowNav, width: 9.w),
+            SvgPicture.asset(AssetsData .arrowNav, width: 9.w),
           ],
         ),
       ),

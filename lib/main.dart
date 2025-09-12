@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mega_top/core/hepler/on_generate_routes.dart';
-import 'package:mega_top/core/utils/app_colors.dart';
-import 'package:mega_top/features/splash/presentation/views/splash_view.dart';
 
+
+import 'core/hepler/on_generate_routes.dart';
 import 'core/services/getit/service_locator.dart';
 import 'core/services/shared_preferences_singleton.dart';
+import 'core/utils/app_colors.dart';
 import 'features/home/presentation/views/widgets/bottom_nav_bar.dart';
+import 'features/splash/presentation/views/splash_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

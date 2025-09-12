@@ -1,12 +1,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:mega_top/features/auth/data/models/sign_up_model.dart';
 import 'package:meta/meta.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../../core/services/api/api_consumer.dart';
 import '../../../../../core/services/api/api_endpoint.dart';
 import '../../../../../core/services/errors/exceptions.dart';
+import '../../../data/models/sign_up_model.dart';
 
 part 'sign_up_state.dart';
 

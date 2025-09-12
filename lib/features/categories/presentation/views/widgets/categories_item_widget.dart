@@ -1,9 +1,13 @@
+import 'package:Bazaar/features/categories/presentation/views/widgets/product_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mega_top/core/utils/app_colors.dart';
-import 'package:mega_top/core/utils/assets_images.dart';
-import 'package:mega_top/core/utils/text_styles.dart';
-import 'package:mega_top/features/categories/presentation/views/widgets/product_view.dart';
+
+import '../../../../../core/services/getit/service_locator.dart' as di;
+import '../../../../../core/utils/app_colors.dart';
+import '../../../../../core/utils/assets_images.dart';
+import '../../../../../core/utils/text_styles.dart';
+import '../../../../home/presentation/manger/wishList/wish_list_cubit.dart';
 
 class CategoriesItemWidget extends StatelessWidget {
   const CategoriesItemWidget({
@@ -25,7 +29,8 @@ class CategoriesItemWidget extends StatelessWidget {
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => ProductsView(category: title),
+            builder: (context) =>
+                ProductsView(category: title),
           ),
         );
       },

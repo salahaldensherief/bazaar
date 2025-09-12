@@ -1,6 +1,6 @@
+import 'package:Bazaar/features/auth/presentation/views/widgets/login_view_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mega_top/features/auth/presentation/views/widgets/login_view_body.dart';
 
 import '../../../home/presentation/views/widgets/bottom_nav_bar.dart';
 import '../cubits/signin/sign_in_cubit.dart';

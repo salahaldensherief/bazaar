@@ -1,12 +1,12 @@
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
-import 'package:mega_top/core/services/api/api_interceptors.dart';
 
 import '../errors/error_model.dart';
 import '../errors/exceptions.dart';
 import 'api_consumer.dart';
 import 'api_endpoint.dart';
+import 'api_interceptors.dart';
 
 class DioConsumer extends ApiConsumer {
   final Dio dio;

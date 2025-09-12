@@ -1,5 +1,5 @@
+import 'package:Bazaar/features/onboarding/presentation/views/widgets/page_view_item.dart';
 import 'package:flutter/material.dart';
-import 'package:mega_top/features/onboarding/presentation/views/widgets/page_view_item.dart';
 
 import '../../../../../core/utils/assets_images.dart';
 
