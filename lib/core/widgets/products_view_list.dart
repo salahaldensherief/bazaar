@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../features/home/presentation/manger/wishList/wish_list_cubit.dart';
 import '../utils/app_colors.dart';
 import '../utils/assets_images.dart';
 import '../utils/text_styles.dart';
@@ -11,14 +12,14 @@ import '../utils/text_styles.dart';
 class ProductViewList extends StatelessWidget {
   const ProductViewList({
     super.key,
-    this.isFav = false,
     required this.image,
     required this.productName,
     required this.productCategory,
     required this.productPrice,
+    required this.productId,
   });
 
-  final bool isFav;
+  final String productId;
   final String image;
   final String productName;
   final String productCategory;
@@ -50,25 +51,14 @@ class ProductViewList extends StatelessWidget {
                 width: 120.w,
                 margin: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
                 decoration: const BoxDecoration(color: Color(0xffF7F7FB)),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                        vertical: 8.h,
-                        horizontal: 8.w,
-                      ),
-                    ),
-                    Center(
-                      child: Image.network(
-                        image,
-                        height: 60.h,
-                        fit: BoxFit.contain,
-                      ),
-                    ),
-                  ],
+                child: Center(
+                  child: Image.network(
+                    image,
+                    height: 60.h,
+                    fit: BoxFit.contain,
+                  ),
                 ),
               ),
-
               Expanded(
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
@@ -79,40 +69,35 @@ class ProductViewList extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Text(
-                              productName ?? '',
+                              productName,
                               style: TextStyles.medium15.copyWith(
                                 overflow: TextOverflow.ellipsis,
-                                wordSpacing: 1,
                               ),
                             ),
                           ),
-
-
-                               Padding(
-                                padding: EdgeInsets.only(right: 8.w),
-                                child: InkWell(
-                                  onTap: () {
-
-                                  },
-                                  child: SvgPicture.asset(
-                                    AssetsData.favAc,
-                                    width: 20.w,
-                                    height: 20.h,
-                                    fit: BoxFit.scaleDown,
-                                  ),
-                                ),
+                          Padding(
+                            padding: EdgeInsets.only(right: 8.w),
+                            child: InkWell(
+                              onTap: () {
+                                context.read<WishlistCubit>().removeFromWishlist(productId);
+                              },
+                              child: SvgPicture.asset(
+                                AssetsData.favAc,
+                                width: 20.w,
+                                height: 20.h,
+                                fit: BoxFit.scaleDown,
+                              ),
+                            ),
                           ),
                         ],
                       ),
                       SizedBox(height: 8.h),
                       Text(
-                        productCategory ?? '',
+                        productCategory,
                         style: TextStyle(color: Colors.grey, fontSize: 12.sp),
                         overflow: TextOverflow.ellipsis,
                       ),
-
                       SizedBox(height: 8.h),
-
                       Row(
                         children: [
                           Container(
@@ -125,17 +110,8 @@ class ProductViewList extends StatelessWidget {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Icon(
-                                  Icons.check,
-                                  color: AppColors.black,
-                                  size: 14.w,
-                                ),
-                                Text(
-                                  'Available',
-                                  style: TextStyles.semiBold10.copyWith(
-                                    color: AppColors.black,
-                                  ),
-                                ),
+                                Icon(Icons.check, color: AppColors.black, size: 14.w),
+                                Text('Available', style: TextStyles.semiBold10),
                               ],
                             ),
                           ),
@@ -144,9 +120,7 @@ class ProductViewList extends StatelessWidget {
                             padding: EdgeInsets.only(right: 8.w),
                             child: Text(
                               '${productPrice} L.E',
-                              style: TextStyles.medium15.copyWith(
-                                color: AppColors.primaryColor,
-                              ),
+                              style: TextStyles.medium15.copyWith(color: AppColors.primaryColor),
                             ),
                           ),
                         ],

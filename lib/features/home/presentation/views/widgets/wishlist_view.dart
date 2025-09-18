@@ -34,7 +34,7 @@ class WishlistView extends StatelessWidget {
           builder: (context, state) {
             if (state is wishState.WishlistLoading) {
               return const Center(child: CircularProgressIndicator());
-            } else if (state is wishState.WishlistEmpty) {
+            } else if (state is wishState.WishlistError) {
               return WidgetEmpty(
                 imagePath: AssetsData.fover,
                 title: 'No wish list items',
@@ -54,10 +54,12 @@ class WishlistView extends StatelessWidget {
                       vertical: 8.h,
                     ),
                     child: ProductViewList(
-                      image: product.productImage?.first ?? '',
-                      productCategory: product.category ?? '',
-                      productName: product.name ?? '',
-                      productPrice: product.discountedPrice.toDouble(),
+                      image: product.product?.productImage?.first ?? '',
+                      productCategory: product.product?.category ?? '',
+                      productName: product.product?.name ?? '',
+                      productPrice: product.product!.discountedPrice.toDouble(),
+                      productId: product.sId ?? '',
+
                     ),
                   );
                 },

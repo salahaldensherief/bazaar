@@ -1,4 +1,4 @@
-import 'package:dartz/dartz.dart';
+import 'package:Bazaar/features/home/presentation/manger/wishList/wish_list_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,16 +6,20 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/text_styles.dart';
 import '../../../../../core/widgets/available_widget.dart';
-import '../../../../../core/widgets/products_view_grid.dart';
 import '../../../../../core/widgets/sell_widget.dart';
 import '../../../data/model/products_model.dart';
-import '../../manger/wishList/wish_list_cubit.dart';
-import '../../manger/wishList/wish_list_state.dart';
 
-class BestSellerGridWidget extends StatelessWidget {
+class BestSellerGridWidget extends StatefulWidget {
   final ProductsModel product;
 
   const BestSellerGridWidget({super.key, required this.product});
+
+  @override
+  State<BestSellerGridWidget> createState() => _BestSellerGridWidgetState();
+}
+
+class _BestSellerGridWidgetState extends State<BestSellerGridWidget> {
+  bool isFav = false; // الحالة المحلية للـ favorite
 
   @override
   Widget build(BuildContext context) {
@@ -48,34 +52,22 @@ class BestSellerGridWidget extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        SellWidget(product: product),
-                        BlocBuilder<WishlistCubit, WishlistState>(
-                          builder: (context, state) {
-                            final isFav = context
-                                .read<WishlistCubit>()
-                                .isFavorite(product.sId ?? '');
-
-                            return IconButton(
-                              splashColor: AppColors.transparent,
-                              onPressed: () {
-                                if (product.sId != null) {
-                                  context.read<WishlistCubit>().toggleFavorite(
-                                    product.sId!,
-                                  );
-                                  context.read<WishlistCubit>().addToWishlist(
-                                    product.sId!,
-                                  );
-                                }
-                              },
-                              icon: Icon(
-                                isFav ? Icons.favorite : Icons.favorite_border,
-                                color: isFav
-                                    ? AppColors.primaryColor
-                                    : AppColors.primaryColor,
-                                size: 24.w,
-                              ),
+                        SellWidget(product: widget.product),
+                        IconButton(
+                          splashColor: AppColors.transparent,
+                          onPressed: () {
+                            setState(() {
+                              isFav = !isFav;
+                            });
+                            context.read<WishlistCubit>().toggleFavorite(
+                              widget.product.sId ?? '',
                             );
                           },
+                          icon: Icon(
+                            isFav ? Icons.favorite : Icons.favorite_border,
+                            color: isFav ? AppColors.primaryColor : Colors.grey,
+                            size: 24.w,
+                          ),
                         ),
                       ],
                     ),
@@ -83,7 +75,7 @@ class BestSellerGridWidget extends StatelessWidget {
                   Expanded(
                     child: Center(
                       child: Image.network(
-                        product.productImage?.first ?? '',
+                        widget.product.productImage?.first ?? '',
                         height: 120.h,
                         fit: BoxFit.fitHeight,
                       ),
@@ -99,13 +91,13 @@ class BestSellerGridWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  product.name ?? '',
+                  widget.product.name ?? '',
                   style: TextStyles.bold16,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
                 Text(
-                  product.category ?? '',
+                  widget.product.category ?? '',
                   style: TextStyle(color: Colors.grey, fontSize: 12.sp),
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -118,16 +110,15 @@ class BestSellerGridWidget extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                            '${product.price} L.E',
+                            '${widget.product.price} L.E',
                             style: TextStyles.bold16.copyWith(
                               color: AppColors.black12,
                               decoration: TextDecoration.lineThrough,
                             ),
                           ),
                           SizedBox(width: 8.w),
-
                           Text(
-                            '${product.discountedPrice} L.E',
+                            '${widget.product.discountedPrice} L.E',
                             style: TextStyles.bold16.copyWith(
                               color: AppColors.primaryColor,
                             ),

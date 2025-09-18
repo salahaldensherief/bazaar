@@ -21,6 +21,7 @@ class ProductsSliverList extends StatelessWidget {
         return Padding(
           padding: EdgeInsets.symmetric(vertical: 4.h, horizontal: 16.w),
           child: ProductViewList(
+            productId: product.sId ?? '',
             image: _getImageUrl(product.productImage),
             productName: product.name ?? '',
             productCategory: product.brand ?? '',

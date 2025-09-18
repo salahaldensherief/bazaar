@@ -1,16 +1,32 @@
+import 'package:hive/hive.dart';
+part 'products_model.g.dart';
+@HiveType(typeId: 0)
 class ProductsModel {
+  @HiveField(0)
   String? sId;
+  @HiveField(1)
   String? name;
+  @HiveField(2)
   String? brand;
+  @HiveField(3)
   int? price;
+  @HiveField(4)
   String? discount;
+  @HiveField(5)
   int? quantity;
+  @HiveField(6)
   String? description;
+  @HiveField(7)
   String? category;
+  @HiveField(8)
   List<String>? productImage;
+  @HiveField(9)
   String? createdAt;
+  @HiveField(10)
   String? updatedAt;
+  @HiveField(11)
   int? iV;
+  @HiveField(12)
 
   ProductsModel({
     this.sId,

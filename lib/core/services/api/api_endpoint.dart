@@ -9,7 +9,7 @@ class ApiEndPoint {
   static const String signOut = 'auth/logout';
   static const String getAllProducts = 'product/get-all-products';
   static const String addToWishList = 'user/add-to-wishlist';
-  static const String deleteFromWishList = 'delete-wishlist';
+  static const String deleteFromWishList = 'user/delete-wishlist';
   static const String getWishList = 'user/wishlist-data';
   static const String searchProducts= 'product/search-products';
   static const String fetchCategories= 'product/get-category-product';
