@@ -11,6 +11,7 @@ import '../../../../../core/widgets/custom_app_bar.dart';
 import '../../../../../core/widgets/custom_button.dart';
 import '../../../../../core/widgets/products_view_grid.dart';
 import '../../../../../core/widgets/products_view_list.dart';
+import '../../../../../core/widgets/widget_empty.dart';
 import '../../../data/repos/home_repo.dart';
 import '../../../data/repos/home_repo_impl.dart';
 import '../../manger/wishList/wish_list_cubit.dart';
@@ -34,40 +35,11 @@ class WishlistView extends StatelessWidget {
             if (state is wishState.WishlistLoading) {
               return const Center(child: CircularProgressIndicator());
             } else if (state is wishState.WishlistEmpty) {
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(AssetsData.fover, height: 150.h),
-                  SizedBox(height: 16.h),
-                  Text(
-                    'No wish list items',
-                    textAlign: TextAlign.center,
-                    style: TextStyles.bold22.copyWith(color: AppColors.black),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16.w),
-                    child: Text(
-                      'Browse our products and add the products you like to your favorite products list by clicking on the heart sign.',
-                      textAlign: TextAlign.center,
-                      style: TextStyles.medium14.copyWith(
-                        color: AppColors.black12,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 16.h),
-                  CustomButton(
-                    onPressed: () {
-                      Navigator.pushReplacementNamed(
-                        context,
-                        BottomNavBar.routeName,
-                      );
-                    },
-                    text: 'Continue Shopping',
-                    color: AppColors.whiteColor,
-                    colorSide: AppColors.primaryColor,
-                    fontColor: AppColors.primaryColor,
-                  ),
-                ],
+              return WidgetEmpty(
+                imagePath: AssetsData.fover,
+                title: 'No wish list items',
+                subtitle:
+                    'Browse our products and add the products you like to your favorite products list by clicking on the heart sign.',
               );
             } else if (state is wishState.WishlistSuccess) {
               final wishlist = state.wishlist;

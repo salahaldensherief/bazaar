@@ -87,13 +87,17 @@ class DioConsumer extends ApiConsumer {
   Future post(
     String path, {
     Object? data,
+
     Map<String, dynamic>? queryParameters,
+        Options? options,
   }) async {
     try {
       final response = await dio.post(
         path,
         data: data,
         queryParameters: queryParameters,
+        options: options,
+
       );
       return response.data;
     } on DioException catch (e) {

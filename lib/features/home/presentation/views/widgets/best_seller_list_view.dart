@@ -52,6 +52,7 @@ class BestSellerListView extends StatelessWidget {
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (context) => ProductDetailsView(
+
                             product: limitedProducts[index],
                           ),
                         ),

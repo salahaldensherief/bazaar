@@ -61,13 +61,11 @@ class ProductViewGrid extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 4),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        // SellWidget(product: product),
                         IconButton(
                           splashColor: AppColors.transparent,
                           onPressed: onFavToggle,
-
                           icon: Icon(
                             Icons.favorite_border,
                             color: AppColors.primaryColor,
@@ -82,7 +80,7 @@ class ProductViewGrid extends StatelessWidget {
                       child: Image.network(
                         image,
                         height: imageHeight,
-                        fit: BoxFit.fill,
+                        fit: BoxFit.contain,
                       ),
                     ),
                   ),

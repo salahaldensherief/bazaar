@@ -4,6 +4,7 @@ import '../../../../core/services/api/api_endpoint.dart';
 import '../../../../core/services/api/dio_consumer.dart';
 import '../../../../core/services/errors/error_model.dart';
 import '../../../../core/services/errors/exceptions.dart';
+import '../../../cart/data/cart_response.dart';
 import '../../../categories/presentation/data/category_response.dart';
 import '../model/products_model.dart';
 import '../model/products_response.dart';
@@ -130,7 +131,9 @@ class HomeRepoImpl implements HomeRepo {
       final categoryResponse = CategoryResponse.fromJson(response);
       return Right(categoryResponse.products);
     } catch (e) {
-      return Left(ServerException(errorModel: ErrorModel(message: e.toString())));
+      return Left(
+        ServerException(errorModel: ErrorModel(message: e.toString())),
+      );
     }
   }
 }

@@ -6,6 +6,7 @@ class ServerException implements Exception {
   final ErrorModel errorModel;
 
   ServerException({required this.errorModel});
+
 }
 void handleDioExceptions(DioException e) {
   switch (e.type) {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../../core/utils/app_colors.dart';
 
@@ -10,9 +11,9 @@ class BrandsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width:73.w,
-      height: 73.h,
-      margin: EdgeInsets.symmetric(horizontal: 8.w,vertical:8.h),
+      width:60.w,
+      height: 60.h,
+      margin: EdgeInsets.symmetric(horizontal: 6.w,vertical:8.h),
       decoration: BoxDecoration(
         color: AppColors.whiteColor,
         borderRadius: BorderRadius.circular(4.r),
@@ -26,8 +27,8 @@ class BrandsWidget extends StatelessWidget {
         ],
       ),
       child: Center(
-        child: Image.asset(
-          width: 56.w,
+        child: SvgPicture.asset(
+          width: 40.w,
           imagePath,
           fit: BoxFit.cover,
         ),

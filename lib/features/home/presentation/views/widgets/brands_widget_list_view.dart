@@ -8,26 +8,22 @@ class BrandsWidgetListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<String> img = [
-      'assets/images/APC.png',
-      'assets/images/Hikvision.png',
-      'assets/images/Schneider.png',
-      'assets/images/WD.png',
-      'assets/images/APC.png',
-      'assets/images/Hikvision.png',
-      'assets/images/Schneider.png',
-      'assets/images/WD.png',
+      'assets/images/apple-13.svg',
+      'assets/images/dell-3.svg',
+      'assets/images/lg-electronics.svg',
+      'assets/images/samsung-electronics.svg',
+      'assets/images/xiaomi-3.svg',
     ];
 
     return SizedBox(
-      height: 100.h,
+      height: 80.h,
       child: ListView.builder(
+        physics: NeverScrollableScrollPhysics(),
         padding: EdgeInsets.symmetric(horizontal: 8.w),
         scrollDirection: Axis.horizontal,
         itemCount: img.length,
         itemBuilder: (context, index) {
-          return BrandsWidget(
-
-              imagePath: img[index]);
+          return BrandsWidget(imagePath: img[index]);
         },
       ),
     );

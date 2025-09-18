@@ -62,7 +62,6 @@ class ProductViewList extends StatelessWidget {
                       child: Image.network(
                         image,
                         height: 60.h,
-                        width: 61.164756774902344,
                         fit: BoxFit.contain,
                       ),
                     ),
@@ -145,7 +144,7 @@ class ProductViewList extends StatelessWidget {
                             padding: EdgeInsets.only(right: 8.w),
                             child: Text(
                               '${productPrice} L.E',
-                              style: TextStyles.semiBold14.copyWith(
+                              style: TextStyles.medium15.copyWith(
                                 color: AppColors.primaryColor,
                               ),
                             ),

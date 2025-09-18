@@ -20,6 +20,7 @@ class ProductsModel {
     this.discount,
     this.quantity,
     this.description,
+
     this.category,
     this.productImage,
     this.createdAt,

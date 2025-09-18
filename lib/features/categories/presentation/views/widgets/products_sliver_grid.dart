@@ -42,6 +42,7 @@ class ProductsSliverGrid extends StatelessWidget {
               productCategory: product.brand ?? '',
               productPrice: (product.price)?.toDouble() ?? 0.0,
               onFavToggle: () {
+
                 // context.read<WishlistCubit>().toggleFavorite(productId);
               },
               // isFav: context.read<WishlistCubit>().isFavorite(productId),

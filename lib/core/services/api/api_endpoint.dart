@@ -14,4 +14,9 @@ class ApiEndPoint {
   static const String searchProducts= 'product/search-products';
   static const String fetchCategories= 'product/get-category-product';
   static const String fetchProductsByCategory= 'product/category-wise-product';
+  static const String checkout= 'payment/checkout';
+  static const String addToCart= 'user/add-to-cart';
+  static const String getCart= 'user/cart-data';
+  static const String deleteCart= 'user/delete-cart';
+
 }

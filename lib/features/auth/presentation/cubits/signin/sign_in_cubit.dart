@@ -30,9 +30,10 @@ class SignInCubit extends Cubit<SignInState> {
       );
 
       user = SignInModel.fromJson(response.data);
-
+      await Prefs.setString('user_id', user!.user!.id!);
       if (user?.token != null) {
         await Prefs.setString('auth_token', user!.token!);
+
       }
 
       final setCookie = response.headers['set-cookie'];
@@ -53,6 +54,10 @@ class SignInCubit extends Cubit<SignInState> {
       }
 
       emit(SignInSuccess());
+      if (user?.user?.id != null) {
+        await Prefs.setString('user_id', user!.user!.id!);
+        debugPrint("Saved user_id: ${user!.user!.id!}");
+      }
     } on ServerException catch (e) {
       emit(SignInFailure(errMassege: e.errorModel.message));
     }
