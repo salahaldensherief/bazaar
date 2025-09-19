@@ -2,6 +2,7 @@ import 'package:Bazaar/features/auth/presentation/views/widgets/passwoed_field.d
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../../core/utils/assets_images.dart';
 import '../../../../../core/widgets/custom_text_field.dart';
@@ -30,7 +31,7 @@ class SignUpViewBody extends StatelessWidget {
               children: [
                 SizedBox(height: size.height.h * .1.h),
 
-                Image.asset(AssetsData.logo, height: size.height * 0.10.h),
+                SvgPicture.asset(AssetsData.logo2, height: size.height * 0.07.h),
                 SizedBox(height: size.height.h * .03.h),
 
                 const Text(

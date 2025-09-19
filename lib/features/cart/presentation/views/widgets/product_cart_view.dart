@@ -9,25 +9,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../data/cart_item.dart';
 import '../../cubits/cart/cart_cubit.dart';
 
-class ProductCartView extends StatefulWidget {
+class ProductCartView extends StatelessWidget {
   final CartItem cartItem;
-  const ProductCartView(this.cartItem);
-  @override
-  State<ProductCartView> createState() => _ProductCartViewState();
-}
-class _ProductCartViewState extends State<ProductCartView> {
-  late int quantity;
-
-  @override
-  void initState() {
-    super.initState();
-    quantity = widget.cartItem.quantity;
-  }
+  const ProductCartView(this.cartItem, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    final item = widget.cartItem;
-
     return Padding(
       padding: EdgeInsets.only(bottom: 16.h),
       child: Container(
@@ -53,7 +40,7 @@ class _ProductCartViewState extends State<ProductCartView> {
               margin: EdgeInsets.symmetric(horizontal: 8.w, vertical: 6.h),
               decoration: const BoxDecoration(color: Color(0xffF7F7FB)),
               child: Image.network(
-                item.product.productImage?.first ?? '',
+                cartItem.product.productImage?.first ?? '',
                 height: 60.h,
                 fit: BoxFit.contain,
               ),
@@ -65,64 +52,84 @@ class _ProductCartViewState extends State<ProductCartView> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      item.product.name ?? '',
+                      cartItem.product.name ?? '',
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
                     Text(
-                      item.product.category ?? '',
+                      cartItem.product.category ?? '',
                       style: TextStyle(color: Colors.grey, fontSize: 12.sp),
                     ),
                     Spacer(),
-                    Row(
-                      children: [
-                        Text(
-                          '${item.product.discountedPrice ?? item.product.price} L.E',
-                          style: TextStyles.medium15.copyWith(
-                            color: AppColors.primaryColor,
-                          ),
-                        ),
-                        Spacer(),
-                        GestureDetector(
-                          onTap: () => setState(() => quantity++),
-                          child: Container(
-                            padding: EdgeInsets.all(8),
-                            width: 32.w,
-                            height: 32.h,
-                            decoration: BoxDecoration(
-                              color: AppColors.backIconColor,
-                              borderRadius: BorderRadius.circular(100.r),
+                    BlocBuilder<CartCubit, CartState>(
+                      builder: (context, state) {
+                        int quantity = cartItem.quantity;
+                        if (state is CartSuccess) {
+                          final updatedItem = state.cartItems.firstWhere(
+                                  (e) => e.id == cartItem.id,
+                              orElse: () => cartItem);
+                          quantity = updatedItem.quantity;
+                        }
+                        final totalPrice =
+                            (cartItem.product.discountedPrice) * quantity;
+
+                        return Row(
+                          children: [
+                            Text(
+                              '$totalPrice L.E',
+                              style: TextStyles.medium15
+                                  .copyWith(color: AppColors.primaryColor),
                             ),
-                            child: SvgPicture.asset(AssetsData.plus),
-                          ),
-                        ),
-                        SizedBox(width: 8.w),
-                        Text(quantity.toString()),
-                        SizedBox(width: 8.w),
-                        GestureDetector(
-                          onTap: () {
-                            if (quantity > 1) {
-                              setState(() => quantity--);
-                            } else {
-                              context.read<CartCubit>().removeFromCart(item.id);
-                            }
-                          },
-                          child: Container(
-                            padding: EdgeInsets.all(8),
-                            width: 32.w,
-                            height: 32.h,
-                            decoration: BoxDecoration(
-                              color: AppColors.backIconColor,
-                              borderRadius: BorderRadius.circular(100.r),
+                            Spacer(),
+                            GestureDetector(
+                              onTap: () {
+                                context
+                                    .read<CartCubit>()
+                                    .updateQuantity(cartItem.id, quantity + 1);
+                              },
+                              child: Container(
+                                padding: EdgeInsets.all(8),
+                                width: 32.w,
+                                height: 32.h,
+                                decoration: BoxDecoration(
+                                  color: AppColors.backIconColor,
+                                  borderRadius: BorderRadius.circular(100.r),
+                                ),
+                                child: SvgPicture.asset(AssetsData.plus),
+                              ),
                             ),
-                            child: SvgPicture.asset(
-                              quantity > 1
-                                  ? AssetsData.minus
-                                  : AssetsData.remove,
+                            SizedBox(width: 8.w),
+                            Text(quantity.toString()),
+                            SizedBox(width: 8.w),
+                            GestureDetector(
+                              onTap: () {
+                                if (quantity > 1) {
+                                  context.read<CartCubit>().updateQuantity(
+                                      cartItem.id, quantity - 1);
+                                } else {
+                                  context
+                                      .read<CartCubit>()
+                                      .removeFromCart(cartItem.id);
+                                }
+                              },
+                              child: Container(
+                                padding: EdgeInsets.all(8),
+                                width: 32.w,
+                                height: 32.h,
+                                decoration: BoxDecoration(
+                                  color: AppColors.backIconColor,
+                                  borderRadius: BorderRadius.circular(100.r),
+                                ),
+                                child: SvgPicture.asset(
+                                  quantity > 1
+                                      ? AssetsData.minus
+                                      : AssetsData.remove,
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
-                      ],
+                          ],
+                        );
+                      },
                     ),
                   ],
                 ),
@@ -134,3 +141,4 @@ class _ProductCartViewState extends State<ProductCartView> {
     );
   }
 }
+

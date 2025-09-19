@@ -1,3 +1,4 @@
+import 'package:Bazaar/core/services/api/dio_consumer.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
@@ -11,7 +12,7 @@ import '../../../data/models/sign_up_model.dart';
 part 'sign_up_state.dart';
 
 class SignUpCubit extends Cubit<SignUpState> {
-  final ApiConsumer api;
+  final DioConsumer api;
 
   SignUpCubit(this.api) : super(SignUpInitial());
   GlobalKey<FormState> signUpFormKey = GlobalKey();

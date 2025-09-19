@@ -19,7 +19,7 @@ class BestSellerGridWidget extends StatefulWidget {
 }
 
 class _BestSellerGridWidgetState extends State<BestSellerGridWidget> {
-  bool isFav = false; // الحالة المحلية للـ favorite
+  bool isFav = false;
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +65,9 @@ class _BestSellerGridWidgetState extends State<BestSellerGridWidget> {
                           },
                           icon: Icon(
                             isFav ? Icons.favorite : Icons.favorite_border,
-                            color: isFav ? AppColors.primaryColor : Colors.grey,
+                            color: isFav
+                                ? AppColors.primaryColor
+                                : AppColors.primaryColor,
                             size: 24.w,
                           ),
                         ),

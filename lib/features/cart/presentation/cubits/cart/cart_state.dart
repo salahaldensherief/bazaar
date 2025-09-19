@@ -9,8 +9,9 @@ class CartLoading extends CartState {}
 
 class CartSuccess extends CartState {
   final List<CartItem> cartItems;
+  final double total;
 
-  CartSuccess({required this.cartItems});
+  CartSuccess({required this.total,required this.cartItems});
 }
 
 class CartEmpty extends CartState {}
@@ -18,4 +19,6 @@ class CartEmpty extends CartState {}
 class CartFailure extends CartState {
   final String message;
   CartFailure({required this.message});
+
 }
+class CartCheckoutSuccess extends CartState {}

@@ -6,7 +6,7 @@ import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/assets_images.dart';
 import '../../../../../core/utils/text_styles.dart';
 import '../../../../auth/presentation/views/login_view.dart';
-import '../cubits/signout/sign_out_cubit.dart';
+import '../../cubits/signout/sign_out_cubit.dart';
 
 class SignOutWidget extends StatelessWidget {
   const SignOutWidget({super.key});

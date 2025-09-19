@@ -1,3 +1,5 @@
+import 'package:Bazaar/features/account/presentation/views/widgets/profile_view.dart';
+import 'package:Bazaar/features/home/data/repos/home_repo.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,6 +14,7 @@ import '../../features/categories/presentation/views/categories_view.dart';
 import '../../features/home/presentation/manger/wishList/wish_list_cubit.dart';
 import '../../features/home/presentation/views/home_view.dart';
 import '../../features/home/presentation/views/widgets/bottom_nav_bar.dart';
+import '../../features/home/presentation/views/widgets/wishlist_view.dart';
 import '../../features/onboarding/presentation/views/onboarding_view.dart';
 import '../../features/search/presentation/views/widgets/search_page_view_body.dart';
 import '../../features/splash/presentation/views/splash_view.dart';
@@ -49,6 +52,10 @@ Route<dynamic> onGenerateRoutes(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => CategoriesView());
     case SearchViewBody.routeName:
       return MaterialPageRoute(builder: (context) => SearchViewBody());
+      case WishlistView.routeName:
+      return MaterialPageRoute(builder: (context) => WishlistView(homeRepo: di.sl<HomeRepo>()));
+    case ProfileView.routeName:
+      return MaterialPageRoute(builder: (context) => ProfileView());
     default:
       return MaterialPageRoute(builder: (context) => Scaffold());
   }

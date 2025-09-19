@@ -6,6 +6,6 @@ class AccountView extends StatelessWidget {
 static const routeName = 'accountview';
   @override
   Widget build(BuildContext context) {
-    return const AccountViewBody();
+    return  AccountViewBody();
   }
 }

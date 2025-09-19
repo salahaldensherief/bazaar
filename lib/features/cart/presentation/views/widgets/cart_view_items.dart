@@ -18,17 +18,40 @@ class CartViewItems extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 28.h),
-        child: BlocBuilder<CartCubit, CartState>(
-          builder: (context, state) {
-            if (state is CartSuccess && state.cartItems.isNotEmpty) {
-              return CheckoutBotton();
+        bottomNavigationBar: SizedBox(
+          height: 80.h, // أضف ارتفاع ثابت مناسب
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+            child: BlocBuilder<CartCubit, CartState>(
+              builder: (context, state) {
+                if (state is CartSuccess && state.cartItems.isNotEmpty) {
+                  return CheckoutBotton(
+                    onPressed: () {
+                      context.read<CartCubit>().checkout();
+                      showCupertinoDialog(
+                        context: context,
+                        builder: (context) => CupertinoAlertDialog(
+                          title: const Text('Success'),
+                          content: const Text('Your order has been placed successfully.'),
+                          actions: [
+                            CupertinoDialogAction(
+                              isDefaultAction: true,
+                              onPressed: () => Navigator.of(context).pop(),
+                              child: const Text('OK'),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                productCount: '${state.cartItems.length}',
+                totalPrice:state.total.toStringAsFixed(2).toString() ,
+              );
             }
             return const SizedBox.shrink();
           },
         ),
       ),
+        ),
       body: SingleChildScrollView(
         child: Column(
           children: [

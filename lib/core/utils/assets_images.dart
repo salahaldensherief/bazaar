@@ -53,5 +53,9 @@ class AssetsData {
   static const arrowNav = 'assets/images/path9429.svg';
   static const fover = 'assets/images/fover.png';
   static const checkout = 'assets/images/checkout-arrow.svg';
+  static const personalAccount = 'assets/images/personal-account.svg';
+  static const removeAccount = 'assets/images/remove filled.svg';
+
+
 
 }

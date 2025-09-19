@@ -1,4 +1,6 @@
+import 'package:Bazaar/core/widgets/product_Details_view.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,6 +21,7 @@ import '../../manger/wishList/wish_list_state.dart' as wishState;
 import 'bottom_nav_bar.dart';
 
 class WishlistView extends StatelessWidget {
+  static const routeName = 'wishlistview';
   final HomeRepo homeRepo;
   final String? productId;
 
@@ -53,13 +56,29 @@ class WishlistView extends StatelessWidget {
                       horizontal: 16.w,
                       vertical: 8.h,
                     ),
-                    child: ProductViewList(
-                      image: product.product?.productImage?.first ?? '',
-                      productCategory: product.product?.category ?? '',
-                      productName: product.product?.name ?? '',
-                      productPrice: product.product!.discountedPrice.toDouble(),
-                      productId: product.sId ?? '',
+                    child: GestureDetector(
+                      onTap: () {
+                        if (product.product == null) return;
 
+                        Navigator.push(
+                          context,
+                          CupertinoPageRoute(
+                            builder: (context) {
+                              return ProductDetailsView(
+                                product: product.product!,
+                              );
+                            },
+                          ),
+                        );
+                      },
+                      child: ProductViewList(
+                        image: product.product?.productImage?.first ?? '',
+                        productCategory: product.product?.category ?? '',
+                        productName: product.product?.name ?? '',
+                        productPrice: product.product!.discountedPrice
+                            .toDouble(),
+                        productId: product.sId ?? '',
+                      ),
                     ),
                   );
                 },

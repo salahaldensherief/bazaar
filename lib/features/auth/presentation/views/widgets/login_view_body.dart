@@ -2,7 +2,7 @@ import 'package:Bazaar/features/auth/presentation/views/widgets/passwoed_field.d
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:flutter_svg/svg.dart';
 
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/assets_images.dart';
@@ -13,77 +13,85 @@ import '../../cubits/signin/sign_in_cubit.dart';
 import 'custom_text_bottom.dart';
 
 class LoginViewBody extends StatelessWidget {
-   LoginViewBody({super.key});
+  LoginViewBody({super.key});
   @override
   Widget build(BuildContext context) {
     SignInState state = context.watch<SignInCubit>().state;
 
     final size = MediaQuery.of(context).size;
     return Scaffold(
-          body: SingleChildScrollView(
-            child: Form(
-              key: context.read<SignInCubit>().signInFormKey,
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24.w),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(height: size.height.h * .10.h),
-                    Image.asset(AssetsData.logo, height: size.height * 0.10),
-                    SizedBox(height: size.height.h * .05.h),
-
-                    const Text(
-                      'Sign in to continue',
-                      style: TextStyle(
-                        fontFamily: 'Cairo',
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18,
-                      ),
-                    ),
-                    SizedBox(height: size.height * 0.10.h),
-                    CustomTextFormField(
-                      controller: context.read<SignInCubit>().signInEmail,
-                      prefixIcon: Icon(Icons.email, size: 26.sp),
-                      hintText: 'Email',
-                      textInputType: TextInputType.emailAddress,
-                    ),
-                    SizedBox(height: 24.h),
-                    PasswordField(
-                      controller: context.read<SignInCubit>().signInPassword,
-                      hintText: 'Password',
-                    ),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          'Forget Password',
-                          style: TextStyles.medium14.copyWith(
-                            color: AppColors.primaryColor,
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 24.h),
-                    state is SignInLoading
-                        ? const CircularProgressIndicator(color: AppColors.primaryColor)
-                        : CustomTextBottom(
-                      onPressed: () {
-                        if (context.read<SignInCubit>().signInFormKey.currentState!.validate()) {
-                          context.read<SignInCubit>().logIn();
-                        }
-                      },
-                      text: 'Login',
-                    ),
-                    SizedBox(height: 24.h),
-                    const DontHaveAnAccountWidget(),
-                    SizedBox(height: 24.h),
-                  ],
+      body: SingleChildScrollView(
+        child: Form(
+          key: context.read<SignInCubit>().signInFormKey,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 24.w),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(height: size.height.h * .10.h),
+                SvgPicture.asset(
+                  AssetsData.logo2,
+                  height: size.height * 0.07.h,
                 ),
-              ),
+                SizedBox(height: size.height.h * .03.h),
+
+                const Text(
+                  'Sign in to continue',
+                  style: TextStyle(
+                    fontFamily: 'Cairo',
+                    fontWeight: FontWeight.w600,
+                    fontSize: 18,
+                  ),
+                ),
+                SizedBox(height: size.height * 0.10.h),
+                CustomTextFormField(
+                  controller: context.read<SignInCubit>().signInEmail,
+                  prefixIcon: Icon(Icons.email, size: 26.sp),
+                  hintText: 'Email',
+                  textInputType: TextInputType.emailAddress,
+                ),
+                SizedBox(height: 24.h),
+                PasswordField(
+                  controller: context.read<SignInCubit>().signInPassword,
+                  hintText: 'Password',
+                ),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      'Forget Password',
+                      style: TextStyles.medium14.copyWith(
+                        color: AppColors.primaryColor,
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 24.h),
+                state is SignInLoading
+                    ? const CircularProgressIndicator(
+                        color: AppColors.primaryColor,
+                      )
+                    : CustomTextBottom(
+                        onPressed: () {
+                          if (context
+                              .read<SignInCubit>()
+                              .signInFormKey
+                              .currentState!
+                              .validate()) {
+                            context.read<SignInCubit>().logIn();
+                          }
+                        },
+                        text: 'Login',
+                      ),
+                SizedBox(height: 24.h),
+                const DontHaveAnAccountWidget(),
+                SizedBox(height: 24.h),
+              ],
             ),
           ),
-        );
-
+        ),
+      ),
+    );
   }
 }

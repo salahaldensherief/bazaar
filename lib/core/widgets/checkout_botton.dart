@@ -7,13 +7,15 @@ import '../utils/assets_images.dart';
 import '../utils/text_styles.dart';
 
 class CheckoutBotton extends StatelessWidget {
-  const CheckoutBotton({super.key});
-
+  const CheckoutBotton({super.key, required this.productCount, required this.totalPrice, this.onPressed});
+final String productCount;
+final String totalPrice;
+ final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
     return IconButton(
       padding: EdgeInsets.zero,
-      onPressed: () {},
+      onPressed: onPressed,
       icon: Container(
         width: 343.w,
         height: 48.h,
@@ -26,13 +28,13 @@ class CheckoutBotton extends StatelessWidget {
           child: Row(
             children: [
               Text(
-                '2 products : ',
+                '$productCount products : ',
                 style: TextStyles.semiBold13.copyWith(
                   color: AppColors.whiteColor,
                 ),
               ),
               Text(
-                '700 L.E',
+                '$totalPrice L.E',
                 style: TextStyles.medium15.copyWith(
                   color: AppColors.whiteColor,
                 ),

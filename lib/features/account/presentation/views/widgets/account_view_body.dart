@@ -1,3 +1,4 @@
+import 'package:Bazaar/features/account/presentation/views/widgets/profile_view.dart';
 import 'package:Bazaar/features/account/presentation/views/widgets/settings_tile.dart';
 import 'package:Bazaar/features/account/presentation/views/widgets/sign_out_widget.dart';
 import 'package:dio/dio.dart';
@@ -9,7 +10,8 @@ import '../../../../../core/services/api/dio_consumer.dart';
 import '../../../../../core/utils/assets_images.dart';
 import '../../../../../core/widgets/custom_app_bar.dart';
 import '../../../../home/presentation/views/widgets/icons_app_bar.dart';
-import '../cubits/signout/sign_out_cubit.dart';
+import '../../../../home/presentation/views/widgets/wishlist_view.dart';
+import '../../cubits/signout/sign_out_cubit.dart';
 import 'category_name.dart';
 
 class AccountViewBody extends StatelessWidget {
@@ -50,6 +52,9 @@ class AccountViewBody extends StatelessWidget {
                   ),
                   SizedBox(height: 16.h),
                   SettingsTile(
+                    onTap: () {
+                      Navigator.pushNamed(context, WishlistView.routeName);
+                    },
                     iconImage: AssetsData.favourFilled,
                     title: 'Wish List',
                   ),
@@ -68,6 +73,9 @@ class AccountViewBody extends StatelessWidget {
                   SizedBox(height: 28.h),
 
                   SettingsTile(
+                    onTap: () {
+                      Navigator.pushNamed(context, ProfileView.routeName);
+                    },
                     iconImage: AssetsData.profileAcc,
                     title: 'Profile',
                   ),
@@ -103,7 +111,6 @@ class AccountViewBody extends StatelessWidget {
                     child: SignOutWidget(),
                   ),
                   SizedBox(height: 45.h),
-
                 ],
               ),
             ),

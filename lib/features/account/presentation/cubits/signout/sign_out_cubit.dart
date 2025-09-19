@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../../../core/services/api/api_consumer.dart';
 import '../../../../../../core/services/api/api_endpoint.dart';
 import '../../../../../../core/services/errors/exceptions.dart';
-import '../../../../../auth/data/models/sign_out_model.dart';
+import '../../../../auth/data/models/sign_out_model.dart';
 
 part 'sign_out_state.dart';
 

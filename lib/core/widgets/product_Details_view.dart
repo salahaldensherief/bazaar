@@ -10,7 +10,6 @@ import '../../features/auth/data/models/sign_in_model.dart';
 import '../../features/cart/data/cart_item.dart';
 import '../../features/cart/data/cart_response.dart';
 import '../../features/cart/data/repos/cart_repo.dart';
-import '../../features/cart/presentation/cubits/checkout/checkout_cubit.dart';
 import '../../features/categories/presentation/views/widgets/product_sliver_list.dart';
 import '../../features/home/data/model/products_model.dart';
 import '../../features/home/data/repos/home_repo.dart';
@@ -34,9 +33,10 @@ class ProductDetailsView extends StatelessWidget {
   Widget build(BuildContext context) {
     final prod = product;
     final screenHeight = MediaQuery.of(context).size.height;
+    final currentUser = sl<User>();
 
     return BlocProvider(
-      create: (context) => CartCubit(cart: sl<CartRepo>()),
+      create: (context) => CartCubit(cart: sl<CartRepo>(), user: currentUser),
       child: Scaffold(
         extendBody: true,
         appBar: CustomAppBar(
