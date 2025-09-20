@@ -8,8 +8,11 @@ import '../utils/assets_images.dart';
 import '../utils/text_styles.dart';
 
 class AddToCartContainer extends StatelessWidget {
-  const AddToCartContainer({super.key, this.onTap});
+    AddToCartContainer({this.icon, super.key, this.onTap, required this.title, });
+  final String title;
 final void Function()? onTap;
+   String? icon;
+
   @override
   Widget build(BuildContext context) {
     return  GestureDetector(
@@ -24,9 +27,9 @@ final void Function()? onTap;
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SvgPicture.asset(AssetsData.cartPlus),
+                SvgPicture.asset(icon!),
                 SizedBox(width: 8,),
-                Text('Add to Cart', style: TextStyles.medium15.copyWith(
+                Text(title, style: TextStyles.medium15.copyWith(
                     color: AppColors.whiteColor
                 )),
               ],

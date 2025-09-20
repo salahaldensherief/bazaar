@@ -12,9 +12,7 @@ class CartCubit extends Cubit<CartState> {
 
   CartCubit({required this.cart, required this.user}) : super(CartInitial());
 
-  Future<void> fetchCartItems() async {
-    emit(CartLoading());
-    final result = await cart.getCartItems();
+  Future<void> _handleCartResult(result) async {
     result.fold(
           (error) => emit(CartFailure(message: error.errorModel.message)),
           (items) {
@@ -26,54 +24,37 @@ class CartCubit extends Cubit<CartState> {
         }
       },
     );
+  }
+
+  Future<void> fetchCartItems() async {
+    emit(CartLoading());
+    final result = await cart.getCartItems();
+    await _handleCartResult(result);
   }
 
   Future<void> addToCart(String productId) async {
     emit(CartLoading());
     final result = await cart.addToCart(productId: productId);
-    result.fold(
-          (error) => emit(CartFailure(message: error.errorModel.message)),
-          (items) {
-        if (items.isEmpty) {
-          emit(CartEmpty());
-        } else {
-          final total = calculateCartTotal(items);
-          emit(CartSuccess(cartItems: items, total: total.toDouble()));
-        }
-      },
-    );
+    await _handleCartResult(result);
   }
 
   Future<void> removeFromCart(String cartItemId) async {
     emit(CartLoading());
     final result = await cart.removeFromCart(cartItemId: cartItemId);
-    result.fold(
-          (error) => emit(CartFailure(message: error.errorModel.message)),
-          (items) {
-        if (items.isEmpty) {
-          emit(CartEmpty());
-        } else {
-          final total = calculateCartTotal(items);
-          emit(CartSuccess(cartItems: items, total: total.toDouble()));
-        }
-      },
-    );
+    await _handleCartResult(result);
   }
 
   Future<void> checkout() async {
-    if (user == null) {
-      emit(CartFailure(message: "User not logged in"));
-      return;
-    }
-    if (state is CartSuccess) {
-      emit(CartLoading());
-      final cartItems = (state as CartSuccess).cartItems;
-      final result = await cart.checkout(user: user!, items: cartItems);
-      result.fold(
-            (error) => emit(CartFailure(message: error.errorModel.message)),
-            (_) => emit(CartCheckoutSuccess()),
-      );
-    }
+    if (state is! CartSuccess) return;
+
+    emit(CartLoading());
+    final cartItems = (state as CartSuccess).cartItems;
+
+    final result = await cart.checkout(user: user, items: cartItems);
+    result.fold(
+          (error) => emit(CartFailure(message: error.errorModel.message)),
+          (_) => emit(CartCheckoutSuccess()),
+    );
   }
 
   double calculateCartTotal(List<CartItem> items) {

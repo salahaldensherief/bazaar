@@ -12,13 +12,14 @@ import '../utils/text_styles.dart';
 class ProductViewList extends StatelessWidget {
   const ProductViewList({
     super.key,
+    this.showFavIcon = true,
     required this.image,
     required this.productName,
     required this.productCategory,
     required this.productPrice,
     required this.productId,
   });
-
+final bool showFavIcon;
   final String productId;
   final String image;
   final String productName;
@@ -75,17 +76,20 @@ class ProductViewList extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Padding(
-                            padding: EdgeInsets.only(right: 8.w),
-                            child: InkWell(
-                              onTap: () {
-                                context.read<WishlistCubit>().removeFromWishlist(productId);
-                              },
-                              child: SvgPicture.asset(
-                                AssetsData.favAc,
-                                width: 20.w,
-                                height: 20.h,
-                                fit: BoxFit.scaleDown,
+                          Visibility(
+                            visible: showFavIcon,
+                            child: Padding(
+                              padding: EdgeInsets.only(right: 8.w),
+                              child: InkWell(
+                                onTap: () {
+                                  context.read<WishlistCubit>().removeFromWishlist(productId);
+                                },
+                                child: SvgPicture.asset(
+                                  AssetsData.favAc,
+                                  width: 20.w,
+                                  height: 20.h,
+                                  fit: BoxFit.scaleDown,
+                                ),
                               ),
                             ),
                           ),

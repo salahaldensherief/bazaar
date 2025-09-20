@@ -1,5 +1,6 @@
 import 'package:Bazaar/features/auth/presentation/cubits/signin/sign_in_cubit.dart';
 import 'package:Bazaar/features/cart/presentation/cubits/cart/cart_cubit.dart';
+import 'package:Bazaar/features/cart/presentation/views/cart_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,6 +18,7 @@ import '../../features/home/presentation/views/widgets/custom_carousel_slider.da
 import '../services/getit/service_locator.dart';
 import '../services/shared_preferences_singleton.dart';
 import '../utils/app_colors.dart';
+import '../utils/assets_images.dart';
 import '../utils/text_styles.dart';
 import 'add_to_cart_container.dart';
 import 'available_widget.dart';
@@ -145,11 +147,7 @@ class ProductDetailsView extends StatelessWidget {
                       context,
                     ).showSnackBar(SnackBar(content: Text(state.message)));
                   } else if (state is CartSuccess) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text("Product added successfully"),
-                      ),
-                    );
+                    Navigator.pushNamed(context, CartView.routeName);
                   } else if (state is CartEmpty) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(content: Text("Cart is empty")),
@@ -169,6 +167,8 @@ class ProductDetailsView extends StatelessWidget {
                   }
                   return AddToCartContainer(
 
+                    title: 'Add to Cart',
+                    icon: AssetsData.cartPlus,
                     onTap: () {
                       if (prod.sId != null && prod.sId!.isNotEmpty) {
                         context.read<CartCubit>().addToCart(prod.sId!);

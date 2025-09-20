@@ -28,6 +28,7 @@ class HomeViewBody extends StatelessWidget {
         slivers: [
           SliverToBoxAdapter(
             child: IconAppBar(
+
               subTitle: 'Welcome !',
               showHeart: true,
               solidBell: true,

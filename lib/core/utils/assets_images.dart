@@ -55,6 +55,10 @@ class AssetsData {
   static const checkout = 'assets/images/checkout-arrow.svg';
   static const personalAccount = 'assets/images/personal-account.svg';
   static const removeAccount = 'assets/images/remove filled.svg';
+  static const card = 'assets/images/card.png';
+  static const cash = 'assets/images/cash.png';
+  static const confirmOrder = 'assets/images/Group 20.png';
+
 
 
 

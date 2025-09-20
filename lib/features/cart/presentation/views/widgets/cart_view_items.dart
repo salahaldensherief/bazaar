@@ -1,6 +1,6 @@
-import 'package:Bazaar/core/widgets/add_to_cart_container.dart';
 import 'package:Bazaar/core/widgets/checkout_botton.dart';
 import 'package:Bazaar/core/widgets/widget_empty.dart';
+import 'package:Bazaar/features/cart/presentation/views/widgets/payment_method_view.dart';
 import 'package:Bazaar/features/cart/presentation/views/widgets/product_cart_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,43 +15,38 @@ import '../../cubits/cart/cart_cubit.dart';
 
 class CartViewItems extends StatelessWidget {
   const CartViewItems({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomNavigationBar: SizedBox(
-          height: 80.h, // أضف ارتفاع ثابت مناسب
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
-            child: BlocBuilder<CartCubit, CartState>(
-              builder: (context, state) {
-                if (state is CartSuccess && state.cartItems.isNotEmpty) {
-                  return CheckoutBotton(
-                    onPressed: () {
-                      context.read<CartCubit>().checkout();
-                      showCupertinoDialog(
-                        context: context,
-                        builder: (context) => CupertinoAlertDialog(
-                          title: const Text('Success'),
-                          content: const Text('Your order has been placed successfully.'),
-                          actions: [
-                            CupertinoDialogAction(
-                              isDefaultAction: true,
-                              onPressed: () => Navigator.of(context).pop(),
-                              child: const Text('OK'),
-                            ),
-                          ],
+      bottomNavigationBar: SizedBox(
+        height: 80.h,
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+          child: BlocBuilder<CartCubit, CartState>(
+            builder: (context, state) {
+              if (state is CartSuccess && state.cartItems.isNotEmpty) {
+                return CheckoutBotton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                        builder: (_) => BlocProvider.value(
+                          value: context.read<CartCubit>(),
+                          child: PaymentMethodView(),
                         ),
-                      );
-                    },
-                productCount: '${state.cartItems.length}',
-                totalPrice:state.total.toStringAsFixed(2).toString() ,
-              );
-            }
-            return const SizedBox.shrink();
-          },
+                      ),
+                    );
+                  },
+                  productCount: '${state.cartItems.length}',
+                  totalPrice: state.total.toStringAsFixed(2),
+                );
+              }
+              return const SizedBox.shrink();
+            },
+          ),
         ),
       ),
-        ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -103,7 +98,7 @@ class CartViewItems extends StatelessWidget {
                         imagePath: AssetsData.cartEmpty,
                         title: 'Your shopping cart is empty',
                         subtitle:
-                            'Browse our products and add the products you want to buy to the shopping cart by clicking the add button.',
+                        'Browse our products and add the products you want to buy to the shopping cart by clicking the add button.',
                       ),
                     ),
                   );

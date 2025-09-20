@@ -38,9 +38,11 @@ class BazaarApp extends StatelessWidget {
           appBarTheme: AppBarTheme(backgroundColor: AppColors.whiteColor),
           useMaterial3: false,
           fontFamily: 'Cairo',
+
           scaffoldBackgroundColor: AppColors.backgraoundColor,
           primaryColor: AppColors.primaryColor,
         ),
+
         initialRoute: SplashView.routeName,
         onGenerateRoute: onGenerateRoutes,
       ),

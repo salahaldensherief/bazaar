@@ -54,9 +54,13 @@ class ProductsModel {
     quantity = json['quantity'];
     description = json['description'];
     category = productJson['category']?.toString() ?? '';
-    productImage = (productJson['product_image'] as List<dynamic>?)
+    productImage = (json['image'] as List<dynamic>?)
         ?.map((e) => e.toString())
-        .toList() ?? [];
+        .toList() ??
+        (productJson['product_image'] as List<dynamic>?)
+            ?.map((e) => e.toString())
+            .toList() ??
+        [];
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
     iV = json['__v'];

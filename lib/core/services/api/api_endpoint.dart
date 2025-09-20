@@ -20,6 +20,7 @@ class ApiEndPoint {
   static const String deleteCart= 'user/delete-cart';
   static const String getUserDetails= 'user/user-details';
   static const String editUser= 'user/edit-user';
+  static const String getOrder= 'payment/order';
 
 
 

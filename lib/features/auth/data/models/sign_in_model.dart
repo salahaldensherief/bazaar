@@ -39,4 +39,6 @@ class User {
     data['role'] = this.role;
     return data;
   }
+  factory User.empty() => User(id: '', email: '', role: '');
+
 }
